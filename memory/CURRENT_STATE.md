@@ -1,22 +1,24 @@
 # Current State
 
 - Date: 2026-11-04
-- Stage: core layout defined; moving through the approved task dependency graph.
+- Stage: core contracts defined; moving through the approved task dependency graph.
 - Repository: `jsalinasanzules/developer-ai-init`, public, default branch `main`.
 - Personal GitHub read/write access verified.
 - The foundation, nine specifications, eighteen task briefs, memory records, templates, and registry are committed.
-- TASK-001 review is complete: `docs/reviews/2026-11-04-task-001-foundation-review.md`.
-- TASK-002 target-project layout is complete: `docs/architecture/target-project-layout.md`.
+- TASK-001 review: `docs/reviews/2026-11-04-task-001-foundation-review.md`.
+- TASK-002 target-project layout: `docs/architecture/target-project-layout.md`.
+- TASK-003 schemas: `schemas/README.md` and `schemas/*.schema.json`.
 
 ## Active task
-**TASK-003 — Define JSON schemas for project, agent, task, and memory metadata**
-- Status: next eligible; dependency TASK-002 is done.
-- Specs: SPEC-001, SPEC-002, SPEC-005.
-- Next action: read the task brief and draft versioned schemas and examples.
+**TASK-004 — Define memory read/write protocol and startup context packet**
+- Status: ready; dependency TASK-003 is done.
+- Specs: SPEC-002, SPEC-004.
+- Next action: read the task brief and specify deterministic startup reads, the startup context packet, and memory write events.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
 - **TASK-002** (`done`): canonical `.blueprint/` tree, file catalog, ownership, collision, and upgrade policies.
+- **TASK-003** (`done`): versioned JSON schemas, fixtures, and cross-reference rules; 15/15 fixture expectations pass.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -36,4 +38,4 @@
 None recorded.
 
 ## Next
-Start TASK-003 after committing TASK-002. TASK-004 and TASK-006 both depend on TASK-003; select the next eligible task after schema work is verified.
+Start TASK-004. After it completes, TASK-005 and TASK-006 become eligible; TASK-006 can run independently of TASK-004.

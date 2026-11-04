@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "authority": ["USER", "ORCHESTRATOR", "MANAGERS", "SPECIALISTS"],
+  "roles": {
+    "orchestrator": {
+      "id": "orchestrator",
+      "title": "Orchestrator",
+      "kind": "orchestrator",
+      "responsibilities": ["Coordinate work."],
+      "can_delegate_to": ["manager-architecture"]
+    },
+    "managers": [
+      {
+        "id": "manager-architecture",
+        "title": "Manager: Architecture",
+        "kind": "manager",
+        "responsibilities": ["Coordinate architecture."],
+        "reports_to": "orchestrator",
+        "can_delegate_to": []
+      }
+    ],
+    "specialists": []
+  },
+  "delegation": {
+    "mode": "depth-3",
+    "max_depth": 3,
+    "fallback": "sequential"
+  },
+  "approvals": {
+    "material_decisions": "user",
+    "destructive_actions": "user",
+    "conflict_resolution": "user"
+  },
+  "created_at": "2026-11-04",
+  "updated_at": "2026-11-04"
+}

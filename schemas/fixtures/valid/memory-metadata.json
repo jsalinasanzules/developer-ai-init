@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "example-project",
+  "updated_at": "2026-11-04",
+  "records": [
+    {
+      "path": ".blueprint/memory/PROJECT_CONTEXT.md",
+      "class": "canonical",
+      "owner_role": "ORCHESTRATOR",
+      "last_updated": "2026-11-04",
+      "last_task": "TASK-001"
+    },
+    {
+      "path": ".blueprint/tasks/registry.json",
+      "class": "canonical",
+      "owner_role": "ORCHESTRATOR",
+      "last_updated": "2026-11-04",
+      "last_task": "TASK-002"
+    }
+  ],
+  "derived": [
+    {
+      "path": ".blueprint/derived/search-index.json",
+      "rebuildable": true,
+      "notes": "Optional local index; not committed."
+    }
+  ]
+}

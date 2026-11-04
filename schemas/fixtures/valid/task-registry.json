@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-04",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Establish project memory",
+      "status": "done",
+      "priority": "critical",
+      "specs": ["SPEC-001"],
+      "owner_role": "ORCHESTRATOR",
+      "dependencies": [],
+      "next_action": "None.",
+      "completed_at": "2026-11-04"
+    },
+    {
+      "id": "TASK-002",
+      "title": "Define the first implementation slice",
+      "status": "in_progress",
+      "priority": "high",
+      "specs": ["SPEC-001", "SPEC-002"],
+      "owner_role": "MANAGER: Architecture",
+      "dependencies": ["TASK-001"],
+      "next_action": "Draft the implementation slice."
+    },
+    {
+      "id": "TASK-003",
+      "title": "Verify the implementation slice",
+      "status": "blocked",
+      "priority": "high",
+      "specs": ["SPEC-002"],
+      "owner_role": "MANAGER: Quality",
+      "dependencies": ["TASK-002"],
+      "next_action": "Resume verification after TASK-002 completes.",
+      "blocked": {
+        "reason": "The implementation slice is not complete.",
+        "responsible_role": "MANAGER: Architecture",
+        "next_action": "Complete TASK-002 and report evidence."
+      }
+    }
+  ]
+}

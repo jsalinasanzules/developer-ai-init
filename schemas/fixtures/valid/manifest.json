@@ -1,0 +1,22 @@
+{
+  "manifest_version": "1.0.0",
+  "schema_version": "1.0.0",
+  "blueprint_version": "0.1.0",
+  "installed_at": "2026-11-04",
+  "files": [
+    {
+      "path": ".blueprint/README.md",
+      "class": "canonical",
+      "template_version": "1.0.0",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "path": ".blueprint/schemas/project.schema.json",
+      "class": "blueprint-managed",
+      "template_version": "1.0.0",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  ],
+  "migrations": [],
+  "notes": "Initial installation."
+}

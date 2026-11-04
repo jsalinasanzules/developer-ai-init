@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "example-project",
+  "updated_at": "2026-11-04",
+  "records": [
+    {
+      "path": ".blueprint/memory/PROJECT_CONTEXT.md",
+      "class": "canonical",
+      "owner_role": "ORCHESTRATOR"
+    }
+  ]
+}

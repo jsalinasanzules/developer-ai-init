@@ -5,10 +5,10 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 ## Phase 0 — Foundation
 - [x] **TASK-001** (done, critical): Review foundation and approve core architecture. No dependencies.
 - [x] **TASK-002** (done): Finalize target-project blueprint directory and file ownership. Depends on TASK-001.
-- [ ] **TASK-003** (ready): Define JSON schemas. Depends on TASK-002.
+- [x] **TASK-003** (done): Define JSON schemas. Depends on TASK-002.
 
 ## Phase 1 — Persistent memory and task continuity
-- [ ] **TASK-004**: Define memory read/write protocol and startup context packet. Depends on TASK-003.
+- [ ] **TASK-004** (ready): Define memory read/write protocol and startup context packet. Depends on TASK-003.
 - [ ] **TASK-005**: Define decision log, conflict detection, and approval workflow. Depends on TASK-004.
 - [ ] **TASK-006**: Define task registry, transitions, and handoff format. Depends on TASK-003.
 - [ ] **TASK-007**: Define memory consolidation and concurrent update safeguards. Depends on TASK-004, TASK-005, TASK-006.

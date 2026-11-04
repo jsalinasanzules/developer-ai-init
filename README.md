@@ -45,6 +45,7 @@ Instructions define how agents operate. Persistent memory records what is known,
 - [Task lifecycle](docs/architecture/task-lifecycle.md)
 - [Provider adapters](docs/architecture/provider-adapters.md)
 - [Specifications index](specs/README.md)
+- [JSON schemas and fixtures](schemas/README.md)
 - [TASK-001 foundation review](docs/reviews/2026-11-04-task-001-foundation-review.md)
 - [Task backlog](tasks/backlog.md)
 - [Task registry](tasks/registry.json)

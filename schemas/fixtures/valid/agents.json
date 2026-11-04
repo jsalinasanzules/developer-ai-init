@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "authority": ["USER", "ORCHESTRATOR", "MANAGERS", "SPECIALISTS"],
+  "roles": {
+    "orchestrator": {
+      "id": "orchestrator",
+      "title": "Orchestrator",
+      "kind": "orchestrator",
+      "responsibilities": [
+        "Load project memory and select eligible tasks.",
+        "Communicate with the user and obtain approvals.",
+        "Consolidate shared memory and verify delegated work."
+      ],
+      "can_delegate_to": ["manager-architecture", "specialist-testing"]
+    },
+    "managers": [
+      {
+        "id": "manager-architecture",
+        "title": "Manager: Architecture",
+        "kind": "manager",
+        "responsibilities": [
+          "Coordinate architecture specifications and review specialist output."
+        ],
+        "reports_to": "orchestrator",
+        "can_delegate_to": ["specialist-testing"]
+      }
+    ],
+    "specialists": [
+      {
+        "id": "specialist-testing",
+        "title": "Specialist: Testing",
+        "kind": "specialist",
+        "responsibilities": [
+          "Execute bounded verification work and report evidence."
+        ],
+        "reports_to": "manager-architecture",
+        "can_delegate_to": []
+      }
+    ]
+  },
+  "delegation": {
+    "mode": "depth-2",
+    "max_depth": 2,
+    "fallback": "sequential"
+  },
+  "approvals": {
+    "material_decisions": "user",
+    "destructive_actions": "user",
+    "conflict_resolution": "user"
+  },
+  "adapter_ref": {
+    "adapter_id": "opencode",
+    "version": "0.1.0",
+    "notes": "V2-native adapter baseline."
+  },
+  "created_at": "2026-11-04",
+  "updated_at": "2026-11-04"
+}
