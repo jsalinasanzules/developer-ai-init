@@ -11,6 +11,7 @@ This repository is the blueprint's source project. Do not confuse its own develo
 3. Read `tasks/registry.json` and `tasks/backlog.md`.
 4. Identify one eligible task; read its specification, dependencies, and relevant decisions.
 5. Inspect the actual repository state before editing. Treat Git as the source of truth.
+6. Produce the startup context packet defined in `docs/architecture/memory-protocol.md` before planning work.
 
 ## Hierarchy
 `USER → ORCHESTRATOR → MANAGERS → SPECIALISTS`.
@@ -42,7 +43,7 @@ Do not silently choose a side, invent missing requirements, or treat a model's p
 ## Persistent memory
 Canonical project memory is Markdown/JSON under `.blueprint/` in projects initialized by this blueprint. Markdown/JSON are authoritative and Git-versioned. Provider context, vector indexes, databases, and MCP tools are optional accelerators, never the only source of truth.
 
-For this repository, use the top-level `/memory` directory as its development memory. Update the owning record after meaningful discoveries, approved decisions, task transitions, or handoffs. Do not store credentials, tokens, secrets, or unnecessary sensitive personal data.
+For this repository, use the top-level `/memory` directory as its development memory. Update the owning record after meaningful discoveries, approved decisions, task transitions, or handoffs. Follow the read order, ownership map, write triggers, non-write cases, and compaction rules in `docs/architecture/memory-protocol.md`. Do not store credentials, tokens, secrets, or unnecessary sensitive personal data.
 
 ## Safe editing
 - Inspect before modifying; preserve user changes.

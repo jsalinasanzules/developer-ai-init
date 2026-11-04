@@ -46,10 +46,10 @@ Provider configuration (for example OpenCode agent definitions) is generated sep
 - `metadata.json`: schema version, update metadata, and optional record pointers; never secrets.
 
 ## Read protocol
-At session start, read the blueprint README, project context, current state, task registry, active task, linked specification, and relevant decisions/conventions. Expand context only as needed. Never assume conversation history is available.
+At session start, read the blueprint README, project context, current state, task registry, active task, linked specification, and relevant decisions/conventions. Expand context only as needed. Never assume conversation history is available. The deterministic read order, active-task selection, failure handling, and startup context packet are defined in [Memory Read/Write Protocol and Startup Context Packet](memory-protocol.md).
 
 ## Write protocol
-Write durable facts to their owning record. Update current state when active work or blockers change. Record material approved choices in decisions. Update task registry on transitions. Append concise session summaries and create handoffs when work crosses sessions.
+Write durable facts to their owning record. Update current state when active work or blockers change. Record material approved choices in decisions. Update task registry on transitions. Append concise session summaries and create handoffs when work crosses sessions. The event table, ownership map, non-write cases, and compaction rules are defined in [Memory Read/Write Protocol and Startup Context Packet](memory-protocol.md).
 
 ## Consolidation and concurrency
 Specialists submit proposed updates with source/evidence. The Orchestrator or designated memory steward reviews and consolidates them. Concurrent edits to shared records require semantic reconciliation; never use last-write-wins for decisions or task state.

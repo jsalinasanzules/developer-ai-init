@@ -8,8 +8,8 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 - [x] **TASK-003** (done): Define JSON schemas. Depends on TASK-002.
 
 ## Phase 1 — Persistent memory and task continuity
-- [ ] **TASK-004** (ready): Define memory read/write protocol and startup context packet. Depends on TASK-003.
-- [ ] **TASK-005**: Define decision log, conflict detection, and approval workflow. Depends on TASK-004.
+- [x] **TASK-004** (done): Define memory read/write protocol and startup context packet. Depends on TASK-003.
+- [ ] **TASK-005** (ready): Define decision log, conflict detection, and approval workflow. Depends on TASK-004.
 - [ ] **TASK-006**: Define task registry, transitions, and handoff format. Depends on TASK-003.
 - [ ] **TASK-007**: Define memory consolidation and concurrent update safeguards. Depends on TASK-004, TASK-005, TASK-006.
 
