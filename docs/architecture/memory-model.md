@@ -52,7 +52,7 @@ At session start, read the blueprint README, project context, current state, tas
 Write durable facts to their owning record. Update current state when active work or blockers change. Record material approved choices in decisions. Update task registry on transitions. Append concise session summaries and create handoffs when work crosses sessions. The event table, ownership map, non-write cases, and compaction rules are defined in [Memory Read/Write Protocol and Startup Context Packet](memory-protocol.md).
 
 ## Consolidation and concurrency
-Specialists submit proposed updates with source/evidence. The Orchestrator or designated memory steward reviews and consolidates them. Concurrent edits to shared records require semantic reconciliation; never use last-write-wins for decisions or task state.
+Specialists submit proposed updates with source/evidence. The Orchestrator or designated memory steward reviews and consolidates them. Concurrent edits to shared records require semantic reconciliation; never use last-write-wins for decisions or task state. The full proposal lifecycle, provenance model, and conflict reconciliation procedure are in [Memory Consolidation and Concurrent Update Safeguards](memory-consolidation.md).
 
 ## Privacy and integrity
 Never store credentials, access tokens, private keys, or secrets. Avoid unnecessary personal or sensitive information. Missing or contradictory records must be surfaced for resolution. Derived indexes must be reproducible from canonical files.

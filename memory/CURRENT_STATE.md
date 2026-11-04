@@ -11,12 +11,13 @@
 - TASK-004 memory protocol: `docs/architecture/memory-protocol.md`.
 - TASK-005 decision protocol: `docs/architecture/decision-and-approval-protocol.md`.
 - TASK-006 task lifecycle: `docs/architecture/task-lifecycle.md`.
+- TASK-007 memory consolidation: `docs/architecture/memory-consolidation.md`.
 
 ## Active task
-**TASK-007 — Define memory consolidation and concurrent update safeguards**
-- Status: ready; dependencies TASK-004, TASK-005, and TASK-006 are done.
-- Specs: SPEC-002, SPEC-005.
-- Next action: read the task brief and specify steward review, proposal intake, merge reconciliation, and conflict safeguards.
+**TASK-008 — Specify Orchestrator, Manager, and Specialist contracts**
+- Status: ready; dependencies TASK-001 and TASK-005 are done.
+- Specs: SPEC-003, SPEC-004.
+- Next action: read the task brief and define role contracts, delegation/reporting, and sequential fallback.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
@@ -25,6 +26,7 @@
 - **TASK-004** (`done`): deterministic startup read protocol, context packet, ownership map, write triggers, and compaction rules.
 - **TASK-005** (`done`): conflict classification, approval packet, attribution, expiry, and decision supersession.
 - **TASK-006** (`done`): task schema, transition matrix, dependency validation, evidence mapping, and cold-start handoff format.
+- **TASK-007** (`done`): memory proposal lifecycle, ownership/provenance, semantic merge, and concurrent-edit safeguards; scenario checks pass.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -44,4 +46,4 @@
 None recorded.
 
 ## Next
-Start TASK-007 (dependencies TASK-004, TASK-005, TASK-006 are done). TASK-008 is also eligible.
+Start TASK-008 (dependencies TASK-001 and TASK-005 are done). TASK-009 becomes eligible after TASK-008 completes.

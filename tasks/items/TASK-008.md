@@ -1,7 +1,7 @@
 # TASK-008 — Specify Orchestrator, Manager, and Specialist contracts
 
 ## Metadata
-- Status: proposed
+- Status: ready
 - Priority: high
 - Owner role: MANAGER: Architecture
 - Specs: SPEC-003, SPEC-004

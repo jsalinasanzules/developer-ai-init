@@ -11,7 +11,7 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 - [x] **TASK-004** (done): Define memory read/write protocol and startup context packet. Depends on TASK-003.
 - [x] **TASK-005** (done): Define decision log, conflict detection, and approval workflow. Depends on TASK-004.
 - [x] **TASK-006** (done): Define task registry, transitions, and handoff format. Depends on TASK-003.
-- [ ] **TASK-007** (ready): Define memory consolidation and concurrent update safeguards. Depends on TASK-004, TASK-005, TASK-006.
+- [x] **TASK-007** (done): Define memory consolidation and concurrent update safeguards. Depends on TASK-004, TASK-005, TASK-006.
 
 ## Phase 2 — Agent hierarchy and OpenCode
 - [ ] **TASK-008** (ready): Specify Orchestrator, Manager, Specialist contracts. Depends on TASK-001, TASK-005.

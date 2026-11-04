@@ -300,7 +300,7 @@ When the model's context window fills, reload from repository files. A compactio
 - Conflicting task status, decisions, or ownership is a blocking error; stop and report.
 - The Orchestrator consolidates specialist proposals before writing shared canonical records.
 - Record a material reconciliation outcome in `DECISIONS.md`.
-- TASK-007 defines the detailed consolidation and merge safeguards; this protocol establishes the baseline.
+- Proposal lifecycle, provenance, semantic merge, and concurrent-edit reconciliation are defined in [Memory Consolidation and Concurrent Update Safeguards](memory-consolidation.md).
 
 ## 9. Fresh-session walkthrough (verification)
 
