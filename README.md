@@ -42,6 +42,7 @@ Instructions define how agents operate. Persistent memory records what is known,
 - [Target-project layout and ownership](docs/architecture/target-project-layout.md)
 - [Persistent memory model](docs/architecture/memory-model.md)
 - [Memory read/write protocol](docs/architecture/memory-protocol.md)
+- [Decision, conflict, and approval protocol](docs/architecture/decision-and-approval-protocol.md)
 - [Agent hierarchy](docs/architecture/agent-hierarchy.md)
 - [Task lifecycle](docs/architecture/task-lifecycle.md)
 - [Provider adapters](docs/architecture/provider-adapters.md)

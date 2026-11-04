@@ -2,6 +2,8 @@
 
 Append new decisions. Do not erase history; mark replaced decisions superseded and link the replacement.
 
+Decision record format, conflict classification, approval attribution, expiry, and supersession rules are defined in `docs/architecture/decision-and-approval-protocol.md`.
+
 ## ADR-001 — Git-native canonical memory
 - Status: accepted | Date: 2026-11-04
 - Context: memory must survive provider/session changes and remain portable.

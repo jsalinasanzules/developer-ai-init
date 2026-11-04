@@ -30,3 +30,6 @@ Roles are logical responsibilities. An adapter may map them to native subagents,
 
 ## Delegation contract
 Every delegation includes objective, context references, allowed scope, forbidden changes, dependencies, expected artifacts, acceptance criteria, and reporting format.
+
+## Escalation path
+Specialists report conflicts to their manager; managers forward material conflicts to the Orchestrator; only the Orchestrator asks the user. Conflict classification, the approval packet, attribution, expiry, and decision supersession are defined in [Decision, Conflict, and Approval Protocol](decision-and-approval-protocol.md).

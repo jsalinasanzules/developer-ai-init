@@ -9,18 +9,20 @@
 - TASK-002 target-project layout: `docs/architecture/target-project-layout.md`.
 - TASK-003 schemas: `schemas/README.md` and `schemas/*.schema.json`.
 - TASK-004 memory protocol: `docs/architecture/memory-protocol.md`.
+- TASK-005 decision protocol: `docs/architecture/decision-and-approval-protocol.md`.
 
 ## Active task
-**TASK-005 — Define decision log, conflict detection, and approval workflow**
-- Status: ready; dependency TASK-004 is done.
-- Specs: SPEC-004, SPEC-002.
-- Next action: read the task brief and specify conflict classification, approval records, and decision lifecycle.
+**TASK-006 — Define task registry, status transitions, and handoff format**
+- Status: ready; dependency TASK-003 is done.
+- Specs: SPEC-005.
+- Next action: read the task brief and specify task fields, transition rules, dependency validation, and handoff format.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
 - **TASK-002** (`done`): canonical `.blueprint/` tree, file catalog, ownership, collision, and upgrade policies.
 - **TASK-003** (`done`): versioned JSON schemas, fixtures, and cross-reference rules; 15/15 fixture expectations pass.
 - **TASK-004** (`done`): deterministic startup read protocol, context packet, ownership map, write triggers, and compaction rules.
+- **TASK-005** (`done`): conflict classification, approval packet, attribution, expiry, and decision supersession.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -40,4 +42,4 @@
 None recorded.
 
 ## Next
-Start TASK-005. After it completes, TASK-006 and TASK-007 become eligible; TASK-006 can run independently of TASK-005.
+Start TASK-006. After it completes, TASK-007 becomes eligible (depends on TASK-004, TASK-005, TASK-006).
