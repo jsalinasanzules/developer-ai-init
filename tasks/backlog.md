@@ -14,8 +14,8 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 - [x] **TASK-007** (done): Define memory consolidation and concurrent update safeguards. Depends on TASK-004, TASK-005, TASK-006.
 
 ## Phase 2 — Agent hierarchy and OpenCode
-- [ ] **TASK-008** (ready): Specify Orchestrator, Manager, Specialist contracts. Depends on TASK-001, TASK-005.
-- [ ] **TASK-009**: Implement OpenCode adapter from verified current conventions. Depends on TASK-002, TASK-008.
+- [x] **TASK-008** (done): Specify Orchestrator, Manager, Specialist contracts. Depends on TASK-001, TASK-005.
+- [ ] **TASK-009** (ready): Implement OpenCode adapter from verified current conventions. Depends on TASK-002, TASK-008.
 - [ ] **TASK-010**: Add OpenCode startup, task, and handoff workflows. Depends on TASK-004, TASK-006, TASK-009.
 - [ ] **TASK-011**: Add adapter conformance and safe regeneration. Depends on TASK-009, TASK-010.
 

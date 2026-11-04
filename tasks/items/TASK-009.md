@@ -1,7 +1,7 @@
 # TASK-009 — Implement OpenCode adapter using verified current conventions
 
 ## Metadata
-- Status: proposed
+- Status: ready
 - Priority: high
 - Owner role: MANAGER: Engineering
 - Specs: SPEC-006, SPEC-007

@@ -12,12 +12,13 @@
 - TASK-005 decision protocol: `docs/architecture/decision-and-approval-protocol.md`.
 - TASK-006 task lifecycle: `docs/architecture/task-lifecycle.md`.
 - TASK-007 memory consolidation: `docs/architecture/memory-consolidation.md`.
+- TASK-008 role contracts: `docs/architecture/agent-hierarchy.md` and `prompts/`.
 
 ## Active task
-**TASK-008 — Specify Orchestrator, Manager, and Specialist contracts**
-- Status: ready; dependencies TASK-001 and TASK-005 are done.
-- Specs: SPEC-003, SPEC-004.
-- Next action: read the task brief and define role contracts, delegation/reporting, and sequential fallback.
+**TASK-009 — Implement OpenCode adapter using verified current conventions**
+- Status: ready; dependencies TASK-002 and TASK-008 are done.
+- Specs: SPEC-006, SPEC-007.
+- Next action: revalidate official OpenCode V2 documentation and implement the adapter mapping.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
@@ -27,6 +28,7 @@
 - **TASK-005** (`done`): conflict classification, approval packet, attribution, expiry, and decision supersession.
 - **TASK-006** (`done`): task schema, transition matrix, dependency validation, evidence mapping, and cold-start handoff format.
 - **TASK-007** (`done`): memory proposal lifecycle, ownership/provenance, semantic merge, and concurrent-edit safeguards; scenario checks pass.
+- **TASK-008** (`done`): role contracts, delegation/review payloads, escalation, sequential fallback, and provider-neutral prompt templates.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -46,4 +48,4 @@
 None recorded.
 
 ## Next
-Start TASK-008 (dependencies TASK-001 and TASK-005 are done). TASK-009 becomes eligible after TASK-008 completes.
+Start TASK-009 (dependencies TASK-002 and TASK-008 are done). Revalidate OpenCode V2 docs before implementing the adapter.
