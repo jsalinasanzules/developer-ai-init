@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
