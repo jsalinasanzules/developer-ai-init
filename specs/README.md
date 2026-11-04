@@ -14,4 +14,4 @@ Specifications define normative requirements. Implementation tasks must referenc
 - [SPEC-009 Validation and Conformance](SPEC-009-validation-and-conformance.md)
 
 ## Specification conventions
-Each spec contains purpose, scope, requirements, acceptance criteria, dependencies, and open questions. A spec is not implementation evidence. Requirements remain subject to user-approved decisions recorded in the decision log.
+Specifications contain purpose and scope where applicable, normative requirements, acceptance criteria, dependencies, and open questions. Compact specifications may omit empty sections; absence of a section does not weaken their normative requirements. A spec is not implementation evidence. Requirements remain subject to user-approved decisions recorded in the decision log.

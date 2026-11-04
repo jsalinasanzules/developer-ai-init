@@ -29,7 +29,7 @@ Developer AI Init provides a reusable project structure, operating protocols, sp
 
 ## Repository status
 
-The repository is at the foundation stage. Detailed architecture documents, specifications, task definitions, memory templates, and the OpenCode adapter will be added incrementally, with decisions validated before implementation.
+The foundation baseline is in place: vision, architecture documents, nine specifications, eighteen task briefs, memory records, sessions/handoffs templates, and the task registry. TASK-001 reviewed the baseline and recorded the current OpenCode capability findings in [the foundation review](docs/reviews/2026-11-04-task-001-foundation-review.md). The OpenCode adapter, schemas, initializer, and validator are not implemented yet; they follow the approved task dependency order.
 
 ## Guiding rule
 
@@ -44,6 +44,7 @@ Instructions define how agents operate. Persistent memory records what is known,
 - [Task lifecycle](docs/architecture/task-lifecycle.md)
 - [Provider adapters](docs/architecture/provider-adapters.md)
 - [Specifications index](specs/README.md)
+- [TASK-001 foundation review](docs/reviews/2026-11-04-task-001-foundation-review.md)
 - [Task backlog](tasks/backlog.md)
 - [Task registry](tasks/registry.json)
 - [Development memory](memory/README.md)

@@ -21,4 +21,4 @@ A provider adapter maps the provider-neutral blueprint contract to a coding agen
 Every adapter must pass the same core scenarios: fresh-session context loading, task dependency validation, approval pause on material conflict, evidence-based completion, memory consolidation, safe regeneration, and handoff to a different provider/session.
 
 ## Initial provider
-OpenCode is the first implementation target. Its current configuration conventions must be inspected from authoritative, current documentation during TASK-009; do not rely on stale examples or assumed paths.
+OpenCode is the first implementation target. TASK-001 records a dated capability baseline from official documentation; TASK-009 must revalidate the current OpenCode configuration conventions before implementation and must not rely on stale examples or assumed paths.

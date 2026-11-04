@@ -23,4 +23,4 @@ A project carries its own operating instructions, roles, specifications, task st
 - This is a reusable blueprint, not a full agent orchestration system.
 
 ## Open questions
-Implementation language, packaging/distribution, initializer UX, schema validation tooling, and exact provider mappings remain undecided. Do not invent decisions.
+Implementation language, packaging/distribution, initializer UX, schema validation tooling, and exact provider mappings remain undecided. Do not invent decisions. The dated foundation/provider review and its pending approval gates are recorded in `docs/reviews/2026-11-04-task-001-foundation-review.md` and `memory/CURRENT_STATE.md`.

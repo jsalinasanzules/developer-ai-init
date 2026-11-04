@@ -31,6 +31,9 @@ Exact checks, tests, or review evidence required.
 ## Risks and open questions
 Unknowns, conflicts, or approval gates.
 
+## Blockers
+Blocker, responsible role, and next action when status is `blocked`; otherwise `None`.
+
 ## Execution log
 Append concise dated notes and evidence.
 
