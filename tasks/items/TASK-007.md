@@ -27,6 +27,12 @@ No last-write-wins for semantic decisions or task status.
 ## Verification plan
 Simulate two agents proposing incompatible updates and verify escalation/reconciliation behavior.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

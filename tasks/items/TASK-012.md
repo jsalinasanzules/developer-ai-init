@@ -27,6 +27,12 @@ Do not assume project stack or user requirements from repository contents alone.
 ## Verification plan
 Walk through representative greenfield and brownfield scenarios.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

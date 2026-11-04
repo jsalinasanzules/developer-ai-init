@@ -27,6 +27,12 @@ Do not select validation runtime/tooling without documenting tradeoffs and appro
 ## Verification plan
 Validate fixtures with a documented JSON Schema validator; record version and output.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 - 2026-11-04: Re-read SPEC-001, SPEC-002, SPEC-005, and the target-project layout.
 - 2026-11-04: Added five versioned draft 2019-09 schemas under `schemas/`: manifest, project, agents, memory metadata, task registry.

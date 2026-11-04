@@ -27,6 +27,12 @@ Do not add external memory infrastructure.
 ## Verification plan
 Walk through a fresh session using only files and verify it can identify task, constraints, and next action.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 - 2026-11-04: Re-read SPEC-002, SPEC-004, the memory model, and the target-project layout.
 - 2026-11-04: Defined the fixed startup read order, conditional reads, active-task selection, failure handling, context packet, ownership map, write events, non-write cases, compaction, and concurrency baseline in `docs/architecture/memory-protocol.md`.

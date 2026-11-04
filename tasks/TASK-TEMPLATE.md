@@ -38,7 +38,12 @@ Blocker, responsible role, and next action when status is `blocked`; otherwise `
 Append concise dated notes and evidence.
 
 ## Completion evidence
-Links, commands, outputs, or review findings for each criterion.
+Map every acceptance criterion to inspectable evidence. Do not claim unrun commands.
+
+| Criterion | Evidence |
+| --- | --- |
+| 1. | |
+| 2. | |
 
 ## Next action
 One concrete action or none when done.

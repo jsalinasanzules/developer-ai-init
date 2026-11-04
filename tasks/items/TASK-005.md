@@ -27,6 +27,12 @@ Do not resolve existing unresolved decisions on behalf of the user.
 ## Verification plan
 Test scenarios for conflicting specs, ambiguous user request, security-impacting change, and destructive action.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 - 2026-11-04: Re-read SPEC-004, SPEC-002, ADR-005, the memory protocol, and the agent hierarchy.
 - 2026-11-04: Defined conflict types, S0–S3 severity, detection triggers, the conflict/approval packet, the approval workflow, attribution rules, decision format, expiry/reconsideration, and supersession in `docs/architecture/decision-and-approval-protocol.md`.

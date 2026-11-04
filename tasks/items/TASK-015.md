@@ -27,6 +27,12 @@ Do not rely on hidden provider memory or manually injected prior chat context.
 ## Verification plan
 Execute documented cold-start test and preserve transcript/evidence with secrets removed.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

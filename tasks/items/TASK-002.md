@@ -27,6 +27,12 @@ Do not implement initializer or provider-specific config.
 ## Verification plan
 Review tree against all specs and confirm no mandatory database/service is introduced.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 - 2026-11-04: Re-read SPEC-001 and SPEC-002, the memory model, and the approved ADRs.
 - 2026-11-04: Defined the canonical `.blueprint/` tree, file catalog, ownership model, source-of-truth boundaries, and initialization/upgrade collision policy in `docs/architecture/target-project-layout.md`.

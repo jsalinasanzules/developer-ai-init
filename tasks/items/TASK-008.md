@@ -27,6 +27,12 @@ Do not assume every provider supports parallel subagents.
 ## Verification plan
 Review sample delegated task end-to-end and ensure no authority boundary is violated.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

@@ -26,6 +26,12 @@ Do not change core semantics to fit one provider.
 ## Verification plan
 Run adapter-specific smoke and cold-start tests.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

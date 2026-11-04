@@ -27,6 +27,12 @@ Never overwrite user-owned files without explicit approval.
 ## Verification plan
 Test empty project, existing provider config, conflicting files, and repeated generation.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

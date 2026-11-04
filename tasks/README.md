@@ -8,3 +8,5 @@ The task registry is the machine-readable status source; task Markdown files und
 - Never mark done without evidence.
 - Use stable IDs; do not recycle IDs.
 - Update `registry.json`, `backlog.md`, current state, and handoff/session records as appropriate.
+
+The authoritative lifecycle, transition matrix, dependency validation, evidence mapping, and handoff requirements are in [Task Lifecycle, Registry, and Handoffs](../docs/architecture/task-lifecycle.md). The registry shape is defined by `schemas/task-registry.schema.json`.

@@ -27,6 +27,12 @@ Do not assume config paths/schema; do not overwrite existing OpenCode config.
 ## Verification plan
 Run OpenCode config validation/startup smoke test where available; record exact version and commands.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

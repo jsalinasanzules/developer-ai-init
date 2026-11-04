@@ -27,6 +27,12 @@ Do not silently replace files or force a specific stack into target projects.
 ## Verification plan
 Integration tests on temporary project fixtures, including collision and rerun cases.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

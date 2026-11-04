@@ -27,6 +27,12 @@ Do not create unsupported command mechanisms or bypass approval gates.
 ## Verification plan
 Perform cold-start test in a new OpenCode session using only repository files.
 
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
 ## Execution log
 No execution recorded yet.
 

@@ -10,12 +10,13 @@
 - TASK-003 schemas: `schemas/README.md` and `schemas/*.schema.json`.
 - TASK-004 memory protocol: `docs/architecture/memory-protocol.md`.
 - TASK-005 decision protocol: `docs/architecture/decision-and-approval-protocol.md`.
+- TASK-006 task lifecycle: `docs/architecture/task-lifecycle.md`.
 
 ## Active task
-**TASK-006 — Define task registry, status transitions, and handoff format**
-- Status: ready; dependency TASK-003 is done.
-- Specs: SPEC-005.
-- Next action: read the task brief and specify task fields, transition rules, dependency validation, and handoff format.
+**TASK-007 — Define memory consolidation and concurrent update safeguards**
+- Status: ready; dependencies TASK-004, TASK-005, and TASK-006 are done.
+- Specs: SPEC-002, SPEC-005.
+- Next action: read the task brief and specify steward review, proposal intake, merge reconciliation, and conflict safeguards.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
@@ -23,6 +24,7 @@
 - **TASK-003** (`done`): versioned JSON schemas, fixtures, and cross-reference rules; 15/15 fixture expectations pass.
 - **TASK-004** (`done`): deterministic startup read protocol, context packet, ownership map, write triggers, and compaction rules.
 - **TASK-005** (`done`): conflict classification, approval packet, attribution, expiry, and decision supersession.
+- **TASK-006** (`done`): task schema, transition matrix, dependency validation, evidence mapping, and cold-start handoff format.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -42,4 +44,4 @@
 None recorded.
 
 ## Next
-Start TASK-006. After it completes, TASK-007 becomes eligible (depends on TASK-004, TASK-005, TASK-006).
+Start TASK-007 (dependencies TASK-004, TASK-005, TASK-006 are done). TASK-008 is also eligible.
