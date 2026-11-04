@@ -3,9 +3,9 @@
 The machine-readable source of task status is `registry.json`. Keep this view synchronized.
 
 ## Phase 0 — Foundation
-- [ ] **TASK-001** (in_review, critical): Review foundation and approve core architecture. No dependencies. Awaiting approval of MD-001/MD-002.
-- [ ] **TASK-002**: Finalize target-project blueprint directory and file ownership. Depends on TASK-001.
-- [ ] **TASK-003**: Define JSON schemas. Depends on TASK-002.
+- [x] **TASK-001** (done, critical): Review foundation and approve core architecture. No dependencies.
+- [x] **TASK-002** (done): Finalize target-project blueprint directory and file ownership. Depends on TASK-001.
+- [ ] **TASK-003** (ready): Define JSON schemas. Depends on TASK-002.
 
 ## Phase 1 — Persistent memory and task continuity
 - [ ] **TASK-004**: Define memory read/write protocol and startup context packet. Depends on TASK-003.

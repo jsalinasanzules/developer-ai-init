@@ -44,21 +44,20 @@ Developer AI Init
 - No adapter implementation or automated project test suite exists yet.
 
 ## Decisions and approvals
-- Pending: MD-001 — OpenCode generation baseline (recommend V2-native first).
-- Pending: MD-002 — hierarchy delegation strategy (recommend depth-2 opt-in with sequential fallback).
+- Approved: MD-001 — OpenCode V2-native baseline first (ADR-006).
+- Approved: MD-002 — depth-2 opt-in with sequential fallback (ADR-007).
 - Deferred: MD-003 — initializer/validator implementation stack, needed before TASK-012/TASK-013.
-- Details: `docs/reviews/2026-11-04-task-001-foundation-review.md` §6.
+- Details: `docs/reviews/2026-11-04-task-001-foundation-review.md` §6 and `memory/DECISIONS.md`.
 
 ## Risks / blockers
-- No technical blocker.
-- Progress past TASK-001 requires user approval of MD-001 and MD-002.
+- No technical blocker for TASK-002.
 - The historical foundation handoff incorrectly says `.gitignore` was not created; the file exists and is committed.
 
 ## Memory updates
-- `memory/CURRENT_STATE.md`, `memory/PROJECT_CONTEXT.md`, task registry, backlog, and TASK-001 brief updated.
+- `memory/CURRENT_STATE.md`, `memory/PROJECT_CONTEXT.md`, `memory/DECISIONS.md`, `memory/ARCHITECTURE.md`, task registry, backlog, and TASK-001 brief updated.
 
 ## Exact next action
-Obtain approval for MD-001 and MD-002. Record the approved decisions in `memory/DECISIONS.md`, mark TASK-001 `done`, then start TASK-002.
+TASK-001 is done. Proceed with TASK-002 (target-project layout and ownership), then TASK-003.
 
 ## Startup reminder
 Read AGENTS.md, memory/PROJECT_CONTEXT.md, memory/CURRENT_STATE.md, tasks/registry.json, active task, and relevant specs before continuing.

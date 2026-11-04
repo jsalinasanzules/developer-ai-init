@@ -4,12 +4,17 @@
 Preserve project continuity across sessions, models, and providers while keeping memory inspectable, editable, versionable, and independent of external services.
 
 ## Canonical target-project layout
+The authoritative tree, file catalog, ownership, and collision/upgrade rules are defined in [Target-Project Blueprint Layout and Ownership](target-project-layout.md). A summary:
+
 ```text
 .blueprint/
 ├── README.md
+├── manifest.json
 ├── config/
 │   ├── project.json
 │   └── agents.json
+├── schemas/
+│   └── *.schema.json
 ├── memory/
 │   ├── PROJECT_CONTEXT.md
 │   ├── CURRENT_STATE.md
@@ -20,11 +25,14 @@ Preserve project continuity across sessions, models, and providers while keeping
 ├── specs/
 ├── tasks/
 │   ├── registry.json
-│   └── TASK-TEMPLATE.md
+│   ├── backlog.md
+│   ├── TASK-TEMPLATE.md
+│   └── items/
 ├── sessions/
 │   └── SESSION-TEMPLATE.md
-└── handoffs/
-    └── HANDOFF-TEMPLATE.md
+├── handoffs/
+│   └── HANDOFF-TEMPLATE.md
+└── derived/            # optional, gitignored, rebuildable
 ```
 
 Provider configuration (for example OpenCode agent definitions) is generated separately and linked to the canonical project roles.

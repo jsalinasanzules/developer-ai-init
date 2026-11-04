@@ -39,6 +39,7 @@ Instructions define how agents operate. Persistent memory records what is known,
 
 - [Vision](docs/vision.md)
 - [Architecture overview](docs/architecture/overview.md)
+- [Target-project layout and ownership](docs/architecture/target-project-layout.md)
 - [Persistent memory model](docs/architecture/memory-model.md)
 - [Agent hierarchy](docs/architecture/agent-hierarchy.md)
 - [Task lifecycle](docs/architecture/task-lifecycle.md)
