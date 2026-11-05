@@ -13,3 +13,6 @@
 
 ## Acceptance criteria
 An initialization flow and generation plan exist for both empty and existing repositories, including collision handling and approval gates.
+
+The design baseline and concrete scenarios are documented in
+[`docs/architecture/project-discovery-and-initialization.md`](../docs/architecture/project-discovery-and-initialization.md).

@@ -16,9 +16,7 @@
 - TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-**TASK-012 — Specify project discovery and interactive initialization**
-- Status: `ready`; dependencies TASK-001 and TASK-002 are `done`. User approved
-  the proposal on 2026-11-05; no implementation began in the TASK-020 recovery.
+None. TASK-012 is complete; see `docs/reviews/2026-11-05-task-012-manager-review-3.md`.
 
 ## Completed recently
 - **TASK-010** (`done`): live cold-start, task-selection, evidence-backed lifecycle (TASK-900 four-transition history `06bdd19`/`1d53129`/`9795b73`/`2bad731`), and handoff production/consumption verified against Crouton Alpha; report `docs/reviews/2026-11-04-task-010-verification.md`.
@@ -34,13 +32,14 @@
 - **TASK-009** (`done`): OpenCode V2 adapter templates (agents, commands, config, AGENTS.md), role mapping, collision policy, and conformance report; smoke-tested against OpenCode 2.2.5.
 - **TASK-019** (`done`): provider-neutral observability contract and OpenCode monitor; 23/23 snapshot checks pass, user confirmed monitor load, `/monitor` sidebar toggle, and reload after restart in OpenCode 2.2.5; storage proxy fix committed as `bdfbce1`.
 - **TASK-020** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-020-gate-review.md`.
+- **TASK-012** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-012-manager-review-3.md`.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
 - **ADR-007:** opt-in depth-2 delegation (`experimental.subagent_depth: 2`) with sequential fallback.
 - **ADR-008:** provider-neutral observability contract in the Blueprint core; optional provider-specific monitor UI. The first monitor is an OpenCode TUI sidebar plugin owned by this Blueprint and installed into generated projects.
 - **ADR-009:** Python 3.9+ standard-library tooling is source-repository-only; generated target projects acquire no Python runtime dependency from Blueprint tooling.
-- Pending future decision: initializer/validator implementation stack (needed before TASK-012/TASK-013).
+- Pending future decision: initializer/validator implementation stack (needed before TASK-013/TASK-014 implementation).
 
 ## Verified constraints
 - No mandatory database, hosted service, or network dependency.
@@ -60,9 +59,7 @@ None. TASK-020 is complete. TASK-010's historical free-model-limit blocker was r
 
 ## Pending approvals
 None for TASK-012. The initializer/validator implementation-stack decision
-remains a future approval gate before implementation work, not before this
-specification task.
+remains a future approval gate before implementation work in TASK-013/TASK-014.
 
 ## Next
-Begin TASK-012 only when execution is started; transition it to `in_progress`
-before doing specification work.
+Present TASK-013 for user approval; do not start TASK-013 or TASK-014 until approved.

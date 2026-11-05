@@ -181,7 +181,7 @@
     {
       "id": "TASK-012",
       "title": "Specify project discovery and interactive initialization",
-      "status": "ready",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-008",
@@ -192,7 +192,7 @@
         "TASK-001",
         "TASK-002"
       ],
-      "next_action": "Begin discovery-flow specification when TASK-012 is selected for execution; transition to in_progress before starting work."
+      "next_action": "Present TASK-013 for user approval; do not start TASK-013 or TASK-014 until approved."
     },
     {
       "id": "TASK-013",

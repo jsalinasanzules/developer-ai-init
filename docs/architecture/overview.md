@@ -12,6 +12,7 @@
 This repository develops the blueprint. Its root `/memory`, `/tasks`, `/specs`, and `/sessions` track this product's own development.
 
 An initialized target project receives a separate `.blueprint/` directory containing that project's context, state, decisions, tasks, sessions, and handoffs. Provider-specific files are generated or merged outside that canonical store according to adapter rules. The full tree, file catalog, ownership, and collision/upgrade rules are in [Target-Project Blueprint Layout and Ownership](target-project-layout.md).
+The discovery interview, confirmation gates, resumable intake, and collision preview are specified in [Project Discovery and Interactive Initialization](project-discovery-and-initialization.md).
 
 ## Runtime-neutral operating cycle
 `Load Context → Select Task → Plan/Delegate → Execute → Verify → Consolidate Memory → Handoff`.
