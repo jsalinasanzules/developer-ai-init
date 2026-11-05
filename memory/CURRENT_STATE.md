@@ -33,6 +33,7 @@
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
 - **ADR-007:** opt-in depth-2 delegation (`experimental.subagent_depth: 2`) with sequential fallback.
+- **ADR-008:** provider-neutral observability contract in the Blueprint core; optional provider-specific monitor UI. The first monitor is an OpenCode TUI sidebar plugin owned by this Blueprint and installed into generated projects.
 - Pending future decision: initializer/validator implementation stack (needed before TASK-012/TASK-013).
 
 ## Verified constraints
@@ -43,6 +44,9 @@
 - Done requires observable verification evidence.
 - OpenCode 1 and OpenCode 2 share the `opencode` command; this environment runs `v2.2.5`.
 - OpenCode's default subagent depth is `1`; true Orchestrator → Manager → Specialist delegation requires depth `2` (experimental in V2) or the documented fallback.
+
+## Planned observability work
+- **TASK-019** (`proposed`): define the provider-neutral observability contract and OpenCode monitor. Dependencies: TASK-002, TASK-006, TASK-008. See `tasks/items/TASK-019.md`.
 
 ## Blockers
 None recorded.
