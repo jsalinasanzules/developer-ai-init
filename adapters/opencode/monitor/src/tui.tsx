@@ -173,7 +173,7 @@ export default Plugin.define({
     const unregister = context.ui.slot({
       append: "sidebar.content",
       render: () => (
-        <Show when={!hidden().hidden}>
+        <Show when={!hidden.hidden}>
           <Mon />
         </Show>
       ),
@@ -190,7 +190,9 @@ export default Plugin.define({
           palette: true,
           slash: { name: "monitor" },
           run: async () => {
-            await setHidden({ hidden: !hidden().hidden })
+            await setHidden((draft) => {
+              draft.hidden = !draft.hidden
+            })
           },
         },
       ],
