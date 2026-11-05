@@ -25,7 +25,7 @@ If `opencode --version` reports a different major/minor version, re-run the comp
 | Field | Value |
 | --- | --- |
 | Provider ID | `opencode` |
-| Adapter version | `0.1.0` |
+| Adapter version | `0.2.0` |
 | Supported blueprint versions | schema `1.0.0` (see `schemas/*.schema.json`) |
 | OpenCode baseline | V2 (≥ 2.2.x verified); V1 not supported by these templates |
 | Role mapping | §3 |
@@ -142,11 +142,13 @@ All commands were observed during verification on 2026-11-04 in the simulated ta
 
 ## 11. Observability/monitor compatibility notes (informational; TASK-019 owns the contract)
 
+The observability contract now lives in `docs/architecture/observability.md` (ADR-008, TASK-019) and the monitor implementation in `adapters/opencode/monitor/`. Adapter-facing notes:
+
 - Canonical state the monitor will read: tasks (`registry.json`), current state (`CURRENT_STATE.md`), decisions, blockers, approvals, handoffs — all under `.blueprint/`.
 - **Context B (generated projects):** the adapter templates operate from the project root with `.blueprint/` present; a monitor can resolve canonical paths by locating `.blueprint/` from the OpenCode working directory upward, the same resolution the startup command performs.
-- **Context A (this Blueprint repository):** development memory lives at root `memory/`, `tasks/`, `specs/`, `handoffs/` with **no** `.blueprint/`. A monitor must not be forced to copy or migrate that data; the resolution rule must be "nearest canonical root," documenting the layout variant per project (TASK-019 defines the exact contract).
+- **Context A (this Blueprint repository):** development memory lives at root `memory/`, `tasks/`, `specs/`, `handoffs/` with **no** `.blueprint/`. A monitor must not be forced to copy or migrate that data; the resolution rule must be "nearest canonical root," documenting the layout variant per project (implemented in the shared monitor reader, `adapters/opencode/monitor/src/blueprint.ts`).
 - Adapter constraints the monitor can rely on: the adapter never embeds task/decision content in `AGENTS.md`, agents, or commands; it only references canonical paths. So a monitor reading `.blueprint/` (or the documented root-memory equivalent) sees complete canonical state.
-- Nothing in this adapter pre-empts ADR-008 or TASK-019 decisions; no monitor files, plugin registrations, or event hooks are installed by this baseline.
+- The monitor is an **optional** OpenCode TUI plugin; the adapter templates and workflows are fully usable without it (`adapters/opencode/monitor/README.md` documents install/not-install and degradation).
 
 ## 12. What this task deliberately does not do
 

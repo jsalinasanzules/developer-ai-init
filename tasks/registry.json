@@ -299,7 +299,7 @@
     {
       "id": "TASK-019",
       "title": "Define provider-neutral observability contract and OpenCode monitor",
-      "status": "proposed",
+      "status": "in_review",
       "priority": "high",
       "specs": [
         "SPEC-006",
@@ -311,7 +311,7 @@
         "TASK-006",
         "TASK-008"
       ],
-      "next_action": "Define the provider-neutral observability model and adapter-facing contract."
+      "next_action": "Await user interactive confirmation of the sidebar render + /monitor toggle in the task019-spike project, then set done."
     }
   ]
 }

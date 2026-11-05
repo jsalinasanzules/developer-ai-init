@@ -16,10 +16,9 @@
 - TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-**TASK-010 — Add OpenCode startup, task, and handoff workflows**
-- Status: ready; dependencies TASK-004, TASK-006, and TASK-009 are done.
-- Specs: SPEC-002, SPEC-005, SPEC-007.
-- Next action: validate the adapter's startup, task, and handoff workflows live in a generated project.
+**TASK-019 — Define provider-neutral observability contract and OpenCode monitor**
+- Status: in_review; all criteria evidenced (23/23 snapshot checks, v2.2.5 plugin-load logs). Awaiting user interactive confirmation of the sidebar + `/monitor` toggle in the spike project, then `done`.
+- Next action: user runs `opencode` in `/private/var/folders/pg/sdm_xthn0rbgcgyzlrmhhj800000gn/T/opencode/task019-spike`; afterwards TASK-010 (OpenCode startup/task/handoff workflows) becomes the next eligible task.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
@@ -48,7 +47,7 @@
 - OpenCode's default subagent depth is `1`; true Orchestrator → Manager → Specialist delegation requires depth `2` (experimental in V2) or the documented fallback.
 
 ## Planned observability work
-- **TASK-019** (`proposed`): define the provider-neutral observability contract and OpenCode monitor. Dependencies: TASK-002, TASK-006, TASK-008. See `tasks/items/TASK-019.md`.
+| **TASK-019** (`in_review`): provider-neutral observability contract (`docs/architecture/observability.md` v1.0.0) + OpenCode monitor implemented at `adapters/opencode/monitor/` as ONE reusable implementation for both canonical contexts (`.blueprint/` and dev layout) — 23/23 snapshot checks PASS, v2.2.5 debug logs prove plugin load + TUI `stage=setup`, no errors. Pending: user interactive confirmation of the sidebar render + `/monitor` toggle in the spike project (`/private/var/folders/pg/sdm_xthn0rbgcgyzlrmhhj800000gn/T/opencode/task019-spike`), then mark `done`.
 
 ## Blockers
 None recorded.
