@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-05",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Seed verified synthetic prerequisite",
+      "status": "done",
+      "priority": "medium",
+      "specs": [
+        "SPEC-001"
+      ],
+      "owner_role": "ORCHESTRATOR",
+      "dependencies": [],
+      "next_action": "None; seeded only for the continuity test."
+    },
+    {
+      "id": "TASK-900",
+      "title": "Write the continuity evidence artifact",
+      "status": "in_review",
+      "priority": "high",
+      "specs": [
+        "SPEC-900"
+      ],
+      "owner_role": "ORCHESTRATOR",
+      "dependencies": [
+        "TASK-001"
+      ],
+      "next_action": "Fresh Manager reviewer reviews handoff 2026-11-05-task-900.md and reruns verifications; do not mark done without review."
+    }
+  ]
+}

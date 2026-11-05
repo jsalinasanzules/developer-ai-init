@@ -126,6 +126,18 @@ Wait for completion gate.
         self.assertIn(f"**{TASK_ID}** (`done`)", state)
         self.assertIn("Present next task for approval.", state)
 
+    def test_independent_manager_review_can_differ_from_task_owner(self):
+        registry = json.loads(self.registry_path.read_text(encoding="utf-8"))
+        registry["tasks"][0]["owner_role"] = "ORCHESTRATOR"
+        self.registry_path.write_text(json.dumps(registry), encoding="utf-8")
+        task = self.task_path.read_text(encoding="utf-8").replace(
+            "- Owner role: MANAGER: Quality",
+            "- Owner role: ORCHESTRATOR",
+        )
+        self.task_path.write_text(task, encoding="utf-8")
+
+        self.assertEqual(validate_completion(self.root, TASK_ID, self.review), [])
+
     def test_check_command_runs_tests_before_authorizing_transition(self):
         repository = pathlib.Path(__file__).resolve().parents[1]
         result = subprocess.run(
@@ -229,7 +241,19 @@ Wait for completion gate.
             "Manager review artifact",
         )
 
-    def test_rejected_or_wrong_role_review_blocks_completion(self):
+    def test_non_manager_review_blocks_completion(self):
+        self._assert_rejected_without_writes(
+            lambda: self.review.write_text(
+                "Task: TASK-999\n"
+                "Reviewer role: ORCHESTRATOR\n"
+                "Decision: APPROVED\n"
+                "Independent review: YES\n",
+                encoding="utf-8",
+            ),
+            "appropriate Manager",
+        )
+
+    def test_rejected_manager_review_blocks_completion(self):
         self._assert_rejected_without_writes(
             lambda: self.review.write_text(
                 "Task: TASK-999\n"
@@ -238,7 +262,7 @@ Wait for completion gate.
                 "Independent review: YES\n",
                 encoding="utf-8",
             ),
-            "appropriate Manager role",
+            "explicitly approve",
         )
 
     def test_registry_task_backlog_and_current_state_mismatches_block_completion(self):

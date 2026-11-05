@@ -16,7 +16,7 @@
 - TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-None. TASK-014 is complete; see `docs/reviews/2026-11-05-task-014-manager-review.md`.
+None. TASK-015 is complete; see `docs/reviews/2026-11-05-task-015-clean-manager-review-followup.md`.
 
 ## Completed recently
 - **TASK-010** (`done`): live cold-start, task-selection, evidence-backed lifecycle (TASK-900 four-transition history `06bdd19`/`1d53129`/`9795b73`/`2bad731`), and handoff production/consumption verified against Crouton Alpha; report `docs/reviews/2026-11-04-task-010-verification.md`.
@@ -35,6 +35,7 @@ None. TASK-014 is complete; see `docs/reviews/2026-11-05-task-014-manager-review
 - **TASK-012** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-012-manager-review-3.md`.
 - **TASK-013** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-013-manager-review-follow-up.md`.
 - **TASK-014** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-014-manager-review.md`.
+- **TASK-015** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-015-clean-manager-review-followup.md`.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -58,11 +59,10 @@ None. TASK-014 is complete; see `docs/reviews/2026-11-05-task-014-manager-review
 TASK-019 is complete: `docs/architecture/observability.md` v1.0.0 and one reusable OpenCode monitor implementation at `adapters/opencode/monitor/` serve both canonical contexts (`.blueprint/` and the development layout). Verification includes 23/23 snapshot checks, OpenCode 2.2.5 plugin-load evidence, and user-confirmed sidebar visibility toggle and reload after restart.
 
 ## Blockers
-No known technical implementation blocker. TASK-013 and TASK-020 are complete. TASK-010's historical free-model-limit blocker was resolved by Crouton Alpha live verification; see `tasks/items/TASK-010.md`.
+None. The initial TASK-015 producer run's nested-session deviation remains documented but is rejected and excluded from accepted evidence. The clean run passed all criteria; the short context packet remains a non-blocking protocol-quality note. TASK-013 and TASK-020 are complete. TASK-010's historical free-model-limit blocker was resolved by Crouton Alpha live verification; see `tasks/items/TASK-010.md`.
 
 ## Pending approvals
-TASK-015 is eligible now that its dependencies are complete and awaits explicit
-user approval. Do not start it before approval.
+No pending approval for TASK-015. Do not start TASK-016/017/018 without user direction. No paid model or provider configuration change was made.
 
 ## Next
-Present TASK-015 proposal for user approval; do not start until approved.
+Await user direction; do not start TASK-016, TASK-017, or TASK-018.

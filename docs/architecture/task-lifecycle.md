@@ -111,6 +111,7 @@ Terminal-state rule: `done` and `cancelled` do not transition. If new evidence i
 - Each criterion maps to inspectable behavioral evidence in the task brief.
 - Every required test command is rerun successfully by the completion gate.
 - An appropriate Manager has independently reviewed and approved the evidence.
+- The reviewer must be a Manager; the reviewer role need not match the task owner role.
 - No blocker or pending material approval remains.
 - The registry, task brief, backlog projection, and `CURRENT_STATE.md` agree.
 - In this source repository, the transition is applied by

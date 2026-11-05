@@ -1,0 +1,719 @@
+
+> orchestrator · crouton-alpha-free
+Cold-starting in isolation — following the persisted startup packet and bounded task scope, with read-only checks on the negative fixtures.
+→ Read .opencode/commands/blueprint-startup.md 
+> orchestrator · crouton-alpha-free
+→ Read .blueprint/README.md 
+→ Read .blueprint/manifest.json 
+→ Read .blueprint/config/project.json 
+→ Read .blueprint/config/agents.json 
+→ Read .blueprint/tasks/registry.json 
+→ Read .blueprint/memory/PROJECT_CONTEXT.md 
+→ Read .blueprint/memory/CURRENT_STATE.md 
+> orchestrator · crouton-alpha-free
+→ Read .blueprint/memory/DECISIONS.md 
+✱ Glob ".blueprint/tasks/items/**/*" 0 matches
+✱ Glob ".blueprint/specs/**/*" 0 matches
+> orchestrator · crouton-alpha-free
+→ Read .blueprint 
+→ Read .blueprint/specs 
+→ Read .blueprint/tasks/items 
+→ Read .blueprint/tasks 
+> orchestrator · crouton-alpha-free
+→ Read .blueprint/tasks/items/TASK-900.md 
+→ Read .blueprint/tasks/items/TASK-001.md 
+→ Read .blueprint/specs/SPEC-001.md 
+→ Read .blueprint/specs/SPEC-900.md 
+→ Read .blueprint/tasks/backlog.md 
+> orchestrator · crouton-alpha-free
+I've loaded the canonical startup records — TASK-900 is active with TASK-001 done. Now checking prerequisite evidence, the handoff protocols, and the sibling negative fixtures.
+→ Read evidence 
+→ Read .blueprint/sessions 
+→ Read .blueprint/handoffs 
+$ ls -R ../task-015-negative-missing 2>&1; echo "---"; ls -R ../task-015-negative-mismatch 2>&1; echo "---git---"; git status --porcelain=v1 -b; git log --oneline -5; git rev-parse HEAD
+AGENTS.md
+evidence
+opencode.jsonc
+
+../task-015-negative-missing/evidence:
+prerequisite.txt
+---
+AGENTS.md
+evidence
+opencode.jsonc
+
+../task-015-negative-mismatch/evidence:
+prerequisite.txt
+---git---
+## No commits yet on main
+?? .blueprint/
+?? .opencode/
+?? AGENTS.md
+?? evidence/
+?? opencode.jsonc
+fatal: your current branch 'main' does not have any commits yet
+fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+HEAD
+> orchestrator · crouton-alpha-free
+→ Read evidence/prerequisite.txt 
+→ Read .blueprint/handoffs/HANDOFF-TEMPLATE.md 
+→ Read .blueprint/handoffs/README.md 
+→ Read .blueprint/sessions/README.md 
+→ Read .blueprint/sessions/SESSION-TEMPLATE.md 
+$ cat ../task-015-negative-missing/evidence/prerequisite.txt; echo "---"; cat ../task-015-negative-mismatch/evidence/prerequisite.txt; echo "---neg-missing .blueprint---"; ls -la ../task-015-negative-missing/.blueprint/ 2>&1; echo "---neg-mismatch registry/brief---"; cat ../task-015-negative-mismatch/.blueprint/tasks/registry.json 2>&1; cat ../task-015-negative-mismatch/.blueprint/tasks/items/TASK-900.md 2>&1 | head -n 60
+SYNTHETIC-DEPENDENCY-VERIFIED
+---
+SYNTHETIC-DEPENDENCY-VERIFIED
+---neg-missing .blueprint---
+total 24
+drwxr-xr-x@ 11 joseph  staff   352 Nov  5 16:55 .
+drwxr-xr-x@  8 joseph  staff   256 Nov  5 16:56 ..
+-rw-r--r--@  1 joseph  staff   807 Nov  5 16:55 README.md
+drwxr-xr-x@  4 joseph  staff   128 Nov  5 16:55 config
+drwxr-xr-x@  4 joseph  staff   128 Nov  5 16:55 handoffs
+-rw-r--r--@  1 joseph  staff  4944 Nov  5 16:55 manifest.json
+drwxr-xr-x@  7 joseph  staff   224 Nov  5 16:56 memory
+drwxr-xr-x@  7 joseph  staff   224 Nov  5 16:55 schemas
+drwxr-xr-x@  4 joseph  staff   128 Nov  5 16:55 sessions
+drwxr-xr-x@  5 joseph  staff   160 Nov  5 16:56 specs
+drwxr-xr-x@  6 joseph  staff   192 Nov  5 16:55 tasks
+---neg-mismatch registry/brief---
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-05",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Seed verified synthetic prerequisite",
+      "status": "done",
+      "priority": "medium",
+      "specs": [
+        "SPEC-001"
+      ],
+      "owner_role": "ORCHESTRATOR",
+      "dependencies": [],
+      "next_action": "None; seeded only for the continuity test."
+    },
+    {
+      "id": "TASK-900",
+      "title": "Write the continuity evidence artifact",
+      "status": "in_progress",
+      "priority": "high",
+      "specs": [
+        "SPEC-900"
+      ],
+      "owner_role": "ORCHESTRATOR",
+      "dependencies": [
+        "TASK-001"
+      ],
+      "next_action": "Verify TASK-001 evidence, write the exact marker, update canonical evidence and handoff."
+    }
+  ]
+}
+# TASK-900 — Write the continuity evidence artifact
+
+## Metadata
+- Status: ready
+- Priority: high
+- Owner role: ORCHESTRATOR
+- Specs: SPEC-900
+- Dependencies: TASK-001
+- Created: 2026-11-05
+- Updated: 2026-11-05
+
+## Objective
+Demonstrate that a fresh session can continue this bounded unit using only persisted project files.
+
+## Context
+Read PROJECT_CONTEXT.md, CURRENT_STATE.md, registry, this brief, SPEC-900, DECISIONS.md, and the startup/task/handoff command protocols. Preserve the explicit unknown about the production technology stack.
+
+## Scope
+Create one exact evidence marker, record observed verification, transition to in_review, synchronize registry/backlog/current state, and create a handoff for a fresh reviewer. Also inspect the two read-only negative-recovery fixtures named in SPEC-900; report each as blocked when startup integrity checks fail and make no writes to either fixture.
+
+## Out of scope
+Production changes, secrets, commits, pushes, changing the unknown, and marking work done before independent review.
+
+## Acceptance criteria
+- [ ] AC-01: Complete dependency TASK-001 is independently verified from its brief and evidence file before work proceeds.
+- [ ] AC-02: `evidence/continuity.txt` contains exactly `CONTINUITY-015-OK` on one line, verified by a command run in this fixture.
+- [ ] AC-03: Registry, brief, backlog, and CURRENT_STATE consistently record the task as `in_review` with observed evidence.
+- [ ] AC-04: A handoff records the observed Git state, evidence, remaining review, and exact next action for a fresh session.
+- [ ] AC-05: Missing-record and canonical-state-mismatch negative fixtures are both reported as blocking, not repaired by guessing, and unchanged by the producer.
+
+## Verification plan
+Use `grep -Fx` for both markers; compare task status across canonical records; inspect handoff claims against files and Git; compare negative fixture file inventories before and after the read-only startup checks.
+
+## Risks and open questions
+Production technology stack remains explicitly unknown and is out of scope.
+
+## Blockers
+None
+
+## Execution log
+Seeded as the only in-progress synthetic task for the clean fresh-session test.
+
+## Completion evidence
+| Criterion | Evidence |
+| --- | --- |
+| AC-01 | |
+| AC-02 | |
+| AC-03 | |
+| AC-04 | |
+| AC-05 | |
+
+## Next action
+Verify TASK-001 evidence, then write the bounded marker.
+> orchestrator · crouton-alpha-free
+$ echo "=== MISSING .blueprint tree ==="; find ../task-015-negative-missing/.blueprint -type f | sort; echo "=== MISSING memory ==="; ls -R ../task-015-negative-missing/.blueprint/memory/ 2>&1; echo "=== MISSING tasks ==="; ls -R ../task-015-negative-missing/.blueprint/tasks/ 2>&1; echo "=== MISMATCH backlog/current ==="; cat ../task-015-negative-mismatch/.blueprint/tasks/backlog.md; echo "---"; cat ../task-015-negative-mismatch/.blueprint/memory/CURRENT_STATE.md; echo "=== CLEAN inventory snapshot ==="; find ../task-015-negative-missing -type f | sort; find ../task-015-negative-mismatch -type f | sort; echo "=== MAIN prerequisite verify ==="; grep -Fx SYNTHETIC-DEPENDENCY-VERIFIED evidence/prerequisite.txt && echo "prereq ok exit=$?"; wc -l evidence/prerequisite.txt; od -c evidence/prerequisite.txt | head
+=== MISSING .blueprint tree ===
+../task-015-negative-missing/.blueprint/README.md
+../task-015-negative-missing/.blueprint/config/agents.json
+../task-015-negative-missing/.blueprint/config/project.json
+../task-015-negative-missing/.blueprint/handoffs/HANDOFF-TEMPLATE.md
+../task-015-negative-missing/.blueprint/handoffs/README.md
+../task-015-negative-missing/.blueprint/manifest.json
+../task-015-negative-missing/.blueprint/memory/ARCHITECTURE.md
+../task-015-negative-missing/.blueprint/memory/CONVENTIONS.md
+../task-015-negative-missing/.blueprint/memory/DECISIONS.md
+../task-015-negative-missing/.blueprint/memory/PROJECT_CONTEXT.md
+../task-015-negative-missing/.blueprint/memory/metadata.json
+../task-015-negative-missing/.blueprint/schemas/agents.schema.json
+../task-015-negative-missing/.blueprint/schemas/manifest.schema.json
+../task-015-negative-missing/.blueprint/schemas/memory-metadata.schema.json
+../task-015-negative-missing/.blueprint/schemas/project.schema.json
+../task-015-negative-missing/.blueprint/schemas/task-registry.schema.json
+../task-015-negative-missing/.blueprint/sessions/README.md
+../task-015-negative-missing/.blueprint/sessions/SESSION-TEMPLATE.md
+../task-015-negative-missing/.blueprint/specs/README.md
+../task-015-negative-missing/.blueprint/specs/SPEC-001.md
+../task-015-negative-missing/.blueprint/specs/SPEC-900.md
+../task-015-negative-missing/.blueprint/tasks/TASK-TEMPLATE.md
+../task-015-negative-missing/.blueprint/tasks/backlog.md
+../task-015-negative-missing/.blueprint/tasks/items/README.md
+../task-015-negative-missing/.blueprint/tasks/items/TASK-001.md
+../task-015-negative-missing/.blueprint/tasks/items/TASK-900.md
+../task-015-negative-missing/.blueprint/tasks/registry.json
+=== MISSING memory ===
+ARCHITECTURE.md
+CONVENTIONS.md
+DECISIONS.md
+PROJECT_CONTEXT.md
+metadata.json
+=== MISSING tasks ===
+TASK-TEMPLATE.md
+backlog.md
+items
+registry.json
+
+../task-015-negative-missing/.blueprint/tasks//items:
+README.md
+TASK-001.md
+TASK-900.md
+=== MISMATCH backlog/current ===
+# Product Backlog
+
+| ID | Title | Status | Priority | Dependencies |
+| --- | --- | --- | --- | --- |
+| TASK-001 | Seed verified synthetic prerequisite | done | medium | none |
+| TASK-900 | Write the continuity evidence artifact | in_progress | high | TASK-001 |
+---
+# Current State
+
+- Stage: isolated fresh-session continuity test.
+- Active task: TASK-900 — Write the continuity evidence artifact (`in_progress`).
+- Blockers: none.
+- Pending approvals: independent review after the producer handoff.
+- Next: verify the completed TASK-001 dependency, then write only the specified evidence marker.
+=== CLEAN inventory snapshot ===
+../task-015-negative-missing/.blueprint/README.md
+../task-015-negative-missing/.blueprint/config/agents.json
+../task-015-negative-missing/.blueprint/config/project.json
+../task-015-negative-missing/.blueprint/handoffs/HANDOFF-TEMPLATE.md
+../task-015-negative-missing/.blueprint/handoffs/README.md
+../task-015-negative-missing/.blueprint/manifest.json
+../task-015-negative-missing/.blueprint/memory/ARCHITECTURE.md
+../task-015-negative-missing/.blueprint/memory/CONVENTIONS.md
+../task-015-negative-missing/.blueprint/memory/DECISIONS.md
+../task-015-negative-missing/.blueprint/memory/PROJECT_CONTEXT.md
+../task-015-negative-missing/.blueprint/memory/metadata.json
+../task-015-negative-missing/.blueprint/schemas/agents.schema.json
+../task-015-negative-missing/.blueprint/schemas/manifest.schema.json
+../task-015-negative-missing/.blueprint/schemas/memory-metadata.schema.json
+../task-015-negative-missing/.blueprint/schemas/project.schema.json
+../task-015-negative-missing/.blueprint/schemas/task-registry.schema.json
+../task-015-negative-missing/.blueprint/sessions/README.md
+../task-015-negative-missing/.blueprint/sessions/SESSION-TEMPLATE.md
+../task-015-negative-missing/.blueprint/specs/README.md
+../task-015-negative-missing/.blueprint/specs/SPEC-001.md
+../task-015-negative-missing/.blueprint/specs/SPEC-900.md
+../task-015-negative-missing/.blueprint/tasks/TASK-TEMPLATE.md
+../task-015-negative-missing/.blueprint/tasks/backlog.md
+../task-015-negative-missing/.blueprint/tasks/items/README.md
+../task-015-negative-missing/.blueprint/tasks/items/TASK-001.md
+../task-015-negative-missing/.blueprint/tasks/items/TASK-900.md
+../task-015-negative-missing/.blueprint/tasks/registry.json
+../task-015-negative-missing/.git/HEAD
+../task-015-negative-missing/.git/config
+../task-015-negative-missing/.git/description
+../task-015-negative-missing/.git/hooks/applypatch-msg.sample
+../task-015-negative-missing/.git/hooks/commit-msg.sample
+../task-015-negative-missing/.git/hooks/fsmonitor-watchman.sample
+../task-015-negative-missing/.git/hooks/post-update.sample
+../task-015-negative-missing/.git/hooks/pre-applypatch.sample
+../task-015-negative-missing/.git/hooks/pre-commit.sample
+../task-015-negative-missing/.git/hooks/pre-merge-commit.sample
+../task-015-negative-missing/.git/hooks/pre-push.sample
+../task-015-negative-missing/.git/hooks/pre-rebase.sample
+../task-015-negative-missing/.git/hooks/pre-receive.sample
+../task-015-negative-missing/.git/hooks/prepare-commit-msg.sample
+../task-015-negative-missing/.git/hooks/push-to-checkout.sample
+../task-015-negative-missing/.git/hooks/sendemail-validate.sample
+../task-015-negative-missing/.git/hooks/update.sample
+../task-015-negative-missing/.git/info/exclude
+../task-015-negative-missing/.opencode/agents/manager-architecture.md
+../task-015-negative-missing/.opencode/agents/manager-delivery.md
+../task-015-negative-missing/.opencode/agents/manager-engineering.md
+../task-015-negative-missing/.opencode/agents/manager-quality.md
+../task-015-negative-missing/.opencode/agents/orchestrator.md
+../task-015-negative-missing/.opencode/agents/specialist.md
+../task-015-negative-missing/.opencode/commands/blueprint-consolidate.md
+../task-015-negative-missing/.opencode/commands/blueprint-handoff.md
+../task-015-negative-missing/.opencode/commands/blueprint-next.md
+../task-015-negative-missing/.opencode/commands/blueprint-startup.md
+../task-015-negative-missing/.opencode/commands/blueprint-task.md
+../task-015-negative-missing/AGENTS.md
+../task-015-negative-missing/evidence/prerequisite.txt
+../task-015-negative-missing/opencode.jsonc
+../task-015-negative-mismatch/.blueprint/README.md
+../task-015-negative-mismatch/.blueprint/config/agents.json
+../task-015-negative-mismatch/.blueprint/config/project.json
+../task-015-negative-mismatch/.blueprint/handoffs/HANDOFF-TEMPLATE.md
+../task-015-negative-mismatch/.blueprint/handoffs/README.md
+../task-015-negative-mismatch/.blueprint/manifest.json
+../task-015-negative-mismatch/.blueprint/memory/ARCHITECTURE.md
+../task-015-negative-mismatch/.blueprint/memory/CONVENTIONS.md
+../task-015-negative-mismatch/.blueprint/memory/CURRENT_STATE.md
+../task-015-negative-mismatch/.blueprint/memory/DECISIONS.md
+../task-015-negative-mismatch/.blueprint/memory/PROJECT_CONTEXT.md
+../task-015-negative-mismatch/.blueprint/memory/metadata.json
+../task-015-negative-mismatch/.blueprint/schemas/agents.schema.json
+../task-015-negative-mismatch/.blueprint/schemas/manifest.schema.json
+../task-015-negative-mismatch/.blueprint/schemas/memory-metadata.schema.json
+../task-015-negative-mismatch/.blueprint/schemas/project.schema.json
+../task-015-negative-mismatch/.blueprint/schemas/task-registry.schema.json
+../task-015-negative-mismatch/.blueprint/sessions/README.md
+../task-015-negative-mismatch/.blueprint/sessions/SESSION-TEMPLATE.md
+../task-015-negative-mismatch/.blueprint/specs/README.md
+../task-015-negative-mismatch/.blueprint/specs/SPEC-001.md
+../task-015-negative-mismatch/.blueprint/specs/SPEC-900.md
+../task-015-negative-mismatch/.blueprint/tasks/TASK-TEMPLATE.md
+../task-015-negative-mismatch/.blueprint/tasks/backlog.md
+../task-015-negative-mismatch/.blueprint/tasks/items/README.md
+../task-015-negative-mismatch/.blueprint/tasks/items/TASK-001.md
+../task-015-negative-mismatch/.blueprint/tasks/items/TASK-900.md
+../task-015-negative-mismatch/.blueprint/tasks/registry.json
+../task-015-negative-mismatch/.git/HEAD
+../task-015-negative-mismatch/.git/config
+../task-015-negative-mismatch/.git/description
+../task-015-negative-mismatch/.git/hooks/applypatch-msg.sample
+../task-015-negative-mismatch/.git/hooks/commit-msg.sample
+../task-015-negative-mismatch/.git/hooks/fsmonitor-watchman.sample
+../task-015-negative-mismatch/.git/hooks/post-update.sample
+../task-015-negative-mismatch/.git/hooks/pre-applypatch.sample
+../task-015-negative-mismatch/.git/hooks/pre-commit.sample
+../task-015-negative-mismatch/.git/hooks/pre-merge-commit.sample
+../task-015-negative-mismatch/.git/hooks/pre-push.sample
+../task-015-negative-mismatch/.git/hooks/pre-rebase.sample
+../task-015-negative-mismatch/.git/hooks/pre-receive.sample
+../task-015-negative-mismatch/.git/hooks/prepare-commit-msg.sample
+../task-015-negative-mismatch/.git/hooks/push-to-checkout.sample
+../task-015-negative-mismatch/.git/hooks/sendemail-validate.sample
+../task-015-negative-mismatch/.git/hooks/update.sample
+../task-015-negative-mismatch/.git/info/exclude
+../task-015-negative-mismatch/.opencode/agents/manager-architecture.md
+../task-015-negative-mismatch/.opencode/agents/manager-delivery.md
+../task-015-negative-mismatch/.opencode/agents/manager-engineering.md
+../task-015-negative-mismatch/.opencode/agents/manager-quality.md
+../task-015-negative-mismatch/.opencode/agents/orchestrator.md
+../task-015-negative-mismatch/.opencode/agents/specialist.md
+../task-015-negative-mismatch/.opencode/commands/blueprint-consolidate.md
+../task-015-negative-mismatch/.opencode/commands/blueprint-handoff.md
+../task-015-negative-mismatch/.opencode/commands/blueprint-next.md
+../task-015-negative-mismatch/.opencode/commands/blueprint-startup.md
+../task-015-negative-mismatch/.opencode/commands/blueprint-task.md
+../task-015-negative-mismatch/AGENTS.md
+../task-015-negative-mismatch/evidence/prerequisite.txt
+../task-015-negative-mismatch/opencode.jsonc
+=== MAIN prerequisite verify ===
+SYNTHETIC-DEPENDENCY-VERIFIED
+prereq ok exit=0
+       1 evidence/prerequisite.txt
+0000000    S   Y   N   T   H   E   T   I   C   -   D   E   P   E   N   D
+0000020    E   N   C   Y   -   V   E   R   I   F   I   E   D  \n        
+0000036
+> orchestrator · crouton-alpha-free
+→ Read .opencode/commands/blueprint-handoff.md 
+→ Read .blueprint/tasks/items/README.md 
+→ Read .opencode/commands/blueprint-task.md 
+→ Read .blueprint/specs/README.md 
+> orchestrator · crouton-alpha-free
+$ python3 - <<'PY'
+import json, hashlib, pathlib
+m=json.load(open('.blueprint/manifest.json'))
+for f in m['files']:
+    p=pathlib.Path(f['path'])
+    if not p.exists():
+        print(f"MISSING {f['path']}")
+    else:
+        h=hashlib.sha256(p.read_bytes()).hexdigest()
+        print(("OK " if h==f['sha256'] else "MISMATCH ")+f['path']+f" exp={f['sha256'][:8]} got={h[:8]}")
+PY
+echo "---NEG missing check---"; ls ../task-015-negative-missing/.blueprint/memory/CURRENT_STATE.md 2>&1; echo "missing file existence: $?"; grep -c CURRENT_STATE ../task-015-negative-missing/.blueprint/manifest.json; echo "---NEG mismatch statuses---"; grep -h "TASK-900" -A2 ../task-015-negative-mismatch/.blueprint/tasks/registry.json | head; grep -h "Status" ../task-015-negative-mismatch/.blueprint/tasks/items/TASK-900.md; grep -h "TASK-900" ../task-015-negative-mismatch/.blueprint/tasks/backlog.md; grep "TASK-900" ../task-015-negative-mismatch/.blueprint/memory/CURRENT_STATE.md
+OK .blueprint/README.md exp=9b930458 got=9b930458
+OK .blueprint/config/agents.json exp=cded0654 got=cded0654
+OK .blueprint/config/project.json exp=7b7c2ad1 got=7b7c2ad1
+OK .blueprint/handoffs/HANDOFF-TEMPLATE.md exp=5420e45b got=5420e45b
+OK .blueprint/handoffs/README.md exp=9381c606 got=9381c606
+OK .blueprint/memory/ARCHITECTURE.md exp=c0d5b74a got=c0d5b74a
+OK .blueprint/memory/CONVENTIONS.md exp=80e3dc74 got=80e3dc74
+MISMATCH .blueprint/memory/CURRENT_STATE.md exp=cb4fe413 got=accbd204
+MISMATCH .blueprint/memory/DECISIONS.md exp=9be58b71 got=866e7846
+OK .blueprint/memory/PROJECT_CONTEXT.md exp=ec8f58dc got=ec8f58dc
+OK .blueprint/memory/metadata.json exp=ae5952c4 got=ae5952c4
+OK .blueprint/schemas/agents.schema.json exp=3c2a69e8 got=3c2a69e8
+OK .blueprint/schemas/manifest.schema.json exp=11126baa got=11126baa
+OK .blueprint/schemas/memory-metadata.schema.json exp=80116f99 got=80116f99
+OK .blueprint/schemas/project.schema.json exp=9625c1b5 got=9625c1b5
+OK .blueprint/schemas/task-registry.schema.json exp=8ba6bc70 got=8ba6bc70
+OK .blueprint/sessions/README.md exp=6352a2fc got=6352a2fc
+OK .blueprint/sessions/SESSION-TEMPLATE.md exp=5a89ff44 got=5a89ff44
+OK .blueprint/specs/README.md exp=6a47c463 got=6a47c463
+OK .blueprint/tasks/TASK-TEMPLATE.md exp=b1dc4829 got=b1dc4829
+MISMATCH .blueprint/tasks/backlog.md exp=57ad5e49 got=2d6932ab
+OK .blueprint/tasks/items/README.md exp=d9fcf70e got=d9fcf70e
+MISMATCH .blueprint/tasks/registry.json exp=49db08fc got=109bbba6
+---NEG missing check---
+ls: ../task-015-negative-missing/.blueprint/memory/CURRENT_STATE.md: No such file or directory
+missing file existence: 1
+1
+---NEG mismatch statuses---
+      "id": "TASK-900",
+      "title": "Write the continuity evidence artifact",
+      "status": "in_progress",
+- Status: ready
+| TASK-900 | Write the continuity evidence artifact | in_progress | high | TASK-001 |
+- Active task: TASK-900 — Write the continuity evidence artifact (`in_progress`).
+> orchestrator · crouton-alpha-free
+$ echo "=== BEFORE inventories ==="; find ../task-015-negative-missing -type f -not -path "*/.git/*" | sort | tr '\n' ' '; echo ""; find ../task-015-negative-mismatch -type f -not -path "*/.git/*" | sort | tr '\n' ' '; echo ""; echo "=== git status main ==="; git status --porcelain=v1 -b; git branch --show-current; echo "=== evidence dir ==="; ls -l evidence/
+=== BEFORE inventories ===
+../task-015-negative-missing/.blueprint/README.md ../task-015-negative-missing/.blueprint/config/agents.json ../task-015-negative-missing/.blueprint/config/project.json ../task-015-negative-missing/.blueprint/handoffs/HANDOFF-TEMPLATE.md ../task-015-negative-missing/.blueprint/handoffs/README.md ../task-015-negative-missing/.blueprint/manifest.json ../task-015-negative-missing/.blueprint/memory/ARCHITECTURE.md ../task-015-negative-missing/.blueprint/memory/CONVENTIONS.md ../task-015-negative-missing/.blueprint/memory/DECISIONS.md ../task-015-negative-missing/.blueprint/memory/PROJECT_CONTEXT.md ../task-015-negative-missing/.blueprint/memory/metadata.json ../task-015-negative-missing/.blueprint/schemas/agents.schema.json ../task-015-negative-missing/.blueprint/schemas/manifest.schema.json ../task-015-negative-missing/.blueprint/schemas/memory-metadata.schema.json ../task-015-negative-missing/.blueprint/schemas/project.schema.json ../task-015-negative-missing/.blueprint/schemas/task-registry.schema.json ../task-015-negative-missing/.blueprint/sessions/README.md ../task-015-negative-missing/.blueprint/sessions/SESSION-TEMPLATE.md ../task-015-negative-missing/.blueprint/specs/README.md ../task-015-negative-missing/.blueprint/specs/SPEC-001.md ../task-015-negative-missing/.blueprint/specs/SPEC-900.md ../task-015-negative-missing/.blueprint/tasks/TASK-TEMPLATE.md ../task-015-negative-missing/.blueprint/tasks/backlog.md ../task-015-negative-missing/.blueprint/tasks/items/README.md ../task-015-negative-missing/.blueprint/tasks/items/TASK-001.md ../task-015-negative-missing/.blueprint/tasks/items/TASK-900.md ../task-015-negative-missing/.blueprint/tasks/registry.json ../task-015-negative-missing/.opencode/agents/manager-architecture.md ../task-015-negative-missing/.opencode/agents/manager-delivery.md ../task-015-negative-missing/.opencode/agents/manager-engineering.md ../task-015-negative-missing/.opencode/agents/manager-quality.md ../task-015-negative-missing/.opencode/agents/orchestrator.md ../task-015-negative-missing/.opencode/agents/specialist.md ../task-015-negative-missing/.opencode/commands/blueprint-consolidate.md ../task-015-negative-missing/.opencode/commands/blueprint-handoff.md ../task-015-negative-missing/.opencode/commands/blueprint-next.md ../task-015-negative-missing/.opencode/commands/blueprint-startup.md ../task-015-negative-missing/.opencode/commands/blueprint-task.md ../task-015-negative-missing/AGENTS.md ../task-015-negative-missing/evidence/prerequisite.txt ../task-015-negative-missing/opencode.jsonc 
+../task-015-negative-mismatch/.blueprint/README.md ../task-015-negative-mismatch/.blueprint/config/agents.json ../task-015-negative-mismatch/.blueprint/config/project.json ../task-015-negative-mismatch/.blueprint/handoffs/HANDOFF-TEMPLATE.md ../task-015-negative-mismatch/.blueprint/handoffs/README.md ../task-015-negative-mismatch/.blueprint/manifest.json ../task-015-negative-mismatch/.blueprint/memory/ARCHITECTURE.md ../task-015-negative-mismatch/.blueprint/memory/CONVENTIONS.md ../task-015-negative-mismatch/.blueprint/memory/CURRENT_STATE.md ../task-015-negative-mismatch/.blueprint/memory/DECISIONS.md ../task-015-negative-mismatch/.blueprint/memory/PROJECT_CONTEXT.md ../task-015-negative-mismatch/.blueprint/memory/metadata.json ../task-015-negative-mismatch/.blueprint/schemas/agents.schema.json ../task-015-negative-mismatch/.blueprint/schemas/manifest.schema.json ../task-015-negative-mismatch/.blueprint/schemas/memory-metadata.schema.json ../task-015-negative-mismatch/.blueprint/schemas/project.schema.json ../task-015-negative-mismatch/.blueprint/schemas/task-registry.schema.json ../task-015-negative-mismatch/.blueprint/sessions/README.md ../task-015-negative-mismatch/.blueprint/sessions/SESSION-TEMPLATE.md ../task-015-negative-mismatch/.blueprint/specs/README.md ../task-015-negative-mismatch/.blueprint/specs/SPEC-001.md ../task-015-negative-mismatch/.blueprint/specs/SPEC-900.md ../task-015-negative-mismatch/.blueprint/tasks/TASK-TEMPLATE.md ../task-015-negative-mismatch/.blueprint/tasks/backlog.md ../task-015-negative-mismatch/.blueprint/tasks/items/README.md ../task-015-negative-mismatch/.blueprint/tasks/items/TASK-001.md ../task-015-negative-mismatch/.blueprint/tasks/items/TASK-900.md ../task-015-negative-mismatch/.blueprint/tasks/registry.json ../task-015-negative-mismatch/.opencode/agents/manager-architecture.md ../task-015-negative-mismatch/.opencode/agents/manager-delivery.md ../task-015-negative-mismatch/.opencode/agents/manager-engineering.md ../task-015-negative-mismatch/.opencode/agents/manager-quality.md ../task-015-negative-mismatch/.opencode/agents/orchestrator.md ../task-015-negative-mismatch/.opencode/agents/specialist.md ../task-015-negative-mismatch/.opencode/commands/blueprint-consolidate.md ../task-015-negative-mismatch/.opencode/commands/blueprint-handoff.md ../task-015-negative-mismatch/.opencode/commands/blueprint-next.md ../task-015-negative-mismatch/.opencode/commands/blueprint-startup.md ../task-015-negative-mismatch/.opencode/commands/blueprint-task.md ../task-015-negative-mismatch/AGENTS.md ../task-015-negative-mismatch/evidence/prerequisite.txt ../task-015-negative-mismatch/opencode.jsonc 
+=== git status main ===
+## No commits yet on main
+?? .blueprint/
+?? .opencode/
+?? AGENTS.md
+?? evidence/
+?? opencode.jsonc
+main
+=== evidence dir ===
+total 8
+-rw-r--r--@ 1 joseph  staff  30 Nov  5 16:56 prerequisite.txt
+> orchestrator · crouton-alpha-free
+← Write evidence/continuity.txt
+Created file successfully: evidence/continuity.txt
+> orchestrator · crouton-alpha-free
+$ grep -Fx CONTINUITY-015-OK evidence/continuity.txt && echo "continuity exit=$?"; wc -l evidence/continuity.txt; od -c evidence/continuity.txt; grep -Fx SYNTHETIC-DEPENDENCY-VERIFIED evidence/prerequisite.txt && echo "prereq exit=$?"; echo "--- statuses before sync ---"; grep -A3 '"id": "TASK-900"' .blueprint/tasks/registry.json; grep "Status" .blueprint/tasks/items/TASK-900.md; cat .blueprint/tasks/backlog.md; cat .blueprint/memory/CURRENT_STATE.md; git status --porcelain=v1 -b; git branch --show-current; git log --oneline -3 2>&1; git rev-parse HEAD 2>&1
+CONTINUITY-015-OK
+continuity exit=0
+       1 evidence/continuity.txt
+0000000    C   O   N   T   I   N   U   I   T   Y   -   0   1   5   -   O
+0000020    K  \n                                                        
+0000022
+SYNTHETIC-DEPENDENCY-VERIFIED
+prereq exit=0
+--- statuses before sync ---
+      "id": "TASK-900",
+      "title": "Write the continuity evidence artifact",
+      "status": "in_progress",
+      "priority": "high",
+- Status: in_progress
+# Product Backlog
+
+| ID | Title | Status | Priority | Dependencies |
+| --- | --- | --- | --- | --- |
+| TASK-001 | Seed verified synthetic prerequisite | done | medium | none |
+| TASK-900 | Write the continuity evidence artifact | in_progress | high | TASK-001 |
+# Current State
+
+- Stage: isolated fresh-session continuity test.
+- Active task: TASK-900 — Write the continuity evidence artifact (`in_progress`).
+- Blockers: none.
+- Pending approvals: independent review after the producer handoff.
+- Next: verify the completed TASK-001 dependency, then write only the specified evidence marker.
+## No commits yet on main
+?? .blueprint/
+?? .opencode/
+?? AGENTS.md
+?? evidence/
+?? opencode.jsonc
+main
+fatal: your current branch 'main' does not have any commits yet
+fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+HEAD
+> orchestrator · crouton-alpha-free
+Prerequisite verified and the continuity marker written — now synchronizing the canonical records to in_review and preparing the reviewer handoff.
+← Write .blueprint/handoffs/2026-11-05-task-900.md
+Created file successfully: .blueprint/handoffs/2026-11-05-task-900.md
+> orchestrator · crouton-alpha-free
+← Write .blueprint/sessions/2026-11-05-task-900.md
+Created file successfully: .blueprint/sessions/2026-11-05-task-900.md
+> orchestrator · crouton-alpha-free
+← Edit .blueprint/tasks/registry.json
+Index: .blueprint/tasks/registry.json
+===================================================================
+--- .blueprint/tasks/registry.json
++++ .blueprint/tasks/registry.json
+@@ -16,9 +16,9 @@
+     },
+     {
+       "id": "TASK-900",
+       "title": "Write the continuity evidence artifact",
+-      "status": "in_progress",
++      "status": "in_review",
+       "priority": "high",
+       "specs": [
+         "SPEC-900"
+       ],
+
+> orchestrator · crouton-alpha-free
+← Edit .blueprint/tasks/registry.json
+Index: .blueprint/tasks/registry.json
+===================================================================
+--- .blueprint/tasks/registry.json
++++ .blueprint/tasks/registry.json
+@@ -25,8 +25,8 @@
+       "owner_role": "ORCHESTRATOR",
+       "dependencies": [
+         "TASK-001"
+       ],
+-      "next_action": "Verify TASK-001 evidence, write the exact marker, update canonical evidence and handoff."
++      "next_action": "Fresh Manager reviewer reviews handoff 2026-11-05-task-900.md and reruns verifications; do not mark done without review."
+     }
+   ]
+ }
+
+> orchestrator · crouton-alpha-free
+← Edit .blueprint/tasks/items/TASK-900.md
+Index: .blueprint/tasks/items/TASK-900.md
+===================================================================
+--- .blueprint/tasks/items/TASK-900.md
++++ .blueprint/tasks/items/TASK-900.md
+@@ -1,8 +1,8 @@
+ # TASK-900 — Write the continuity evidence artifact
+ 
+ ## Metadata
+-- Status: in_progress
++- Status: in_review
+ - Priority: high
+ - Owner role: ORCHESTRATOR
+ - Specs: SPEC-900
+ - Dependencies: TASK-001
+
+> orchestrator · crouton-alpha-free
+← Edit .blueprint/tasks/items/TASK-900.md
+Index: .blueprint/tasks/items/TASK-900.md
+===================================================================
+--- .blueprint/tasks/items/TASK-900.md
++++ .blueprint/tasks/items/TASK-900.md
+@@ -37,9 +37,9 @@
+ ## Blockers
+ None
+ 
+ ## Execution log
+-Seeded as the only in-progress synthetic task for the clean fresh-session test.
++Seeded as the only in-progress synthetic task for the clean fresh-session test. Producer (2026-11-05): verified TASK-001 marker via `grep -Fx`, wrote `evidence/continuity.txt` with exact marker `CONTINUITY-015-OK`, verified via `grep -Fx` (exit 0, one line), synchronized registry/brief/backlog/CURRENT_STATE to `in_review`, created `.blueprint/handoffs/2026-11-05-task-900.md` and `.blueprint/sessions/2026-11-05-task-900.md`. Negative fixtures inspected read-only and reported blocking; no writes to either fixture. No commit, no delegation, no config change.
+ 
+ ## Completion evidence
+ | Criterion | Evidence |
+ | --- | --- |
+
+> orchestrator · crouton-alpha-free
+← Edit .blueprint/tasks/items/TASK-900.md
+Index: .blueprint/tasks/items/TASK-900.md
+===================================================================
+--- .blueprint/tasks/items/TASK-900.md
++++ .blueprint/tasks/items/TASK-900.md
+@@ -42,12 +42,12 @@
+ 
+ ## Completion evidence
+ | Criterion | Evidence |
+ | --- | --- |
+-| AC-01 | |
+-| AC-02 | |
+-| AC-03 | |
+-| AC-04 | |
+-| AC-05 | |
++| AC-01 | TASK-001 `done` in registry/brief; `grep -Fx SYNTHETIC-DEPENDENCY-VERIFIED evidence/prerequisite.txt` matched, exit 0 (observed 2026-11-05). |
++| AC-02 | `evidence/continuity.txt` is exactly `CONTINUITY-015-OK` on one line; `grep -Fx CONTINUITY-015-OK evidence/continuity.txt` matched, exit 0, `wc -l` = 1 (observed). |
++| AC-03 | Registry, brief TASK-900, backlog, and CURRENT_STATE consistently record `in_review` with observed evidence in `.blueprint/handoffs/2026-11-05-task-900.md`. |
++| AC-04 | Handoff `.blueprint/handoffs/2026-11-05-task-900.md` records Git state (branch `main`, no commits, untracked-tree status), evidence, pending Manager review, and exact next action; session record `.blueprint/sessions/2026-11-05-task-900.md` created. Not marked `done`. |
++| AC-05 | `../task-015-negative-missing`: missing `.blueprint/memory/CURRENT_STATE.md` — blocking, unchanged. `../task-015-negative-mismatch`: registry `in_progress` vs brief `ready` — blocking, unchanged. Inventories before/after identical; no writes. |
+ 
+ ## Next action
+-Verify TASK-001 evidence, then write the bounded marker.
++Fresh Manager reviewer reviews handoff `2026-11-05-task-900.md` and reruns verifications; do not mark done without review evidence.
+
+> orchestrator · crouton-alpha-free
+← Edit .blueprint/tasks/items/TASK-900.md
+Index: .blueprint/tasks/items/TASK-900.md
+===================================================================
+--- .blueprint/tasks/items/TASK-900.md
++++ .blueprint/tasks/items/TASK-900.md
+@@ -34,9 +34,9 @@
+ ## Risks and open questions
+ Production technology stack remains explicitly unknown and is out of scope.
+ 
+ ## Blockers
+-None
++Independent Manager review pending (fresh reviewer). Negative fixtures `../task-015-negative-missing` and `../task-015-negative-mismatch` remain blocking on their own startups; left unchanged.
+ 
+ ## Execution log
+ Seeded as the only in-progress synthetic task for the clean fresh-session test. Producer (2026-11-05): verified TASK-001 marker via `grep -Fx`, wrote `evidence/continuity.txt` with exact marker `CONTINUITY-015-OK`, verified via `grep -Fx` (exit 0, one line), synchronized registry/brief/backlog/CURRENT_STATE to `in_review`, created `.blueprint/handoffs/2026-11-05-task-900.md` and `.blueprint/sessions/2026-11-05-task-900.md`. Negative fixtures inspected read-only and reported blocking; no writes to either fixture. No commit, no delegation, no config change.
+ 
+
+> orchestrator · crouton-alpha-free
+← Edit .blueprint/tasks/backlog.md
+Index: .blueprint/tasks/backlog.md
+===================================================================
+--- .blueprint/tasks/backlog.md
++++ .blueprint/tasks/backlog.md
+@@ -2,5 +2,5 @@
+ 
+ | ID | Title | Status | Priority | Dependencies |
+ | --- | --- | --- | --- | --- |
+ | TASK-001 | Seed verified synthetic prerequisite | done | medium | none |
+-| TASK-900 | Write the continuity evidence artifact | in_progress | high | TASK-001 |
++| TASK-900 | Write the continuity evidence artifact | in_review | high | TASK-001 |
+
+> orchestrator · crouton-alpha-free
+← Write .blueprint/memory/CURRENT_STATE.md
+Wrote file successfully: .blueprint/memory/CURRENT_STATE.md
+> orchestrator · crouton-alpha-free
+$ echo "=== FINAL VERIFY ==="; grep -Fx CONTINUITY-015-OK evidence/continuity.txt && echo "continuity OK"; grep -Fx SYNTHETIC-DEPENDENCY-VERIFIED evidence/prerequisite.txt && echo "prereq OK"; cat evidence/continuity.txt; echo "--- registry ---"; cat .blueprint/tasks/registry.json; echo "--- brief status ---"; grep "Status" .blueprint/tasks/items/TASK-900.md; grep -A7 "Completion evidence" .blueprint/tasks/items/TASK-900.md; echo "--- backlog ---"; cat .blueprint/tasks/backlog.md; echo "--- current ---"; cat .blueprint/memory/CURRENT_STATE.md; echo "--- files ---"; ls -l .blueprint/handoffs/2026-11-05-task-900.md .blueprint/sessions/2026-11-05-task-900.md evidence/continuity.txt; echo "--- git ---"; git status --porcelain=v1 -b; git branch --show-current; echo "--- negatives unchanged check ---"; find ../task-015-negative-missing -type f -not -path "*/.git/*" | sort | tr '\n' ' '; echo ""; find ../task-015-negative-mismatch -type f -not -path "*/.git/*" | sort | tr '\n' ' '; echo ""; ls ../task-015-negative-missing/.blueprint/memory/CURRENT_STATE.md 2>&1; grep "Status" ../task-015-negative-mismatch/.blueprint/tasks/items/TASK-900.md
+=== FINAL VERIFY ===
+CONTINUITY-015-OK
+continuity OK
+SYNTHETIC-DEPENDENCY-VERIFIED
+prereq OK
+CONTINUITY-015-OK
+--- registry ---
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-05",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Seed verified synthetic prerequisite",
+      "status": "done",
+      "priority": "medium",
+      "specs": [
+        "SPEC-001"
+      ],
+      "owner_role": "ORCHESTRATOR",
+      "dependencies": [],
+      "next_action": "None; seeded only for the continuity test."
+    },
+    {
+      "id": "TASK-900",
+      "title": "Write the continuity evidence artifact",
+      "status": "in_review",
+      "priority": "high",
+      "specs": [
+        "SPEC-900"
+      ],
+      "owner_role": "ORCHESTRATOR",
+      "dependencies": [
+        "TASK-001"
+      ],
+      "next_action": "Fresh Manager reviewer reviews handoff 2026-11-05-task-900.md and reruns verifications; do not mark done without review."
+    }
+  ]
+}
+--- brief status ---
+- Status: in_review
+## Completion evidence
+| Criterion | Evidence |
+| --- | --- |
+| AC-01 | TASK-001 `done` in registry/brief; `grep -Fx SYNTHETIC-DEPENDENCY-VERIFIED evidence/prerequisite.txt` matched, exit 0 (observed 2026-11-05). |
+| AC-02 | `evidence/continuity.txt` is exactly `CONTINUITY-015-OK` on one line; `grep -Fx CONTINUITY-015-OK evidence/continuity.txt` matched, exit 0, `wc -l` = 1 (observed). |
+| AC-03 | Registry, brief TASK-900, backlog, and CURRENT_STATE consistently record `in_review` with observed evidence in `.blueprint/handoffs/2026-11-05-task-900.md`. |
+| AC-04 | Handoff `.blueprint/handoffs/2026-11-05-task-900.md` records Git state (branch `main`, no commits, untracked-tree status), evidence, pending Manager review, and exact next action; session record `.blueprint/sessions/2026-11-05-task-900.md` created. Not marked `done`. |
+| AC-05 | `../task-015-negative-missing`: missing `.blueprint/memory/CURRENT_STATE.md` — blocking, unchanged. `../task-015-negative-mismatch`: registry `in_progress` vs brief `ready` — blocking, unchanged. Inventories before/after identical; no writes. |
+--- backlog ---
+# Product Backlog
+
+| ID | Title | Status | Priority | Dependencies |
+| --- | --- | --- | --- | --- |
+| TASK-001 | Seed verified synthetic prerequisite | done | medium | none |
+| TASK-900 | Write the continuity evidence artifact | in_review | high | TASK-001 |
+--- current ---
+# Current State
+
+- Stage: isolated fresh-session continuity test.
+- Active task: TASK-900 — Write the continuity evidence artifact (`in_review`).
+- Blockers: independent Manager review pending; negative fixtures `../task-015-negative-missing` (missing CURRENT_STATE.md) and `../task-015-negative-mismatch` (registry/brief status mismatch) remain blocking on their own startups — left unchanged.
+- Pending approvals: independent review after the producer handoff.
+- Next: Fresh Manager reviewer reviews handoff `.blueprint/handoffs/2026-11-05-task-900.md` and reruns verifications; do not mark done without review evidence.
+--- files ---
+-rw-r--r--@ 1 joseph  staff  5854 Nov  5 16:58 .blueprint/handoffs/2026-11-05-task-900.md
+-rw-r--r--@ 1 joseph  staff  3219 Nov  5 16:58 .blueprint/sessions/2026-11-05-task-900.md
+-rw-r--r--@ 1 joseph  staff    18 Nov  5 16:58 evidence/continuity.txt
+--- git ---
+## No commits yet on main
+?? .blueprint/
+?? .opencode/
+?? AGENTS.md
+?? evidence/
+?? opencode.jsonc
+main
+--- negatives unchanged check ---
+../task-015-negative-missing/.blueprint/README.md ../task-015-negative-missing/.blueprint/config/agents.json ../task-015-negative-missing/.blueprint/config/project.json ../task-015-negative-missing/.blueprint/handoffs/HANDOFF-TEMPLATE.md ../task-015-negative-missing/.blueprint/handoffs/README.md ../task-015-negative-missing/.blueprint/manifest.json ../task-015-negative-missing/.blueprint/memory/ARCHITECTURE.md ../task-015-negative-missing/.blueprint/memory/CONVENTIONS.md ../task-015-negative-missing/.blueprint/memory/DECISIONS.md ../task-015-negative-missing/.blueprint/memory/PROJECT_CONTEXT.md ../task-015-negative-missing/.blueprint/memory/metadata.json ../task-015-negative-missing/.blueprint/schemas/agents.schema.json ../task-015-negative-missing/.blueprint/schemas/manifest.schema.json ../task-015-negative-missing/.blueprint/schemas/memory-metadata.schema.json ../task-015-negative-missing/.blueprint/schemas/project.schema.json ../task-015-negative-missing/.blueprint/schemas/task-registry.schema.json ../task-015-negative-missing/.blueprint/sessions/README.md ../task-015-negative-missing/.blueprint/sessions/SESSION-TEMPLATE.md ../task-015-negative-missing/.blueprint/specs/README.md ../task-015-negative-missing/.blueprint/specs/SPEC-001.md ../task-015-negative-missing/.blueprint/specs/SPEC-900.md ../task-015-negative-missing/.blueprint/tasks/TASK-TEMPLATE.md ../task-015-negative-missing/.blueprint/tasks/backlog.md ../task-015-negative-missing/.blueprint/tasks/items/README.md ../task-015-negative-missing/.blueprint/tasks/items/TASK-001.md ../task-015-negative-missing/.blueprint/tasks/items/TASK-900.md ../task-015-negative-missing/.blueprint/tasks/registry.json ../task-015-negative-missing/.opencode/agents/manager-architecture.md ../task-015-negative-missing/.opencode/agents/manager-delivery.md ../task-015-negative-missing/.opencode/agents/manager-engineering.md ../task-015-negative-missing/.opencode/agents/manager-quality.md ../task-015-negative-missing/.opencode/agents/orchestrator.md ../task-015-negative-missing/.opencode/agents/specialist.md ../task-015-negative-missing/.opencode/commands/blueprint-consolidate.md ../task-015-negative-missing/.opencode/commands/blueprint-handoff.md ../task-015-negative-missing/.opencode/commands/blueprint-next.md ../task-015-negative-missing/.opencode/commands/blueprint-startup.md ../task-015-negative-missing/.opencode/commands/blueprint-task.md ../task-015-negative-missing/AGENTS.md ../task-015-negative-missing/evidence/prerequisite.txt ../task-015-negative-missing/opencode.jsonc 
+../task-015-negative-mismatch/.blueprint/README.md ../task-015-negative-mismatch/.blueprint/config/agents.json ../task-015-negative-mismatch/.blueprint/config/project.json ../task-015-negative-mismatch/.blueprint/handoffs/HANDOFF-TEMPLATE.md ../task-015-negative-mismatch/.blueprint/handoffs/README.md ../task-015-negative-mismatch/.blueprint/manifest.json ../task-015-negative-mismatch/.blueprint/memory/ARCHITECTURE.md ../task-015-negative-mismatch/.blueprint/memory/CONVENTIONS.md ../task-015-negative-mismatch/.blueprint/memory/CURRENT_STATE.md ../task-015-negative-mismatch/.blueprint/memory/DECISIONS.md ../task-015-negative-mismatch/.blueprint/memory/PROJECT_CONTEXT.md ../task-015-negative-mismatch/.blueprint/memory/metadata.json ../task-015-negative-mismatch/.blueprint/schemas/agents.schema.json ../task-015-negative-mismatch/.blueprint/schemas/manifest.schema.json ../task-015-negative-mismatch/.blueprint/schemas/memory-metadata.schema.json ../task-015-negative-mismatch/.blueprint/schemas/project.schema.json ../task-015-negative-mismatch/.blueprint/schemas/task-registry.schema.json ../task-015-negative-mismatch/.blueprint/sessions/README.md ../task-015-negative-mismatch/.blueprint/sessions/SESSION-TEMPLATE.md ../task-015-negative-mismatch/.blueprint/specs/README.md ../task-015-negative-mismatch/.blueprint/specs/SPEC-001.md ../task-015-negative-mismatch/.blueprint/specs/SPEC-900.md ../task-015-negative-mismatch/.blueprint/tasks/TASK-TEMPLATE.md ../task-015-negative-mismatch/.blueprint/tasks/backlog.md ../task-015-negative-mismatch/.blueprint/tasks/items/README.md ../task-015-negative-mismatch/.blueprint/tasks/items/TASK-001.md ../task-015-negative-mismatch/.blueprint/tasks/items/TASK-900.md ../task-015-negative-mismatch/.blueprint/tasks/registry.json ../task-015-negative-mismatch/.opencode/agents/manager-architecture.md ../task-015-negative-mismatch/.opencode/agents/manager-delivery.md ../task-015-negative-mismatch/.opencode/agents/manager-engineering.md ../task-015-negative-mismatch/.opencode/agents/manager-quality.md ../task-015-negative-mismatch/.opencode/agents/orchestrator.md ../task-015-negative-mismatch/.opencode/agents/specialist.md ../task-015-negative-mismatch/.opencode/commands/blueprint-consolidate.md ../task-015-negative-mismatch/.opencode/commands/blueprint-handoff.md ../task-015-negative-mismatch/.opencode/commands/blueprint-next.md ../task-015-negative-mismatch/.opencode/commands/blueprint-startup.md ../task-015-negative-mismatch/.opencode/commands/blueprint-task.md ../task-015-negative-mismatch/AGENTS.md ../task-015-negative-mismatch/evidence/prerequisite.txt ../task-015-negative-mismatch/opencode.jsonc 
+ls: ../task-015-negative-missing/.blueprint/memory/CURRENT_STATE.md: No such file or directory
+- Status: ready
+> orchestrator · crouton-alpha-free
+## Startup context packet — Continuity Test Project (20–40 lines)
+
+**Project:** Continuity Test Project / `continuity-test-015`; purpose: verify a fresh session can continue a bounded task from persisted files; stage: isolated fresh-session continuity test (`active`).
+**Goal:** TASK-900 — demonstrate continuation using only persisted files.
+**Constraints (binding, ≤5):** canonical Markdown/JSON authoritative; no secrets; no `done` without evidence+review; no commit/push test data; production stack explicitly unknown (out of scope).
+**Active task:** TASK-900 — Write the continuity evidence artifact; status `in_progress` at startup (now `in_review`); owner ORCHESTRATOR; specs SPEC-900; dependency TASK-001 (`done`).
+**Dependency check:** TASK-001 `done` in registry + brief; `evidence/prerequisite.txt` readable; single `in_progress` (TASK-900); registry/brief/backlog/CURRENT_STATE agreed at startup — no conflict.
+**Blockers/pending at startup:** none in main fixture; pending: independent review after producer handoff.
+**Decisions:** ADR-900 — marker-only scope (`evidence/continuity.txt`), remain `in_review` until independent review.
+**Sources:** `.blueprint/README.md`, `manifest.json`, `config/project.json`, `config/agents.json`, `memory/PROJECT_CONTEXT.md`, `memory/CURRENT_STATE.md`, `tasks/registry.json`, `tasks/items/TASK-900.md`, `tasks/items/TASK-001.md`, `specs/SPEC-900.md`, `specs/SPEC-001.md`, `memory/DECISIONS.md`, `tasks/backlog.md`, handoff/session templates.
+**Next action (startup):** verify TASK-001, then write only the specified marker — executed below per your authorization.
+
+## Bounded execution (main fixture only)
+
+- **AC-01:** `grep -Fx SYNTHETIC-DEPENDENCY-VERIFIED evidence/prerequisite.txt` → matched, exit 0, 1 line.
+- **AC-02:** wrote exactly `CONTINUITY-015-OK` to `evidence/continuity.txt`; `grep -Fx CONTINUITY-015-OK evidence/continuity.txt` → matched, exit 0, 1 line.
+- **AC-03:** `registry.json`, `TASK-900.md`, `backlog.md`, `CURRENT_STATE.md` all now `in_review` with observed evidence.
+- **AC-04:** handoff `.blueprint/handoffs/2026-11-05-task-900.md` records Git (branch `main`, no commits, untracked tree), evidence, pending review, exact next action; session `.blueprint/sessions/2026-11-05-task-900.md` created. **Not marked `done`.**
+- **No delegation** (isolated authorization), **no commit/push**, **no config change**, no writes outside main fixture.
+
+## Negative fixtures (read-only, blocking)
+
+- `../task-015-negative-missing`: **blocking — missing required record** `.blueprint/memory/CURRENT_STATE.md` (listed in manifest, absent on disk). Not repaired; unchanged.
+- `../task-015-negative-mismatch`: **blocking — canonical-state mismatch** registry `in_progress` (+backlog/CURRENT_STATE) vs brief `ready`. Not repaired; unchanged.
+
+File inventories before/after identical for both.
+
+**Risks:** review pending; negatives remain blocking on their own startups — left untouched per SPEC-900.
+
+**Single next action:** fresh Manager reviewer reads handoff `2026-11-05-task-900.md`, reruns both `grep -Fx` checks + Git reads, confirms `in_review` agreement; do not mark `done` without review evidence.

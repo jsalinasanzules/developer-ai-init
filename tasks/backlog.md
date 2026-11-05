@@ -24,7 +24,7 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 - [x] **TASK-012** (done): Specify project discovery and interactive initialization. Depends on TASK-001, TASK-002.
 - [x] **TASK-013** (done): Implement blueprint generation with collision detection and approval. Depends on TASK-003, TASK-009, TASK-012, TASK-020.
 - [x] **TASK-014** (done): Implement validation for schemas, task graph, references, and secrets. Depends on TASK-003, TASK-006, TASK-011, TASK-020.
-- [ ] **TASK-015**: End-to-end fresh-session continuity test. Depends on TASK-007, TASK-010, TASK-013, TASK-014.
+- [x] **TASK-015** (done): Run end-to-end fresh-session continuity test. Depends on TASK-007, TASK-010, TASK-013, TASK-014.
 
 ## Phase 4 — Additional providers
 - [ ] **TASK-016**: Claude Code adapter. Depends on TASK-011, TASK-015, TASK-020.

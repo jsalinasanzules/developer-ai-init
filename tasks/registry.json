@@ -234,7 +234,7 @@
     {
       "id": "TASK-015",
       "title": "Run end-to-end fresh-session continuity test",
-      "status": "proposed",
+      "status": "done",
       "priority": "critical",
       "specs": [
         "SPEC-002",
@@ -250,7 +250,7 @@
         "TASK-013",
         "TASK-014"
       ],
-      "next_action": "Prove a new session can resume from repository memory alone."
+      "next_action": "Await user direction; do not start TASK-016, TASK-017, or TASK-018."
     },
     {
       "id": "TASK-016",

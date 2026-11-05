@@ -1,0 +1,26 @@
+Observed by the source Orchestrator after the receiving review:
+
+Command: `git status --porcelain=v1 -b`
+Exit: 0
+Output:
+## No commits yet on main
+?? .blueprint/
+?? .opencode/
+?? AGENTS.md
+?? evidence/
+?? opencode.jsonc
+
+Command: `git branch --show-current`
+Exit: 0
+Output:
+main
+
+Command: `git rev-parse --verify HEAD`
+Exit: 128
+Output:
+fatal: Needed a single revision
+
+Interpretation: the isolated fixture is on an unborn `main` branch with no
+commit, matching the handoff's reported state. This check was performed by the
+source Orchestrator, not by the independent receiving Manager; AC-03 remains
+open until the receiving review verifies this state itself.

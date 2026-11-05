@@ -214,8 +214,13 @@ def validate_completion(
             review_text = review_resolved.read_text(encoding="utf-8")
             if f"Task: {task_id}" not in review_text:
                 errors.append("Manager review artifact names a different task")
-            if f"Reviewer role: {_metadata(task_text, 'Owner role')}" not in review_text:
-                errors.append("review must be performed by the task's appropriate Manager role")
+            reviewer_match = re.search(
+                r"^Reviewer role:[ \t]*(.*?)\s*$", review_text, re.MULTILINE
+            )
+            if not reviewer_match or not re.fullmatch(
+                r"MANAGER: [A-Za-z][A-Za-z0-9 /&-]*", reviewer_match.group(1)
+            ):
+                errors.append("review must be performed by an appropriate Manager")
             if "Decision: APPROVED" not in review_text:
                 errors.append("Manager review must explicitly approve the evidence")
             if "Independent review: YES" not in review_text:

@@ -1,0 +1,54 @@
+{
+  "project": {
+    "name": "Continuity Test Project",
+    "slug": "continuity-test-015",
+    "description": "Synthetic project for testing file-backed session continuity.",
+    "status": "active"
+  },
+  "purpose": {
+    "summary": "Verify that a fresh coding session can continue a bounded task from persisted files.",
+    "users": [
+      "test operator"
+    ],
+    "goals": [
+      "reconstruct project context from canonical files",
+      "verify dependencies and record one bounded result"
+    ],
+    "non_goals": [
+      "using prior conversation history",
+      "modifying production data"
+    ]
+  },
+  "stack": [],
+  "constraints": [
+    "Canonical Markdown and JSON files are authoritative.",
+    "Do not store secrets.",
+    "Do not mark work done without evidence and review.",
+    "Do not commit or push test data."
+  ],
+  "providers": [
+    {
+      "id": "opencode",
+      "role": "primary",
+      "notes": "Selected only for the isolated continuity test."
+    }
+  ],
+  "initialization": {
+    "status": "partial",
+    "unknowns": [
+      "Production technology stack is intentionally unspecified."
+    ],
+    "assumptions": [
+      "All fixture content is synthetic."
+    ]
+  },
+  "context": {
+    "scope": "A single file-backed continuity proof task.",
+    "domain": "AI-agent session continuity testing.",
+    "architecture": "Canonical Markdown and JSON under .blueprint/.",
+    "conventions": "Verify files and dependencies; preserve unknowns; no secrets."
+  },
+  "selected_adapters": [
+    "opencode"
+  ]
+}
