@@ -44,3 +44,12 @@ Decision record format, conflict classification, approval attribution, expiry, a
 - Decision: the adapter may enable depth 2 when the user approves it, documents it as an experimental provider dependency, and provides a sequential single-agent fallback when unavailable.
 - Rationale: preserves Managers as real coordinators/reviewers without making true nesting mandatory for baseline operation.
 - Consequence: adapter conformance must cover both depth-2 (when enabled) and sequential fallback; experimental behavior may change.
+
+
+## ADR-008 — Provider-neutral observability core with provider-specific monitor UI
+- Status: accepted | Date: 2026-11-04
+- Context: users need visibility into execution, agent activity, blockers, approvals, and progress without coupling the Blueprint to one coding-agent interface.
+- Decision: observability semantics and data contracts belong to the provider-neutral Blueprint core. Provider adapters implement monitor UIs. The first implementation is `developer-ai-init-monitor`, an OpenCode TUI sidebar plugin.
+- Ownership/runtime: this Blueprint repository owns and versions the specification and plugin source. The initializer installs/configures it in generated projects. At runtime it reads canonical `.blueprint/` state inside OpenCode; it does not modify OpenCode itself or require a separate service.
+- Constraints: the core remains usable without a monitor. The monitor is presentation only, never a second source of truth. OpenCode-specific event handling and sidebar rendering stay in its adapter; other adapters may provide different UIs.
+- Consequences: define a provider-neutral observability contract, update/freshness semantics, and degraded mode before implementation. Verify compatibility with OpenCode 2.2.5. See `docs/architecture/ADR-008-provider-neutral-observability.md`.
