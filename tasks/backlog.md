@@ -31,7 +31,7 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 - [ ] **TASK-018**: Adapter authoring guide and conformance checklist. Depends on TASK-016, TASK-017.
 
 ## Observability and monitoring
-- [ ] **TASK-019** (in_review): Define provider-neutral observability contract and OpenCode monitor. Depends on TASK-002, TASK-006, TASK-008. Implementation + 23/23 snapshot verification + v2.2.5 plugin-load evidence complete; awaiting user interactive confirmation of the sidebar (`/monitor`) in the spike project before `done`.
+- [x] **TASK-019** (done): Define provider-neutral observability contract and OpenCode monitor. Depends on TASK-002, TASK-006, TASK-008. Implementation + 23/23 snapshot verification + v2.2.5 visual confirmation complete; `/monitor` hides/shows the sidebar and the monitor reloads after restarting OpenCode. Storage proxy fix committed as `bdfbce1`.
 
 ## Scheduling
 The Orchestrator selects the next eligible task based on priority, dependencies, and user direction. Do not execute the entire backlog automatically. Surface material decision gates before proceeding.

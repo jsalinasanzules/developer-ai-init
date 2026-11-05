@@ -299,7 +299,7 @@
     {
       "id": "TASK-019",
       "title": "Define provider-neutral observability contract and OpenCode monitor",
-      "status": "in_review",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-006",
@@ -311,7 +311,7 @@
         "TASK-006",
         "TASK-008"
       ],
-      "next_action": "Await user interactive confirmation of the sidebar render + /monitor toggle in the task019-spike project, then set done."
+      "next_action": "None. Contract and monitor complete; 23/23 snapshot checks pass, and the user confirmed monitor load, /monitor sidebar toggle, and reload after OpenCode restart on v2.2.5. Storage proxy fix committed as bdfbce1."
     }
   ]
 }

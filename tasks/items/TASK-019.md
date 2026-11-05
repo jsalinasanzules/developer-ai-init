@@ -1,13 +1,13 @@
 # TASK-019 — Define provider-neutral observability contract and OpenCode monitor
 
 ## Metadata
-- Status: in_review
+- Status: done
 - Priority: high
 - Owner role: MANAGER: Architecture
 - Specs: SPEC-006, SPEC-007
 - Dependencies: TASK-002, TASK-006, TASK-008
 - Created: 2026-11-04
-- Updated: 2026-11-05
+- Updated: 2026-11-04
 
 ## Objective
 Define a provider-neutral observability contract for Blueprint execution and specify the first provider-specific presentation, `developer-ai-init-monitor`, as an OpenCode TUI sidebar plugin.
@@ -34,7 +34,7 @@ ADR-008 establishes that observability semantics and canonical state belong to t
 ## Acceptance criteria
 - [x] A provider-neutral observability contract and data ownership model are documented (`docs/architecture/observability.md` v1.0.0 §2, §4, §5).
 - [x] Required fields and lifecycle/update semantics are defined for tasks, agents, blockers, approvals, and handoffs (contract §4, §6).
-- [x] OpenCode TUI plugin architecture and sidebar integration are verified against official documentation and a minimal compatibility spike for v2.2.5 (plugin load + `stage=setup` proven in 2.2.5 debug logs; caveat: interactive sidebar visual render confirmed via docs + load evidence, pending user visual confirmation).
+- [x] OpenCode TUI plugin architecture and sidebar integration are verified against official documentation and a minimal compatibility spike for v2.2.5 (plugin load + `stage=setup` proven in 2.2.5 debug logs; interactive sidebar visual render confirmed by the user in the main OpenCode 2.2.5 environment).
 - [x] Installation and upgrade behavior is optional, reproducible, versioned, and non-destructive (`adapters/opencode/monitor/README.md` §Install; plugin v0.1.0).
 - [x] A degraded mode displays last persisted state and its freshness when live updates are unavailable (contract §8; verified by snapshot tests incl. uninitialized and unparsable-record cases).
 - [x] Core workflows remain fully usable with the monitor disabled or unavailable (monitor is independent and optional; TASK-009 smoke ran adapter commands without it).
@@ -63,6 +63,7 @@ None.
 - 2026-11-05: Built spike project at `/private/var/folders/pg/sdm_xthn0rbgcgyzlrmhhj800000gn/T/opencode/task019-spike` with the monitor installed under `.opencode/plugins/developer-ai-init-monitor/` and a seeded `.blueprint/`. On OpenCode v2.2.5: TUI started and exited cleanly; with `--standalone --log-level debug --print-logs`, debug output proves full plugin load — server part `msg="loading plugin" id=…/developer-ai-init-monitor entrypoint=…/src/index.ts` + watcher subscribe, TUI part `stage=read` on `src/tui.tsx` then `stage=setup plugin=developer-ai-init-monitor` completed; no monitor/plugin errors.
 - 2026-11-05: Attempted headless pty capture of the sidebar visual render (multiple sizes/methods); TUI renders but sidebar slot text was not captured in any headless attempt (`/tmp/oc-tui3.log`, 0 matches for "Blueprint"). Interactive visual confirmation deferred to the user.
 - 2026-11-05: Status set to `in_review` per memory-protocol rule: every criterion has logged evidence, with the explicit sidebar-render caveat; final `done` awaits the user's interactive confirmation of the sidebar + `/monitor` toggle in the spike project.
+- 2026-11-04: User confirmed visual verification in Joseph's main OpenCode 2.2.5 environment: the monitor loads, `/monitor` hides and shows the sidebar, and the monitor loads again after restarting OpenCode. The storage proxy fix is committed as `bdfbce1`; TASK-019 status advanced to `done`.
 
 ## Completion evidence
 
@@ -70,11 +71,12 @@ None.
 | --- | --- |
 | Provider-neutral contract + ownership | `docs/architecture/observability.md` v1.0.0 (§2 principles, §4 snapshot model, §5 ownership/prohibition map). |
 | Fields & lifecycle/update semantics | contract §4 (snapshot fields) and §6 (refresh triggers, mtime poll ≤1 Hz, consistency, partial reads, caching, security). |
-| OpenCode v2.2.5 compatibility spike | Spike project + debug logs (see `docs/architecture/monitor-spike-2026-11-04.md`): plugin fully loads and initializes on v2.2.5; `/monitor` command and `sidebar.content` slot per official v2 docs (`/v2/docs/build/plugins/cli`). Caveat: headless pty could not capture the sidebar visually; interactive render pending user confirmation. |
+| OpenCode v2.2.5 compatibility spike | Spike project + debug logs (see `docs/architecture/monitor-spike-2026-11-04.md`): plugin fully loads and initializes on v2.2.5; `/monitor` command and `sidebar.content` slot per official v2 docs (`/v2/docs/build/plugins/cli`). User visually confirmed in the main OpenCode 2.2.5 environment that the monitor loads, `/monitor` hides and shows the sidebar, and the monitor loads after an OpenCode restart. |
+| Storage proxy fix | Commit `bdfbce1` corrects TUI storage proxy access for sidebar visibility and persisted toggle state. |
 | Optional, safe installation | `adapters/opencode/monitor/README.md` §Install; plugin not installed by default flows; works from `.opencode/plugins/` discovery only; version 0.1.0. |
 | Degraded mode | Snapshot test Context D (uninitialized) + unparsable-record `issues` paths; stale labeling via `freshness` + `read_at`. |
 | Workflows usable with monitor off | Monitor is an independent plugin; TASK-009's live `/blueprint-next` smoke ran in a project without the monitor. |
 | One reusable implementation for both contexts | Same reader verified against Context A (this repo) and Context B (`.blueprint/` fixture); 23/23 PASS; no duplicated canonical state (no-write proof included). |
 
 ## Next action
-Await user interactive confirmation of the sidebar render + `/monitor` toggle in the spike project (`cd /private/var/folders/pg/sdm_xthn0rbgcgyzlrmhhj800000gn/T/opencode/task019-spike && opencode`), then set status `done`.
+TASK-019 is complete. TASK-010 is the next eligible task; it has not been started.
