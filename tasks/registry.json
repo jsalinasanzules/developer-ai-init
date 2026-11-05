@@ -130,7 +130,7 @@
     {
       "id": "TASK-009",
       "title": "Implement OpenCode adapter using verified current conventions",
-      "status": "ready",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-006",
@@ -141,12 +141,12 @@
         "TASK-002",
         "TASK-008"
       ],
-      "next_action": "Revalidate official OpenCode V2 documentation and implement the adapter mapping."
+      "next_action": "None. Adapter templates, role mapping, collision policy, and conformance report implemented and smoke-tested on OpenCode 2.2.5."
     },
     {
       "id": "TASK-010",
       "title": "Add OpenCode startup, task, and handoff workflows",
-      "status": "proposed",
+      "status": "ready",
       "priority": "high",
       "specs": [
         "SPEC-002",
@@ -159,7 +159,7 @@
         "TASK-006",
         "TASK-009"
       ],
-      "next_action": "Implement provider-native memory and task entry points."
+      "next_action": "Validate the adapter's startup, task, and handoff workflows live in a generated project."
     },
     {
       "id": "TASK-011",

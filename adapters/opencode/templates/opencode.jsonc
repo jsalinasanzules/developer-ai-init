@@ -1,0 +1,14 @@
+// Blueprint OpenCode adapter template (V2).
+// The initializer merges this with an existing project configuration; it must
+// not silently replace user-owned settings. See adapters/opencode/README.md §7.
+{
+  "$schema": "https://opencode.ai/config.json",
+  // The Orchestrator is the only user-facing Blueprint role (ADR-003).
+  "default_agent": "orchestrator",
+  "instructions": []
+  // Opt-in nested delegation: a Manager subagent launching Specialist subagents
+  // (ADR-007). Experimental; leave disabled unless explicitly approved.
+  // "experimental": {
+  //   "subagent_depth": 2
+  // }
+}

@@ -13,12 +13,13 @@
 - TASK-006 task lifecycle: `docs/architecture/task-lifecycle.md`.
 - TASK-007 memory consolidation: `docs/architecture/memory-consolidation.md`.
 - TASK-008 role contracts: `docs/architecture/agent-hierarchy.md` and `prompts/`.
+- TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-**TASK-009 — Implement OpenCode adapter using verified current conventions**
-- Status: ready; dependencies TASK-002 and TASK-008 are done.
-- Specs: SPEC-006, SPEC-007.
-- Next action: revalidate official OpenCode V2 documentation and implement the adapter mapping.
+**TASK-010 — Add OpenCode startup, task, and handoff workflows**
+- Status: ready; dependencies TASK-004, TASK-006, and TASK-009 are done.
+- Specs: SPEC-002, SPEC-005, SPEC-007.
+- Next action: validate the adapter's startup, task, and handoff workflows live in a generated project.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
@@ -29,6 +30,7 @@
 - **TASK-006** (`done`): task schema, transition matrix, dependency validation, evidence mapping, and cold-start handoff format.
 - **TASK-007** (`done`): memory proposal lifecycle, ownership/provenance, semantic merge, and concurrent-edit safeguards; scenario checks pass.
 - **TASK-008** (`done`): role contracts, delegation/review payloads, escalation, sequential fallback, and provider-neutral prompt templates.
+- **TASK-009** (`done`): OpenCode V2 adapter templates (agents, commands, config, AGENTS.md), role mapping, collision policy, and conformance report; smoke-tested against OpenCode 2.2.5.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -52,4 +54,4 @@
 None recorded.
 
 ## Next
-Start TASK-009 (dependencies TASK-002 and TASK-008 are done). Revalidate OpenCode V2 docs before implementing the adapter.
+Start TASK-010 (dependencies TASK-004, TASK-006, TASK-009 are done). Then TASK-011/TASK-012 and the pending MD-003 stack decision.

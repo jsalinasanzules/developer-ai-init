@@ -1,7 +1,7 @@
 # TASK-010 — Add OpenCode startup, task, and handoff workflows
 
 ## Metadata
-- Status: proposed
+- Status: ready
 - Priority: high
 - Owner role: MANAGER: Engineering
 - Specs: SPEC-002, SPEC-005, SPEC-007
