@@ -30,5 +30,8 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 - [ ] **TASK-017**: Cursor adapter. Depends on TASK-011, TASK-015.
 - [ ] **TASK-018**: Adapter authoring guide and conformance checklist. Depends on TASK-016, TASK-017.
 
+## Observability and monitoring
+- [ ] **TASK-019** (proposed): Define provider-neutral observability contract and OpenCode monitor. Depends on TASK-002, TASK-006, TASK-008.
+
 ## Scheduling
 The Orchestrator selects the next eligible task based on priority, dependencies, and user direction. Do not execute the entire backlog automatically. Surface material decision gates before proceeding.
