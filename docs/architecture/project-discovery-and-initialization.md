@@ -324,8 +324,9 @@ generator has been implemented.
 
 ## 9. Scope boundary and follow-up
 
-This contract does not implement file discovery, question rendering, project
-schema changes, generation, adapter installation, migrations, or validation
-commands. TASK-013 owns generation and collision execution; TASK-014 owns
-validation. This document defines inputs, gates, states, and expected outcomes
-for those future tasks to implement and test. No monitor behavior is changed.
+This contract does not implement interactive file discovery, question
+rendering, migrations, or validation commands. TASK-013 implements generation
+and collision execution from Orchestrator-confirmed input; TASK-014 owns
+schema and task-graph validation. This document remains the normative source
+for initialization inputs, approval gates, states, and expected outcomes. No
+monitor behavior is changed.

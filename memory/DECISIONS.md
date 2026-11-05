@@ -60,3 +60,26 @@ Decision record format, conflict classification, approval attribution, expiry, a
 - Decision: Python 3.9+ standard-library tools may support Blueprint source-repository development, generation, validation, and lifecycle gates. They must not be copied into generated projects or make Python a target-project requirement.
 - Rationale: reuse the source repository's existing Python validation convention without imposing an unapproved runtime on target projects.
 - Consequence: the source repository owns and tests its Python completion gate; target projects remain runtime-neutral and may use their own previously approved local runtime for executable validation.
+
+## ADR-010 — Python standard-library Blueprint generator
+- Status: accepted | Date: 2026-11-05
+- Related: TASK-013
+- Approval: USER, 2026-11-05, approve Python 3.9+ standard-library tooling only inside Developer AI Init; generated projects do not require Python.
+- Context: TASK-013 needs a provider-neutral generator and collision preview. Python was one viable implementation stack; the target-project runtime must remain independent.
+
+### Options
+1. Python 3.9+ standard library — reuses repository tooling and tests without dependencies; the host invoking the generator needs Python.
+2. TypeScript with Node/Bun — fits the OpenCode adapter ecosystem, but adds a host runtime and can couple the provider-neutral generator to that ecosystem.
+3. Go standard library — can be distributed as platform binaries without a runtime, but adds a language and build/release matrix.
+
+### Decision
+Implement the TASK-013 generator as Python 3.9+ standard-library tooling in this repository. It runs only on the host executing the Blueprint source tool. Generated projects contain no Python helper or Python runtime requirement.
+
+### Rationale
+The user approved this option. It follows ADR-009, reuses the repository's proven generator and test conventions, avoids new dependencies, and keeps core generation separate from OpenCode-specific templates.
+
+### Consequences
+A host invoking the source generator needs Python 3.9+; standalone distribution for machines without Python is not part of this decision or TASK-013. This approval remains valid only while the generator is internal and generated projects acquire no Python runtime dependency.
+
+### Approval evidence
+The user explicitly approved Python 3.9+ standard-library tooling for internal use in Developer AI Init and specified that generated projects must not need Python.

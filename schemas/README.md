@@ -8,6 +8,7 @@ Versioned machine-readable contracts for the blueprint. These schemas are instal
 - JSON Schema dialect: **draft 2019-09**
 - Instance `schema_version` and `$id` carry the same version.
 - A consumer MUST select the schema matching the instance's declared version. An unknown version is a blocking error, not something to guess.
+- The generated Blueprint release version is separate from the schema version and is recorded in [`blueprint/catalog.json`](../blueprint/catalog.json). The current generator supports its declared release and does not perform migrations.
 
 ## Schema index
 

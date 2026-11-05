@@ -1,0 +1,28 @@
+{
+  "blueprint_version": "0.1.0",
+  "files": [
+    { "target": ".blueprint/README.md", "class": "canonical", "renderer": "blueprint_readme", "format": "markdown" },
+    { "target": ".blueprint/config/project.json", "class": "canonical", "renderer": "project_config", "format": "json" },
+    { "target": ".blueprint/config/agents.json", "class": "canonical", "renderer": "agents_config", "format": "json" },
+    { "target": ".blueprint/schemas/manifest.schema.json", "class": "blueprint-managed", "source": "schemas/manifest.schema.json", "format": "json" },
+    { "target": ".blueprint/schemas/project.schema.json", "class": "blueprint-managed", "source": "schemas/project.schema.json", "format": "json" },
+    { "target": ".blueprint/schemas/agents.schema.json", "class": "blueprint-managed", "source": "schemas/agents.schema.json", "format": "json" },
+    { "target": ".blueprint/schemas/memory-metadata.schema.json", "class": "blueprint-managed", "source": "schemas/memory-metadata.schema.json", "format": "json" },
+    { "target": ".blueprint/schemas/task-registry.schema.json", "class": "blueprint-managed", "source": "schemas/task-registry.schema.json", "format": "json" },
+    { "target": ".blueprint/memory/PROJECT_CONTEXT.md", "class": "canonical", "renderer": "project_context", "format": "markdown" },
+    { "target": ".blueprint/memory/CURRENT_STATE.md", "class": "canonical", "renderer": "current_state", "format": "markdown" },
+    { "target": ".blueprint/memory/ARCHITECTURE.md", "class": "canonical", "renderer": "architecture", "format": "markdown" },
+    { "target": ".blueprint/memory/DECISIONS.md", "class": "canonical", "renderer": "decisions", "format": "markdown" },
+    { "target": ".blueprint/memory/CONVENTIONS.md", "class": "canonical", "renderer": "conventions", "format": "markdown" },
+    { "target": ".blueprint/memory/metadata.json", "class": "canonical", "renderer": "memory_metadata", "format": "json" },
+    { "target": ".blueprint/specs/README.md", "class": "canonical", "renderer": "specs_readme", "format": "markdown" },
+    { "target": ".blueprint/tasks/registry.json", "class": "canonical", "renderer": "task_registry", "format": "json" },
+    { "target": ".blueprint/tasks/backlog.md", "class": "canonical", "renderer": "backlog", "format": "markdown" },
+    { "target": ".blueprint/tasks/TASK-TEMPLATE.md", "class": "blueprint-managed", "source": "tasks/TASK-TEMPLATE.md", "format": "markdown" },
+    { "target": ".blueprint/tasks/items/README.md", "class": "canonical", "renderer": "task_items_readme", "format": "markdown" },
+    { "target": ".blueprint/sessions/README.md", "class": "blueprint-managed", "source": "sessions/README.md", "format": "markdown" },
+    { "target": ".blueprint/sessions/SESSION-TEMPLATE.md", "class": "blueprint-managed", "source": "sessions/SESSION-TEMPLATE.md", "format": "markdown" },
+    { "target": ".blueprint/handoffs/README.md", "class": "blueprint-managed", "source": "handoffs/README.md", "format": "markdown" },
+    { "target": ".blueprint/handoffs/HANDOFF-TEMPLATE.md", "class": "blueprint-managed", "source": "handoffs/HANDOFF-TEMPLATE.md", "format": "markdown" }
+  ]
+}

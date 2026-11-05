@@ -16,7 +16,7 @@
 - TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-None. TASK-012 is complete; see `docs/reviews/2026-11-05-task-012-manager-review-3.md`.
+None. TASK-013 is complete; see `docs/reviews/2026-11-05-task-013-manager-review-follow-up.md`.
 
 ## Completed recently
 - **TASK-010** (`done`): live cold-start, task-selection, evidence-backed lifecycle (TASK-900 four-transition history `06bdd19`/`1d53129`/`9795b73`/`2bad731`), and handoff production/consumption verified against Crouton Alpha; report `docs/reviews/2026-11-04-task-010-verification.md`.
@@ -33,13 +33,15 @@ None. TASK-012 is complete; see `docs/reviews/2026-11-05-task-012-manager-review
 - **TASK-019** (`done`): provider-neutral observability contract and OpenCode monitor; 23/23 snapshot checks pass, user confirmed monitor load, `/monitor` sidebar toggle, and reload after restart in OpenCode 2.2.5; storage proxy fix committed as `bdfbce1`.
 - **TASK-020** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-020-gate-review.md`.
 - **TASK-012** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-012-manager-review-3.md`.
+- **TASK-013** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-013-manager-review-follow-up.md`.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
 - **ADR-007:** opt-in depth-2 delegation (`experimental.subagent_depth: 2`) with sequential fallback.
 - **ADR-008:** provider-neutral observability contract in the Blueprint core; optional provider-specific monitor UI. The first monitor is an OpenCode TUI sidebar plugin owned by this Blueprint and installed into generated projects.
 - **ADR-009:** Python 3.9+ standard-library tooling is source-repository-only; generated target projects acquire no Python runtime dependency from Blueprint tooling.
-- Pending future decision: initializer/validator implementation stack (needed before TASK-013/TASK-014 implementation).
+- **ADR-010:** TASK-013 generator uses Python 3.9+ standard-library tooling internally; generated projects contain no Python helper or runtime requirement.
+- Pending future decision: TASK-014 validator implementation stack.
 
 ## Verified constraints
 - No mandatory database, hosted service, or network dependency.
@@ -55,11 +57,15 @@ None. TASK-012 is complete; see `docs/reviews/2026-11-05-task-012-manager-review
 TASK-019 is complete: `docs/architecture/observability.md` v1.0.0 and one reusable OpenCode monitor implementation at `adapters/opencode/monitor/` serve both canonical contexts (`.blueprint/` and the development layout). Verification includes 23/23 snapshot checks, OpenCode 2.2.5 plugin-load evidence, and user-confirmed sidebar visibility toggle and reload after restart.
 
 ## Blockers
-None. TASK-020 is complete. TASK-010's historical free-model-limit blocker was resolved by Crouton Alpha live verification; see `tasks/items/TASK-010.md`.
+No known technical implementation blocker. TASK-013's corrected implementation is independently approved; its completion gate remains to be run. TASK-020 is complete. TASK-010's historical free-model-limit blocker was resolved by Crouton Alpha live verification; see `tasks/items/TASK-010.md`.
 
 ## Pending approvals
-None for TASK-012. The initializer/validator implementation-stack decision
-remains a future approval gate before implementation work in TASK-013/TASK-014.
+The TASK-013 stack and implementation scope are approved. The first
+independent Manager review requested changes; the fix and validation are
+recorded, and follow-up approval has been granted. The completion gate remains
+pending.
+TASK-014 remains unstarted and requires its own scope and implementation
+decision.
 
 ## Next
-Present TASK-013 for user approval; do not start TASK-013 or TASK-014 until approved.
+Present TASK-014 for user approval; do not start TASK-014.

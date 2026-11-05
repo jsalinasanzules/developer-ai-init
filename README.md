@@ -29,7 +29,7 @@ Developer AI Init provides a reusable project structure, operating protocols, sp
 
 ## Repository status
 
-The foundation baseline is in place: vision, architecture documents, nine specifications, eighteen task briefs, memory records, sessions/handoffs templates, and the task registry. TASK-001 reviewed the baseline and recorded the current OpenCode capability findings in [the foundation review](docs/reviews/2026-11-04-task-001-foundation-review.md). The OpenCode adapter, schemas, initializer, and validator are not implemented yet; they follow the approved task dependency order.
+The foundation baseline is in place: architecture documents, specifications, task briefs, memory records, and lifecycle protocols. The OpenCode adapter and versioned schemas are implemented. TASK-013 adds a source-only, approval-gated generator for the canonical `.blueprint/` tree and selected adapter files; interactive discovery remains an Orchestrator workflow, and schema/task-graph validation is tracked separately in TASK-014.
 
 ## Guiding rule
 
@@ -41,6 +41,7 @@ Instructions define how agents operate. Persistent memory records what is known,
 - [Architecture overview](docs/architecture/overview.md)
 - [Target-project layout and ownership](docs/architecture/target-project-layout.md)
 - [Project discovery and interactive initialization](docs/architecture/project-discovery-and-initialization.md)
+- [Blueprint generation and approval](docs/architecture/blueprint-generation.md)
 - [Persistent memory model](docs/architecture/memory-model.md)
 - [Memory read/write protocol](docs/architecture/memory-protocol.md)
 - [Decision, conflict, and approval protocol](docs/architecture/decision-and-approval-protocol.md)

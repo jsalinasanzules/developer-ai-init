@@ -197,7 +197,7 @@
     {
       "id": "TASK-013",
       "title": "Implement blueprint generation with collision detection and approval",
-      "status": "proposed",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-001",
@@ -210,7 +210,7 @@
         "TASK-012",
         "TASK-020"
       ],
-      "next_action": "Implement safe generation, merge, and skip behavior."
+      "next_action": "Present TASK-014 for user approval; do not start TASK-014."
     },
     {
       "id": "TASK-014",
