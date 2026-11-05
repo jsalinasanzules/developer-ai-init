@@ -29,3 +29,6 @@ One Markdown file per task provides the execution contract. The canonical status
 - [TASK-016](TASK-016.md) — Claude Code adapter
 - [TASK-017](TASK-017.md) — Cursor adapter
 - [TASK-018](TASK-018.md) — adapter authoring guide
+
+## Observability and monitoring
+- [TASK-019](TASK-019.md) — provider-neutral observability contract and OpenCode monitor
