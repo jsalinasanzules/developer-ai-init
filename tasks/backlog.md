@@ -17,17 +17,18 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 - [x] **TASK-008** (done): Specify Orchestrator, Manager, Specialist contracts. Depends on TASK-001, TASK-005.
 - [x] **TASK-009** (done): Implement OpenCode adapter from verified current conventions. Depends on TASK-002, TASK-008.
 - [x] **TASK-010** (done): Add OpenCode startup, task, and handoff workflows. Depends on TASK-004, TASK-006, TASK-009. All four acceptance criteria passed live verification (Crouton Alpha, no paid models); TASK-900 lifecycle documented with persisted transitions. Report: `docs/reviews/2026-11-04-task-010-verification.md`.
-- [ ] **TASK-011**: Add adapter conformance and safe regeneration. Depends on TASK-009, TASK-010.
+- [x] **TASK-011** (done; historical status preserved, acceptance correction in TASK-020): Add adapter conformance and safe regeneration. Depends on TASK-009, TASK-010.
+- [x] **TASK-020** (done): Correct TASK-011 adapter regeneration and completion evidence. Depends on TASK-006, TASK-009.
 
 ## Phase 3 — Initialization and validation
-- [ ] **TASK-012**: Specify project discovery and interactive initialization. Depends on TASK-001, TASK-002.
-- [ ] **TASK-013**: Implement blueprint generation with collision detection and approval. Depends on TASK-003, TASK-009, TASK-012.
-- [ ] **TASK-014**: Implement validation for schemas, task graph, references, and secrets. Depends on TASK-003, TASK-006, TASK-011.
+- [ ] **TASK-012** (ready): Specify project discovery and interactive initialization. Depends on TASK-001, TASK-002.
+- [ ] **TASK-013**: Implement blueprint generation with collision detection and approval. Depends on TASK-003, TASK-009, TASK-012, TASK-020.
+- [ ] **TASK-014**: Implement validation for schemas, task graph, references, and secrets. Depends on TASK-003, TASK-006, TASK-011, TASK-020.
 - [ ] **TASK-015**: End-to-end fresh-session continuity test. Depends on TASK-007, TASK-010, TASK-013, TASK-014.
 
 ## Phase 4 — Additional providers
-- [ ] **TASK-016**: Claude Code adapter. Depends on TASK-011, TASK-015.
-- [ ] **TASK-017**: Cursor adapter. Depends on TASK-011, TASK-015.
+- [ ] **TASK-016**: Claude Code adapter. Depends on TASK-011, TASK-015, TASK-020.
+- [ ] **TASK-017**: Cursor adapter. Depends on TASK-011, TASK-015, TASK-020.
 - [ ] **TASK-018**: Adapter authoring guide and conformance checklist. Depends on TASK-016, TASK-017.
 
 ## Observability and monitoring

@@ -108,10 +108,21 @@ Terminal-state rule: `done` and `cancelled` do not transition. If new evidence i
 ### 5.6 in_review → done
 
 - Every acceptance criterion is checked.
-- Each criterion maps to inspectable evidence in the task brief.
-- The Orchestrator has reviewed the evidence against the spec.
+- Each criterion maps to inspectable behavioral evidence in the task brief.
+- Every required test command is rerun successfully by the completion gate.
+- An appropriate Manager has independently reviewed and approved the evidence.
 - No blocker or pending material approval remains.
-- The registry and brief both record `done`.
+- The registry, task brief, backlog projection, and `CURRENT_STATE.md` agree.
+- In this source repository, the transition is applied by
+  `scripts/task_lifecycle.py`, not by manually editing status fields.
+- This Python standard-library helper is internal development tooling and is not
+  installed in generated projects. Target projects must not acquire a Python
+  runtime dependency merely by using the Blueprint; use an already-approved
+  local runtime for an executable gate where available.
+- The helper refuses missing or unchecked criteria, absent or invalid test
+  evidence, failed test commands, absent/rejected Manager review, and inconsistent
+  canonical records. It stages the four record updates and attempts rollback if a
+  replacement fails.
 
 ### 5.7 in_review → in_progress
 
@@ -162,11 +173,9 @@ The task brief's completion evidence MUST map every criterion to evidence:
 ```markdown
 ## Completion evidence
 
-| Criterion | Evidence |
-| --- | --- |
-| 1. <criterion> | `./scripts/validate.sh` exited 0 on 2026-11-04; output recorded below. |
-| 2. <criterion> | `docs/architecture/example.md` §4 documents the required behavior. |
-| 3. <criterion> | Review artifact `docs/reviews/example-review.md` confirms the scenario. |
+| Criterion | Criterion text | Evidence |
+| --- | --- | --- |
+| AC-01 | <exact checked criterion> | Named test function, test source link, and passing verification report. |
 ```
 
 Acceptable evidence:
@@ -189,7 +198,15 @@ Unacceptable evidence:
 
 ### 7.3 Completion rule
 
-`done` requires all criteria checked and evidenced. If any criterion is unverified, use `in_review` or `blocked`. If evidence becomes stale because code changed after verification, re-run the check before claiming completion.
+`done` requires all criteria checked and evidenced, all recorded test commands
+passing at transition time, and an independent Manager approval. Use
+`python3 scripts/task_lifecycle.py complete TASK-NNN --review <review-artifact>
+--next-action "<next action>" --apply` in this source repository. This Python
+helper is not part of generated target projects. Generated projects remain
+runtime-neutral; their Orchestrator must use an existing approved local gate or
+verify each condition before synchronizing records. If any evidence is
+unverified or stale, keep the task `in_review` or return it to `in_progress`;
+do not force the transition by editing files.
 
 ## 8. Handoff payload
 

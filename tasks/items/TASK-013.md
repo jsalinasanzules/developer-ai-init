@@ -5,7 +5,7 @@
 - Priority: high
 - Owner role: MANAGER: Engineering
 - Specs: SPEC-001, SPEC-008
-- Dependencies: TASK-003, TASK-009, TASK-012
+- Dependencies: TASK-003, TASK-009, TASK-012, TASK-020
 - Created: 2026-11-04
 - Updated: 2026-11-04
 

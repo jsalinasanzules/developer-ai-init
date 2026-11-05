@@ -1,0 +1,71 @@
+{
+  "provider_id": "opencode",
+  "adapter_version": "0.2.0",
+  "generated_files": [
+    {
+      "source": "templates/AGENTS-TARGET.md",
+      "target": "AGENTS.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/opencode.jsonc",
+      "target": "opencode.jsonc",
+      "format": "jsonc"
+    },
+    {
+      "source": "templates/agents/orchestrator.md",
+      "target": ".opencode/agents/orchestrator.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/agents/manager-architecture.md",
+      "target": ".opencode/agents/manager-architecture.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/agents/manager-engineering.md",
+      "target": ".opencode/agents/manager-engineering.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/agents/manager-quality.md",
+      "target": ".opencode/agents/manager-quality.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/agents/manager-delivery.md",
+      "target": ".opencode/agents/manager-delivery.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/agents/specialist.md",
+      "target": ".opencode/agents/specialist.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/commands/blueprint-startup.md",
+      "target": ".opencode/commands/blueprint-startup.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/commands/blueprint-next.md",
+      "target": ".opencode/commands/blueprint-next.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/commands/blueprint-task.md",
+      "target": ".opencode/commands/blueprint-task.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/commands/blueprint-handoff.md",
+      "target": ".opencode/commands/blueprint-handoff.md",
+      "format": "markdown"
+    },
+    {
+      "source": "templates/commands/blueprint-consolidate.md",
+      "target": ".opencode/commands/blueprint-consolidate.md",
+      "format": "markdown"
+    }
+  ]
+}

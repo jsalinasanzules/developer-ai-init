@@ -53,3 +53,10 @@ Decision record format, conflict classification, approval attribution, expiry, a
 - Ownership/runtime: this Blueprint repository owns and versions the specification and plugin source. The initializer installs/configures it in generated projects. At runtime it reads canonical `.blueprint/` state inside OpenCode; it does not modify OpenCode itself or require a separate service.
 - Constraints: the core remains usable without a monitor. The monitor is presentation only, never a second source of truth. OpenCode-specific event handling and sidebar rendering stay in its adapter; other adapters may provide different UIs.
 - Consequences: define a provider-neutral observability contract, update/freshness semantics, and degraded mode before implementation. Verify compatibility with OpenCode 2.2.5. See `docs/architecture/ADR-008-provider-neutral-observability.md`.
+
+## ADR-009 — Internal Python tooling without target runtime coupling
+- Status: accepted | Date: 2026-11-05
+- Context: TASK-020 requires executable regeneration and task-completion validation, while the implementation/package runtime for initialized projects remains undecided.
+- Decision: Python 3.9+ standard-library tools may support Blueprint source-repository development, generation, validation, and lifecycle gates. They must not be copied into generated projects or make Python a target-project requirement.
+- Rationale: reuse the source repository's existing Python validation convention without imposing an unapproved runtime on target projects.
+- Consequence: the source repository owns and tests its Python completion gate; target projects remain runtime-neutral and may use their own previously approved local runtime for executable validation.

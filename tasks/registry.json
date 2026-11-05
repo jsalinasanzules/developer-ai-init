@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-04",
+  "updated_at": "2026-11-05",
   "tasks": [
     {
       "id": "TASK-001",
@@ -164,7 +164,7 @@
     {
       "id": "TASK-011",
       "title": "Add adapter conformance and safe regeneration behavior",
-      "status": "proposed",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-006",
@@ -176,12 +176,12 @@
         "TASK-009",
         "TASK-010"
       ],
-      "next_action": "Test collision handling and adapter scenarios."
+      "next_action": "Historical status preserved; do not rely on the original acceptance evidence. See docs/reviews/2026-11-05-task-011-acceptance-audit.md and corrective TASK-020."
     },
     {
       "id": "TASK-012",
       "title": "Specify project discovery and interactive initialization",
-      "status": "proposed",
+      "status": "ready",
       "priority": "high",
       "specs": [
         "SPEC-008",
@@ -192,7 +192,7 @@
         "TASK-001",
         "TASK-002"
       ],
-      "next_action": "Define discovery questions and approval checkpoints."
+      "next_action": "Begin discovery-flow specification when TASK-012 is selected for execution; transition to in_progress before starting work."
     },
     {
       "id": "TASK-013",
@@ -207,7 +207,8 @@
       "dependencies": [
         "TASK-003",
         "TASK-009",
-        "TASK-012"
+        "TASK-012",
+        "TASK-020"
       ],
       "next_action": "Implement safe generation, merge, and skip behavior."
     },
@@ -225,7 +226,8 @@
       "dependencies": [
         "TASK-003",
         "TASK-006",
-        "TASK-011"
+        "TASK-011",
+        "TASK-020"
       ],
       "next_action": "Implement local validation and actionable diagnostics."
     },
@@ -261,7 +263,8 @@
       "owner_role": "MANAGER: Engineering",
       "dependencies": [
         "TASK-011",
-        "TASK-015"
+        "TASK-015",
+        "TASK-020"
       ],
       "next_action": "Map stable adapter contract to current Claude Code conventions."
     },
@@ -276,7 +279,8 @@
       "owner_role": "MANAGER: Engineering",
       "dependencies": [
         "TASK-011",
-        "TASK-015"
+        "TASK-015",
+        "TASK-020"
       ],
       "next_action": "Map stable adapter contract to current Cursor conventions."
     },
@@ -312,6 +316,24 @@
         "TASK-008"
       ],
       "next_action": "None. Contract and monitor complete; 23/23 snapshot checks pass, and the user confirmed monitor load, /monitor sidebar toggle, and reload after OpenCode restart on v2.2.5. Storage proxy fix committed as bdfbce1."
+    },
+    {
+      "id": "TASK-020",
+      "title": "Correct TASK-011 adapter regeneration and completion evidence",
+      "status": "done",
+      "priority": "critical",
+      "specs": [
+        "SPEC-005",
+        "SPEC-006",
+        "SPEC-007",
+        "SPEC-009"
+      ],
+      "owner_role": "MANAGER: Quality",
+      "dependencies": [
+        "TASK-006",
+        "TASK-009"
+      ],
+      "next_action": "Present TASK-012 proposal for user approval; do not start until approved."
     }
   ]
 }

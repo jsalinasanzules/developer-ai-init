@@ -38,6 +38,10 @@ Do not silently choose a side, invent missing requirements, or treat a model's p
 - Keep changes within task scope.
 - Verify with relevant checks; report exact commands and outcomes.
 - A task is `done` only when acceptance criteria have evidence.
+- In this source repository, transition `in_review` to `done` only through
+  `python3 scripts/task_lifecycle.py complete TASK-NNN --review <review-artifact> --next-action "<next action>" --apply`.
+  This Python gate is internal tooling and must not be copied into generated
+  projects or create a Python runtime requirement there.
 - If blocked, record the blocker and next action; do not disguise partial work as completion.
 
 ## Persistent memory

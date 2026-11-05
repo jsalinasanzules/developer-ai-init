@@ -5,7 +5,7 @@
 - Priority: high
 - Owner role: MANAGER: Quality
 - Specs: SPEC-009, SPEC-002, SPEC-005
-- Dependencies: TASK-003, TASK-006, TASK-011
+- Dependencies: TASK-003, TASK-006, TASK-011, TASK-020
 - Created: 2026-11-04
 - Updated: 2026-11-04
 

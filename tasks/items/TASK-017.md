@@ -5,7 +5,7 @@
 - Priority: medium
 - Owner role: MANAGER: Engineering
 - Specs: SPEC-006
-- Dependencies: TASK-011, TASK-015
+- Dependencies: TASK-011, TASK-015, TASK-020
 - Created: 2026-11-04
 - Updated: 2026-11-04
 

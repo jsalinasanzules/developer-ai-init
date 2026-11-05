@@ -22,15 +22,26 @@ const repoRoot = import.meta.dir ? join(import.meta.dir, "..") : process.cwd()
 
 // --- Context A: this repository (development layout) -------------------------
 const here = readSnapshot(repoRoot)
+const task020 = here.tasks?.find((task) => task.id === "TASK-020")
 check("A: layout kind development", here.layout.kind === "development")
 check("A: contract version", here.contract_version === CONTRACT_VERSION)
-check("A: registry parsed (19 tasks)", (here.tasks?.length ?? 0) === 19, String(here.tasks?.length))
-check("A: active task selected", !!here.active_task && /^(TASK-\d{3})$/.test(here.active_task.id ?? ""), String(here.active_task?.id))
+check("A: registry parsed (20 tasks)", (here.tasks?.length ?? 0) === 20, String(here.tasks?.length))
+check("A: TASK-020 remains visible in registry", !!task020)
+check(
+  "A: active selection follows lifecycle status",
+  task020?.status === "in_progress"
+    ? here.active_task?.id === "TASK-020"
+    : here.active_task?.id !== "TASK-020",
+)
 check("A: decisions parsed", here.decisions !== "unparsed" && here.decisions.total > 0, `${here.decisions.total}`)
-check("A: latest ADR is ADR-008", (here.decisions as { latest?: { adr_id?: string } }).latest?.adr_id === "ADR-008")
+check("A: latest ADR is ADR-009", (here.decisions as { latest?: { adr_id?: string } }).latest?.adr_id === "ADR-009")
 check("A: handoffs listed", (here.handoffs?.length ?? 0) >= 1)
 check("A: blockers none", Array.isArray(here.blockers) && here.blockers.length === 0)
-check("A: evidence counts", typeof (here.active_task?.evidence as { criteria_total?: number } | undefined)?.criteria_total === "number")
+check(
+  "A: evidence counts follow selected task",
+  here.active_task === null ||
+    typeof (here.active_task.evidence as { criteria_total?: number } | undefined)?.criteria_total === "number",
+)
 const readmeExistsBefore = existsSync(join(repoRoot, "README.md"))
 const before = readFileSyncSafe(join(repoRoot, "README.md"))
 readSnapshot(repoRoot)

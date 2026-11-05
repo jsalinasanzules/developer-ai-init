@@ -23,6 +23,8 @@ It applies to initialized projects. It does **not** describe this repository's o
 8. Unknown files and unknown blueprint versions are preserved and reported, never guessed or deleted.
 9. No secrets, credentials, tokens, or unnecessary sensitive personal data are stored.
 
+10. Internal Blueprint tooling does not impose its implementation runtime on generated target projects.
+
 ## 3. Canonical tree
 
 ```text

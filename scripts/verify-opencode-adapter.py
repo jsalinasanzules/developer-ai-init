@@ -60,6 +60,9 @@ WORKFLOW_REQUIREMENTS = {
         "in_progress",
         "in_review",
         "completion evidence",
+        "source-only completion gate",
+        "installed in generated projects",
+        "every recorded test command",
         "current_state.md",
         "sequential fallback",
         "material decision",
@@ -152,6 +155,48 @@ def main() -> int:
 
     check("opencode.jsonc present", (ADAPTER / "opencode.jsonc").exists())
     check("AGENTS-TARGET.md present", (ADAPTER / "AGENTS-TARGET.md").exists())
+
+    manifest_path = ADAPTER.parent / "manifest.json"
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    generated = manifest.get("generated_files", [])
+    targets = [entry.get("target") for entry in generated]
+    check("adapter manifest present", manifest.get("provider_id") == "opencode")
+    check("adapter manifest targets are unique", len(targets) == len(set(targets)))
+    check(
+        "generated adapter does not install Python files",
+        not any(str(target).endswith(".py") for target in targets),
+    )
+    check(
+        "source completion gate remains internal",
+        (ROOT / "scripts" / "task_lifecycle.py").is_file()
+        and not any("task_lifecycle.py" in str(target) for target in targets),
+    )
+    manifest_sources_valid = all(
+        (ADAPTER.parent / entry.get("source", "")).resolve().is_file()
+        and (ADAPTER.parent / entry.get("source", "")).resolve().is_relative_to(ROOT)
+        for entry in generated
+    )
+    check("adapter manifest sources exist within the repository", manifest_sources_valid)
+    generated_sources = [
+        (ADAPTER.parent / entry.get("source", "")).resolve()
+        for entry in generated
+        if (ADAPTER.parent / entry.get("source", "")).resolve().is_file()
+    ]
+    check(
+        "generated templates do not invoke Python",
+        all(
+            not re.search(
+                r"(?:^|\s)python(?:3)?\s+(?:scripts/|\.blueprint/)",
+                source.read_text().lower(),
+            )
+            for source in generated_sources
+        ),
+    )
+    check(
+        "regeneration and lifecycle behavioral tests present",
+        (ROOT / "tests" / "test_opencode_regeneration.py").is_file()
+        and (ROOT / "tests" / "test_task_lifecycle.py").is_file(),
+    )
 
     agent_ids = set()
     for fname, mode in REQUIRED_AGENT_FILES.items():

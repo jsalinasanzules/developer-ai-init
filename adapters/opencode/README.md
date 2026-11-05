@@ -72,7 +72,10 @@ If `opencode --version` reports a different major/minor version, re-run the comp
         └── blueprint-consolidate.md
 ```
 
-All templates live in `adapters/opencode/templates/`. The initializer (TASK-013) installs them; this adapter defines their content and the collision policy.
+All provider templates live in `adapters/opencode/templates/`; the manifest
+maps generated provider files to those sources. The full project initializer
+remains TASK-013. The source-repository Python completion helper is deliberately
+not copied into generated projects.
 
 ## 5. Limitations
 
@@ -92,18 +95,26 @@ Permissions are a safety net; the role contracts in the agent bodies remain the 
 
 ## 7. Collision and preservation policy (ADAPT-005 / OC-007)
 
-Before installing anything, the initializer must detect, classify, and report:
+Before installing anything, the adapter generator detects, classifies, and
+reports every destination before writing:
 
 | Existing path | Action without approval | With explicit approval |
 | --- | --- | --- |
 | Absent | Create. | — |
-| `AGENTS.md` present | Do not overwrite. Read it; propose a merged version that preserves user content and appends the Blueprint section. | Write approved merge only. |
-| `opencode.json(c)` present | Do not overwrite. Propose adding `agents`, `commands`, `default_agent` keys as a merge. | Write approved merge only. |
-| `.opencode/agents/*` name collision | Do not overwrite. Propose namespaced agents (e.g., `blueprint/orchestrator`). | Rename or merge per approval. |
-| `.opencode/commands/*` name collision | Same as above (e.g., `blueprint/startup`). | Same. |
+| `AGENTS.md` present | Append a marked managed section; preserve content outside that section. | Replace only the named conflicting file. |
+| `opencode.json(c)` present | Merge missing, non-conflicting top-level adapter keys while preserving existing keys and comments. | Replace only the named conflicting file. |
+| `.opencode/agents/*` name collision | Merge a previously generated managed body; an unmarked or user-edited collision is a conflict. | Replace only the named conflicting file. |
+| `.opencode/commands/*` name collision | Same as above. | Same. |
 | Unknown `.opencode/` content | Preserve untouched; list in the conformance report. | — |
 
-Rerunning installation must be idempotent for unmodified files and must stop-and-ask when a previously installed file was modified after install (detected via `manifest.json` hashes; TASK-013 implements the mechanics).
+Run `python3 scripts/regenerate_opencode_adapter.py --target <project> --dry-run`
+to inspect `CREATE`, `MERGE`, `SKIP`, and `CONFLICT` results without writes.
+Compatible JSONC merges retain user values. Managed Markdown blocks include a
+content hash: upstream changes update an unmodified block, while edits inside
+that block become conflicts. Any unapproved conflict prevents every planned
+write. An exact `--approve-overwrite <relative-path>` is required to replace a
+conflict; approving one path does not approve any other path. Re-running an
+unchanged installation reports `SKIP` and is idempotent.
 
 ## 8. Canonical memory remains authoritative (ADAPT-003)
 
@@ -124,9 +135,11 @@ Rerunning installation must be idempotent for unmodified files and must stop-and
 | Manager review / specialist execution boundary | Implemented | Distinct agent files with permission rules. |
 | Sequential fallback (depth 1) | Supported by default | Documented in §3. |
 | Nested delegation (depth 2) | Optional, experimental | Commented `experimental` block in `opencode.jsonc`. |
-| Collision-safe install | Designed | §7; implementation/validation lands with TASK-013/TASK-014. |
-| Reproducible generation (ADAPT-007) | Designed | Templates are the single source; TASK-013 installs them verbatim. |
-| Fresh-session resume verified live | Pending (TASK-010) | A new generated project resolved the OpenCode 2.2.5 config and all six Blueprint agents. Live command execution did not reach the model because the available free-model quota was exhausted; the cold-start workflow remains unverified. |
+| Collision-safe adapter regeneration | Implemented | `scripts/regenerate_opencode_adapter.py`; behavioral scenarios in `tests/test_opencode_regeneration.py`. |
+| Reproducible adapter generation (ADAPT-007) | Implemented | `adapters/opencode/manifest.json` maps managed targets to source templates; repeat runs skip unchanged files. |
+| Evidence-gated completion in this repository | Implemented | `scripts/task_lifecycle.py` reruns recorded checks, validates evidence/review/canonical agreement, and synchronizes `done`; it is not installed in target projects. |
+| Target runtime portability | Preserved | Generated adapter paths contain no Python files or Python invocations; target projects do not inherit an internal Blueprint runtime requirement. |
+| Fresh-session resume verified live | Verified (TASK-010) | The Crouton Alpha Free OpenCode 2.2.5 run verified cold start, dependency-based selection, evidence-backed completion, and handoff production/consumption; see `docs/reviews/2026-11-04-task-010-verification.md`. |
 
 ## 10. Verification evidence (TASK-009)
 
@@ -137,7 +150,7 @@ All commands were observed during verification on 2026-11-04 in the simulated ta
 - `opencode debug config` → resolved sources: project `opencode.jsonc` with `$schema", "default_agent": "orchestrator", "instructions": []` and the project `.opencode/` directory, alongside the global directory.
 - `opencode debug agents` → all six adapter agents discovered with correct modes: `orchestrator` (primary) plus `manager-architecture`, `manager-engineering`, `manager-quality`, `manager-delivery`, `specialist` (subagents).
 - `opencode run --agent orchestrator --model opencode/glm-5.3-flash-free /blueprint-next` → the command expanded and the orchestrator ran against the smoke project's canonical records: read `registry.json`, `config/project.json`, `memory/CURRENT_STATE.md`, linked `SPEC-001-test.md`, and the `TASK-002` brief; selected `TASK-002` (dependency `TASK-001` done, ties satisfied); and correctly refused to execute the undetailed task, reporting a blocker naming the missing acceptance criteria/spec and asking one question. This demonstrates fresh-session context loading, dependency-honoring selection, and the pause-before-material-action boundary on `v2.2.5`.
-- A full editable session with the TUI and a real handoff-producing run is deferred to TASK-010/TASK-015 scenarios; the adapter templates did not change behavior outside the observed checks.
+- TASK-010 later verified fresh-session loading, task selection, evidence-backed completion, and handoff production/consumption live; see `docs/reviews/2026-11-04-task-010-verification.md`.
 - V1 behavior claims from earlier reviews are **not** reused; every field in the templates comes from the V2 pages listed in §1.
 
 ## 11. Observability/monitor compatibility notes (informational; TASK-019 owns the contract)
@@ -152,6 +165,7 @@ The observability contract now lives in `docs/architecture/observability.md` (AD
 
 ## 12. What this task deliberately does not do
 
-- No initializer implementation (TASK-013) and no validation harness (TASK-014).
-- No full plugin/monitor implementation (TASK-019).
+- No full canonical Blueprint initializer (TASK-013) and no full validation harness (TASK-014).
+- No general overwrite approval UI; approval is an exact-path CLI option.
+- No additional monitor implementation is in scope; TASK-019 owns the optional Blueprint state monitor, which is distinct from live tool-execution monitoring.
 - No skills or plugins installed by default.

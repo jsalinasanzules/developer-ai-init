@@ -26,11 +26,18 @@ Execute Blueprint task $ARGUMENTS under the project's task lifecycle.
 6. Apply accepted changes to the owning canonical record, synchronize projections
    (`CURRENT_STATE.md`, registry, backlog), and update the task brief's execution log
    and completion evidence. Map every acceptance criterion to an observed result.
-7. Move through valid lifecycle transitions (`ready → in_progress → in_review → done`).
-   Mark `in_review` after implementation; set `done` only after every criterion is
-   checked, its evidence is recorded, and review is complete. Never infer completion
-   from a handoff or an assertion. Record blockers with reason, responsible role, and
-   next action.
+7. Mark `in_review` after implementation and record an `AC-01`-style evidence row
+   for each checked criterion, named behavioral tests, verification commands/results,
+   and the independent Manager review artifact. In this Blueprint source repository,
+   use its source-only completion gate before synchronizing `done`. That gate reruns
+   every recorded test command without a shell, verifies evidence and Manager
+   approval, and checks registry/task/backlog/current-state agreement. It is not
+   installed in generated projects: do not introduce a Python runtime requirement.
+   In a generated project, use its already-approved local runtime if one exists;
+   otherwise inspect every criterion, passing test result, independent review,
+   blocker, and canonical record together before the Orchestrator synchronizes the
+   transition. Never infer completion from checkboxes, assertions, or handoffs alone.
+   Record blockers with reason, responsible role, and next action.
 8. If a material decision is required (architecture, security, privacy, scope,
    ownership, compatibility, destructive action), stop and ask the user one explicit
    question with sources, impacts, and options. Do not write the contested change.

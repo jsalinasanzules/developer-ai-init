@@ -18,6 +18,7 @@ One Markdown file per task provides the execution contract. The canonical status
 - [TASK-009](TASK-009.md) — OpenCode adapter
 - [TASK-010](TASK-010.md) — OpenCode workflows
 - [TASK-011](TASK-011.md) — adapter conformance and safe regeneration
+- [TASK-020](TASK-020.md) — corrective implementation and completion evidence gate for TASK-011
 
 ## Initialization and validation
 - [TASK-012](TASK-012.md) — project discovery and interactive initialization

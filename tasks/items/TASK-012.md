@@ -1,13 +1,13 @@
 # TASK-012 — Specify project discovery and interactive initialization
 
 ## Metadata
-- Status: proposed
+- Status: ready
 - Priority: high
 - Owner role: MANAGER: Architecture
 - Specs: SPEC-008, SPEC-001
 - Dependencies: TASK-001, TASK-002
 - Created: 2026-11-04
-- Updated: 2026-11-04
+- Updated: 2026-11-05
 
 ## Objective
 Define how the blueprint discovers an existing/new project and gathers missing requirements before generating files.
@@ -34,10 +34,14 @@ None recorded.
 None recorded.
 
 ## Execution log
-No execution recorded yet.
+- 2026-11-05: Rechecked dependencies TASK-001 and TASK-002; both are `done`.
+  Re-read SPEC-008 and SPEC-001.
+- 2026-11-05: User approved the proposal and authorized transition to `ready`.
+  No TASK-012 implementation began in this recovery.
 
 ## Completion evidence
 Pending.
 
 ## Next action
-Wait until all dependencies are verified done; then re-read the linked specs and confirm scope.
+Begin discovery-flow specification when TASK-012 is selected for execution;
+transition to `in_progress` before starting work.
