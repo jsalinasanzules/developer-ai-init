@@ -29,7 +29,7 @@ Developer AI Init provides a reusable project structure, operating protocols, sp
 
 ## Repository status
 
-The foundation baseline is in place: architecture documents, specifications, task briefs, memory records, and lifecycle protocols. The OpenCode adapter and versioned schemas are implemented. TASK-013 adds a source-only, approval-gated generator for the canonical `.blueprint/` tree and selected adapter files; interactive discovery remains an Orchestrator workflow, and schema/task-graph validation is tracked separately in TASK-014.
+The foundation baseline is in place: architecture documents, specifications, task briefs, memory records, and lifecycle protocols. The OpenCode adapter and versioned schemas are implemented. TASK-013 adds a source-only, approval-gated generator for the canonical `.blueprint/` tree and selected adapter files; TASK-014 adds offline validation for schemas, references, records, adapters, and secret-like values.
 
 ## Guiding rule
 
@@ -42,6 +42,7 @@ Instructions define how agents operate. Persistent memory records what is known,
 - [Target-project layout and ownership](docs/architecture/target-project-layout.md)
 - [Project discovery and interactive initialization](docs/architecture/project-discovery-and-initialization.md)
 - [Blueprint generation and approval](docs/architecture/blueprint-generation.md)
+- [Blueprint validation](docs/architecture/blueprint-validation.md)
 - [Persistent memory model](docs/architecture/memory-model.md)
 - [Memory read/write protocol](docs/architecture/memory-protocol.md)
 - [Decision, conflict, and approval protocol](docs/architecture/decision-and-approval-protocol.md)

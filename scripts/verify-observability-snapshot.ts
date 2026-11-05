@@ -34,7 +34,7 @@ check(
     : here.active_task?.id !== "TASK-020",
 )
 check("A: decisions parsed", here.decisions !== "unparsed" && here.decisions.total > 0, `${here.decisions.total}`)
-check("A: latest ADR is ADR-010", (here.decisions as { latest?: { adr_id?: string } }).latest?.adr_id === "ADR-010")
+check("A: latest ADR is ADR-011", (here.decisions as { latest?: { adr_id?: string } }).latest?.adr_id === "ADR-011")
 check("A: handoffs listed", (here.handoffs?.length ?? 0) >= 1)
 check("A: blockers none", Array.isArray(here.blockers) && here.blockers.length === 0)
 check(

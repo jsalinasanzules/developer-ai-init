@@ -215,7 +215,7 @@
     {
       "id": "TASK-014",
       "title": "Implement validation for schemas, task graph, references, and secrets",
-      "status": "proposed",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-009",
@@ -229,7 +229,7 @@
         "TASK-011",
         "TASK-020"
       ],
-      "next_action": "Implement local validation and actionable diagnostics."
+      "next_action": "Present TASK-015 proposal for user approval; do not start until approved."
     },
     {
       "id": "TASK-015",

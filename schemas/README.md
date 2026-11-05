@@ -101,19 +101,14 @@ These rules belong to the validation task (TASK-014) and must be implemented or 
 
 ## Verification
 
-The schemas were verified with `ajv-cli` using draft 2019-09. This is a test tool for this repository, not a decision about the product's validation runtime (MD-003 remains deferred).
+The schemas and fixtures are validated with the pinned Python `jsonschema`
+dependency. Install `requirements-validation.txt` before entering a
+disconnected environment, then run:
 
 ```bash
 ./schemas/verify-fixtures.sh
 ```
 
-Equivalent single check:
-
-```bash
-npx --yes ajv-cli test \
-  -s schemas/project.schema.json \
-  -d schemas/fixtures/valid/project.json \
-  --valid --spec=draft2019
-```
-
-Expected result: every valid fixture passes; every invalid fixture fails for the reason listed above. The script exits non-zero if any expectation is violated.
+The fixture check is local-only; it does not invoke `npx`, contact a hosted
+service, or mutate project files. Every valid fixture must pass and every
+invalid fixture must fail its matching schema.

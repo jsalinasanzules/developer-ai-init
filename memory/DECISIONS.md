@@ -83,3 +83,13 @@ A host invoking the source generator needs Python 3.9+; standalone distribution 
 
 ### Approval evidence
 The user explicitly approved Python 3.9+ standard-library tooling for internal use in Developer AI Init and specified that generated projects must not need Python.
+
+## ADR-011 — Offline Blueprint validation with Python and jsonschema
+- Status: accepted | Date: 2026-11-05
+- Related: TASK-014, ADR-009
+- Approval: USER, 2026-11-05, approve Python 3.9+ with a pinned `jsonschema` validation dependency for internal validation tooling.
+- Context: TASK-014 must validate the repository's Draft 2019-09 schemas accurately, report semantic task/reference issues and secret-like values safely, and run offline.
+- Decision: Implement the validator as Python 3.9+ source-repository tooling using a pinned `jsonschema` dependency. Schema references are local-only; validation performs no network access and makes no project-file changes. Provision the dependency before running in a disconnected environment.
+- Rationale: Reuse the repository's Python tooling while relying on a standards-aware implementation instead of maintaining a partial JSON Schema engine.
+- Consequences: The validation tool requires the pinned development package to be installed; generated projects do not receive Python or this dependency. Validation remains offline after provisioning.
+- Approval evidence: The user selected `python-jsonschema` for TASK-014.
