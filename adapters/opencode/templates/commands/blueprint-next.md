@@ -11,11 +11,15 @@ Select the next eligible task and report it. Do not start work yet.
    If more than one is `in_progress`, stop and report the state conflict.
 3. Otherwise select the highest-priority `ready` task whose dependencies are all
    `done`, ties broken by lowest task ID. Priority order: critical, high, medium, low.
-4. Verify the matching brief in `.blueprint/tasks/items/` exists and that its status
-   matches the registry; report any mismatch as a blocking integrity error.
-5. Confirm scope, exclusions, acceptance criteria, verification plan, and linked specs
-   are readable. If a dependency or spec is missing, stop and report.
-6. Report the task, evidence that dependencies are done, and the proposed first action.
-   Wait for user confirmation before marking it `in_progress`.
+4. For every dependency, verify the registry status is `done` and its matching task
+   brief has all acceptance criteria checked with corresponding completion evidence.
+   A missing brief or missing evidence means the dependency is not satisfied.
+5. Verify the selected task brief exists and its status matches the registry entry; report
+   any mismatch as a blocking integrity error.
+6. Confirm scope, exclusions, acceptance criteria, verification plan, and linked specs
+   are readable. If a dependency, brief, criterion evidence, or spec is missing, stop
+   and report.
+7. Report the selected task, each dependency and its evidence, and the proposed first
+   action. Wait for user confirmation before marking it `in_progress`.
 
 $ARGUMENTS

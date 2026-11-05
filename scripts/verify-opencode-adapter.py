@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Structural checks for the OpenCode adapter templates (TASK-009).
+"""Structural checks for OpenCode adapter templates and workflows (TASK-009/010).
 
 Verifies template completeness, JSONC validity, frontmatter shape against the
 OpenCode V2 conventions inspected 2026-11-04, canonical-path discipline, and
-the absence of secrets. These are review aids; the full conformance harness is
-TASK-014.
+the absence of secrets. Workflow checks cover required startup, task, and handoff
+protocol steps. These are review aids; the full conformance harness is TASK-014.
 """
 
 from __future__ import annotations
@@ -32,6 +32,56 @@ REQUIRED_COMMANDS = [
     "blueprint-handoff.md",
     "blueprint-consolidate.md",
 ]
+WORKFLOW_REQUIREMENTS = {
+    "blueprint-startup.md": [
+        ".blueprint/README.md",
+        ".blueprint/manifest.json",
+        ".blueprint/config/project.json",
+        ".blueprint/config/agents.json",
+        ".blueprint/memory/PROJECT_CONTEXT.md",
+        ".blueprint/memory/CURRENT_STATE.md",
+        ".blueprint/tasks/registry.json",
+        "active task brief",
+        "linked specifications",
+        "version is unknown",
+        "handoff",
+        "context packet",
+    ],
+    "blueprint-next.md": [
+        "in_progress",
+        "ready",
+        "dependencies",
+        "completion evidence",
+        "registry status",
+        "status matches the registry entry",
+        "wait for user confirmation",
+    ],
+    "blueprint-task.md": [
+        "in_progress",
+        "in_review",
+        "completion evidence",
+        "current_state.md",
+        "sequential fallback",
+        "material decision",
+        "checked",
+        "blockers",
+    ],
+    "blueprint-handoff.md": [
+        "repository state",
+        "working-tree status",
+        "acceptance-criterion evidence",
+        "cold-start checklist",
+        "current files and git",
+        "current_state.md",
+    ],
+    "blueprint-consolidate.md": [
+        "owning record",
+        "content hash",
+        "concurrent changes semantically",
+        "conflicting values",
+        "no secrets",
+    ],
+}
 # V2 allows: description, mode, model, permissions, steps, hidden, disabled, color,
 # request. V1 deprecated fields must be absent (opencode.ai/v2/docs/agents).
 AGENT_V1_FORBIDDEN = ["tools", "temperature", "top_p", "prompt", "permission",
@@ -139,6 +189,28 @@ def main() -> int:
         check(f"command {fname}: body acts as template", len(body.strip()) > 100)
         agent = fields.get("agent")
         check(f"command {fname}: agent reference valid", agent in agent_ids)
+        if fname in WORKFLOW_REQUIREMENTS:
+            lowered = body.lower()
+            for requirement in WORKFLOW_REQUIREMENTS[fname]:
+                check(
+                    f"command {fname}: workflow includes {requirement}",
+                    requirement.lower() in lowered,
+                )
+
+    target_instructions = (ADAPTER / "AGENTS-TARGET.md").read_text().lower()
+    for requirement in (
+        ".blueprint/manifest.json",
+        ".blueprint/config/agents.json",
+        ".blueprint/memory/project_context.md",
+        ".blueprint/memory/current_state.md",
+        ".blueprint/tasks/registry.json",
+        "linked specs",
+        "stop on missing required records",
+    ):
+        check(
+            f"AGENTS-TARGET.md: startup includes {requirement}",
+            requirement.lower() in target_instructions,
+        )
 
     config = (ADAPTER / "opencode.jsonc").read_text()
     data = parse_jsonc(config)

@@ -10,10 +10,18 @@ sole source of project knowledge.
 
 ## Mandatory session startup
 
-1. Follow the startup read order recorded in `.blueprint/README.md` (memory, config,
-   task registry, active task, linked specs).
-2. Produce a concise startup context packet before planning any work.
-3. Treat repository files and Git as authoritative; conversation history is not.
+1. Run `/blueprint-startup`; it reads these records in protocol order:
+   `.blueprint/README.md`, `.blueprint/manifest.json`,
+   `.blueprint/config/project.json`, `.blueprint/config/agents.json`,
+   `.blueprint/memory/PROJECT_CONTEXT.md`,
+   `.blueprint/memory/CURRENT_STATE.md`, `.blueprint/tasks/registry.json`, the active
+   task brief, and its linked specs.
+2. Read referenced decisions and any handoff named by `CURRENT_STATE.md`; verify
+   handoff claims against current files and Git.
+3. Stop on missing required records, unknown versions, task-state conflicts, or
+   missing dependencies/specs; do not guess or start work.
+4. Produce the concise startup context packet before planning any work.
+5. Treat repository files and Git as authoritative; conversation history is not.
 
 ## Hierarchy
 

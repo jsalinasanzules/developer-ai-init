@@ -16,7 +16,10 @@
 - TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-No task is in progress. TASK-019 is done; TASK-010 (OpenCode startup/task/handoff workflows) is the next eligible task and has not been started.
+**TASK-010 — Add OpenCode startup, task, and handoff workflows**
+- Status: blocked; dependencies TASK-004, TASK-006, and TASK-009 verified done.
+- Blocker: OpenCode 2.2.5 rejected both attempted free models because the free usage limit was reached. Do not use a paid model without Joseph's approval.
+- Next action: resume live cold-start verification after an authorized model is available or Joseph reports results from a user-run session.
 
 ## Completed recently
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
@@ -49,7 +52,7 @@ No task is in progress. TASK-019 is done; TASK-010 (OpenCode startup/task/handof
 TASK-019 is complete: `docs/architecture/observability.md` v1.0.0 and one reusable OpenCode monitor implementation at `adapters/opencode/monitor/` serve both canonical contexts (`.blueprint/` and the development layout). Verification includes 23/23 snapshot checks, OpenCode 2.2.5 plugin-load evidence, and user-confirmed sidebar visibility toggle and reload after restart.
 
 ## Blockers
-None recorded.
+TASK-010 is blocked pending a user-authorized OpenCode model run or user-provided cold-start verification evidence. See `tasks/items/TASK-010.md`.
 
 ## Next
-TASK-010 (dependencies TASK-004, TASK-006, TASK-009 are done) is next eligible and has not been started. Then TASK-011/TASK-012 and the pending MD-003 stack decision.
+Resume TASK-010 cold-start verification after the blocker is resolved. Do not start TASK-011 or another backlog item while following the current TASK-010-only instruction.

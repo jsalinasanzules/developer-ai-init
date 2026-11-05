@@ -16,7 +16,7 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 ## Phase 2 — Agent hierarchy and OpenCode
 - [x] **TASK-008** (done): Specify Orchestrator, Manager, Specialist contracts. Depends on TASK-001, TASK-005.
 - [x] **TASK-009** (done): Implement OpenCode adapter from verified current conventions. Depends on TASK-002, TASK-008.
-- [ ] **TASK-010** (ready): Add OpenCode startup, task, and handoff workflows. Depends on TASK-004, TASK-006, TASK-009.
+- [ ] **TASK-010** (blocked): Add OpenCode startup, task, and handoff workflows. Depends on TASK-004, TASK-006, TASK-009. Workflow templates and structural checks updated; live cold-start validation is blocked because OpenCode free-model usage limits were reached. Await user authorization for a paid model or user-run verification evidence.
 - [ ] **TASK-011**: Add adapter conformance and safe regeneration. Depends on TASK-009, TASK-010.
 
 ## Phase 3 — Initialization and validation

@@ -126,7 +126,7 @@ Rerunning installation must be idempotent for unmodified files and must stop-and
 | Nested delegation (depth 2) | Optional, experimental | Commented `experimental` block in `opencode.jsonc`. |
 | Collision-safe install | Designed | §7; implementation/validation lands with TASK-013/TASK-014. |
 | Reproducible generation (ADAPT-007) | Designed | Templates are the single source; TASK-013 installs them verbatim. |
-| Fresh-session resume verified live | Pending | TASK-010/TASK-015 run the executable walkthrough in a generated project; this task verified templates vs docs and a config-discovery smoke check (§10). |
+| Fresh-session resume verified live | Pending (TASK-010) | A new generated project resolved the OpenCode 2.2.5 config and all six Blueprint agents. Live command execution did not reach the model because the available free-model quota was exhausted; the cold-start workflow remains unverified. |
 
 ## 10. Verification evidence (TASK-009)
 
