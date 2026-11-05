@@ -1,0 +1,42 @@
+[0m
+> orchestrator · crouton-alpha-free
+Running `/blueprint-next` — checking the registry and verifying dependencies, without starting any task.
+[0m→ [0mRead .blueprint/tasks/registry.json 
+> orchestrator · crouton-alpha-free
+[0m✱ [0mGlob ".blueprint/tasks/**/*001*" [90m0 matches[0m
+> orchestrator · crouton-alpha-free
+[0m✱ [0mGlob ".blueprint/tasks/*" [90m0 matches[0m
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks/items 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks/items/TASK-006.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-004.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-002.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-001.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-009.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-010.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-011.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-012.md 
+> orchestrator · crouton-alpha-free
+**State:** No task is `in_progress`. Registry shows TASK-010 as `blocked` — `/blueprint-next` selection only.
+
+**Eligibility (registry authoritatively read):**
+- TASK-012 — status `proposed`, priority `high`, dependencies `["TASK-001","TASK-002"]` — **only ready candidate.**
+- Verification of dependencies:
+  - TASK-001: registry `done`; brief `.blueprint/tasks/items/TASK-001.md` has 4/4 acceptance criteria `[x]`, completion evidence cites review report, JSON/link checks, official sources (2026-11-04), `opencode v2.2.5`, ADR-006/ADR-007 approvals.
+  - TASK-002: registry `done`; brief `TASK-002.md` has 4/4 criteria `[x]`, evidence cites `target-project-layout.md` §§3,4,6,7,8.
+  - TASK-012 itself is still `proposed` with unchecked criteria and `Completion evidence: Pending` — correct for not-yet-started.
+
+**Why TASK-011 is not eligible while TASK-010 is blocked:**
+- TASK-011 registry status: `proposed`
+- TASK-011 dependencies: `["TASK-009","TASK-010"]`
+- TASK-009 registry status: `done`
+- TASK-010 registry status: **`blocked`** — reason: cold-start workflow could not reach a model (free usage limit), responsible role `USER`, next action: authorize a paid model run or report results from your own session.
+
+Because a dependency (`TASK-010`) is `blocked`, not `done`, TASK-011 fails the dependency check. TASK-011 also has all criteria unchecked and evidence `Pending`. Same logic blocks TASK-013/014/015/016/017/018 — each depends on an unfinished task.
+
+**Next action (single):** Await your explicit instruction to start TASK-012; no task started and no files modified. TASK-010 remains the blocker for the TASK-011+ chain.

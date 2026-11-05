@@ -1,0 +1,140 @@
+[0m
+> orchestrator · crouton-alpha-free
+Verifying handoff claims against files and Git — no files will be modified.
+[0m→ [0mRead .blueprint/handoffs/2026-11-04-task-010-verify.md 
+> orchestrator · crouton-alpha-free
+Handoff claims flagged for verification — now checking them against current files and Git.
+[0m$ [0mgit branch --show-current; git rev-parse HEAD; git rev-parse --short HEAD; git status --porcelain=v1 -b; git log --oneline -5; echo ---; git diff --name-only; echo ---diffstat; git diff --stat
+main
+90b7806874250a0c734d9ab725cccf27a9dd5b2e
+90b7806
+## main
+90b7806 TASK-010: produce verification handoff in isolated project
+e68b702 add manifest.json for TASK-010 verification (9 records complete)
+a4b1918 complete 4 missing mandatory records for TASK-010 verification
+fd688b3 isolated TASK-010 verification baseline
+---
+---diffstat
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/memory/CURRENT_STATE.md 
+[0m→ [0mRead .blueprint/memory/PROJECT_CONTEXT.md 
+[0m→ [0mRead .blueprint/tasks/registry.json 
+> orchestrator · crouton-alpha-free
+[0m$ [0mgit show --stat --oneline HEAD; echo ---; git show --name-only --format="" HEAD; echo ---; git show --stat --oneline e68b702; echo ---; git diff e68b702..HEAD --stat; echo ---; ls .blueprint/tasks/items/ 2>/dev/null; ls .blueprint/handoffs/
+90b7806 TASK-010: produce verification handoff in isolated project
+ .blueprint/handoffs/2026-11-04-task-010-verify.md | 59 +++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+---
+.blueprint/handoffs/2026-11-04-task-010-verify.md
+---
+e68b702 add manifest.json for TASK-010 verification (9 records complete)
+ .blueprint/manifest.json | 172 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 172 insertions(+)
+---
+ .blueprint/handoffs/2026-11-04-task-010-verify.md | 59 +++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+---
+TASK-001.md
+TASK-002.md
+TASK-004.md
+TASK-006.md
+TASK-009.md
+TASK-010.md
+TASK-011.md
+TASK-012.md
+2026-11-04-task-010-verify.md
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks/items/TASK-010.md 
+[0m$ [0mcat .blueprint/manifest.json | head -c 2000; echo; echo ---; git log --all --oneline | head -20; echo ---; ls .blueprint/specs/ 2>/dev/null; ls .blueprint/config/
+{
+  "manifest_version": "1.0.0",
+  "schema_version": "1.0.0",
+  "blueprint_version": "0.1.0",
+  "installed_at": "2026-11-04",
+  "files": [
+    {
+      "path": ".blueprint/README.md",
+      "class": "canonical",
+      "template_version": "1.0.0",
+      "sha256": "0b2ff34f0950c9d16cefc7fd477496269ac6c33ef8b3d1e91196532107e244b0"
+    },
+    {
+      "path": ".blueprint/config/project.json",
+      "class": "canonical",
+      "template_version": "1.0.0",
+      "sha256": "60fd79027b8a1fca8662b6726518b568693397320983dd45a221bb514f0abb4e"
+    },
+    {
+      "path": ".blueprint/config/agents.json",
+      "class": "canonical",
+      "template_version": "1.0.0",
+      "sha256": "8cf7f554df5f3ee673fc3409aa49ab84e0b387973b4ac71bfe437c5de377f608"
+    },
+    {
+      "path": ".blueprint/schemas/agents.schema.json",
+      "class": "blueprint-managed",
+      "template_version": "1.0.0",
+      "sha256": "412358c22b52fcfc12f3078c18b97f3e617862a9ecbd41b949004af927a12735"
+    },
+    {
+      "path": ".blueprint/schemas/manifest.schema.json",
+      "class": "blueprint-managed",
+      "template_version": "1.0.0",
+      "sha256": "332566aa6d4d09c7641cf982fc5501ef09722e16f1112c59ab12c5fdbbb6ff62"
+    },
+    {
+      "path": ".blueprint/schemas/memory-metadata.schema.json",
+      "class": "blueprint-managed",
+      "template_version": "1.0.0",
+      "sha256": "3d859b63b3aa88d525630dc42d6bb97c9f4ecca3ac546c7cfbaf24f0d3c8d963"
+    },
+    {
+      "path": ".blueprint/schemas/project.schema.json",
+      "class": "blueprint-managed",
+      "template_version": "1.0.0",
+      "sha256": "a5918d1593a9ce022b200188accb7eae32c25b3387c71a86c275bd9375088af1"
+    },
+    {
+      "path": ".blueprint/schemas/task-registry.schema.json",
+      "class": "blueprint-managed",
+      "template_version": "1.0.0",
+      "sha256": "4168c7c4958171540e00949c00ca83dc9281227ab80c2705d112371dbc3af6b5"
+    },
+    {
+      "path": ".blueprint/memory/CURRENT_STATE.md",
+      "class": "canonical",
+      "template_version": "1.0.0",
+ 
+---
+90b7806 TASK-010: produce verification handoff in isolated project
+e68b702 add manifest.json for TASK-010 verification (9 records complete)
+a4b1918 complete 4 missing mandatory records for TASK-010 verification
+fd688b3 isolated TASK-010 verification baseline
+---
+SPEC-001-portable-blueprint-core.md
+SPEC-002-persistent-memory.md
+SPEC-005-task-lifecycle-and-handoffs.md
+SPEC-007-opencode-adapter.md
+SPEC-008-project-initialization.md
+agents.json
+project.json
+> orchestrator · crouton-alpha-free
+## 1. Can-continue
+Yes. Continuation from files alone is possible. Registry, CURRENT_STATE.md, PROJECT_CONTEXT.md, and TASK-010 brief are consistent: TASK-010 is blocked, dependencies done, specs present, blocked reason and next action clear. No file/Git conflict prevents a new session from understanding the state.
+
+## 2. Verified-claims
+- Branch `main`, working tree clean, no diffs — confirmed.
+- TASK-010 title, `blocked` status, specs SPEC-002/005/007, dependencies TASK-004/006/009 all `done` — confirmed in registry, brief, and CURRENT_STATE.
+- Only change in HEAD is `.blueprint/handoffs/2026-11-04-task-010-verify.md` — confirmed via `git show`/`git diff`.
+- ADR-006, ADR-007, ADR-008 present in CURRENT_STATE with matching summaries.
+- Blocker (free-model limit reached; no paid model without user approval) matches brief and registry.
+
+## 3. Discrepancies
+- **Stale commit:** Handoff claims HEAD `e68b702`; actual HEAD is `90b7806` ("TASK-010: produce verification handoff…"). `e68b702` is its parent — the handoff predates its own commit. Not substantive, but stale.
+- **Unverifiable live evidence:** The 4 acceptance-criterion rows (27/27 manifest PASS, `/blueprint-next` selecting TASK-012, lifecycle rejection, startup run) assert live model runs. No evidence artifacts for those runs exist in files/Git; they cannot be independently verified from files alone.
+- Handoff omits TASK-019 `done` (present in registry/CURRENT_STATE) — omission only, not a conflict.
+
+## 4. Permitted-next-action
+Await Joseph/user review of the four criterion evidences and authorization for a live cold-start run (or user-reported results), per the brief's blocker. Do not mark TASK-010 `done`, do not start TASK-011 or any other task, and do not treat the handoff alone as completion evidence.

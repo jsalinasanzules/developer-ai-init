@@ -1,0 +1,31 @@
+[0m
+> orchestrator · crouton-alpha-free
+Starting fresh — I'll read the handoff alongside the canonical project records and verify every claim against the working tree and Git before taking any action.
+[0m→ [0mRead .blueprint/manifest.json 
+[0m→ [0mRead .blueprint/README.md 
+[0m→ [0mRead .blueprint/memory/PROJECT_CONTEXT.md 
+[0m→ [0mRead .blueprint/config/project.json 
+[0m→ [0mRead .blueprint/config/agents.json 
+[0m→ [0mRead .blueprint/memory/CURRENT_STATE.md 
+[0m→ [0mRead .blueprint/handoffs/2026-11-04-task-010-verify.md 
+[0m→ [0mRead .blueprint/tasks/registry.json 
+> orchestrator · crouton-alpha-free
+Loaded the startup records and handoff. Now I'll verify those claims against the current tree and Git history.
+[0m→ [0mRead AGENTS.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-010.md 
+[0m$ [0mecho "=== branch ==="; git branch --show-current; echo "=== HEAD ==="; git rev-parse HEAD; git log --oneline -5; echo "=== status ==="; git status; echo "=== head subject ==="; git show -s --format='%H %s' HEAD
+=== branch ===
+main
+=== HEAD ===
+90b7806874250a0c734d9ab725cccf27a9dd5b2e
+90b7806 TASK-010: produce verification handoff in isolated project
+e68b702 add manifest.json for TASK-010 verification (9 records complete)
+a4b1918 complete 4 missing mandatory records for TASK-010 verification
+fd688b3 isolated TASK-010 verification baseline
+=== status ===
+On branch main
+nothing to commit, working tree clean
+=== head subject ===
+90b7806874250a0c734d9ab725cccf27a9dd5b2e TASK-010: produce verification handoff in isolated project
+> orchestrator · crouton-alpha-free
+Claims match the task brief, registry, and the recorded blocker. Let me now check the branch/commit and working‑tree claims plus the evidence artifacts referenced.

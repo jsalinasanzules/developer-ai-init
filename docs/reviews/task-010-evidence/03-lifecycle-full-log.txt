@@ -1,0 +1,425 @@
+[0m
+> orchestrator · crouton-alpha-free
+Starting TASK-900 lifecycle: verifying dependencies, scope, and readiness before any transition.
+[0m→ [0mRead .blueprint/README.md 
+> orchestrator · crouton-alpha-free
+Loaded the project startup records. Now checking TASK-900 preconditions before moving it through the lifecycle.
+[0m✗ [0mRead .blueprint/tasks/items/TASK-900.md failed
+[91m[1mError: [0mFile not found: .blueprint/tasks/items/TASK-900.md
+[0m→ [0mRead .blueprint/manifest.json 
+[0m→ [0mRead .blueprint/config/agents.json 
+[0m→ [0mRead .blueprint/config/project.json 
+[0m→ [0mRead .blueprint/memory/PROJECT_CONTEXT.md 
+[0m→ [0mRead .blueprint/memory/CURRENT_STATE.md 
+[0m→ [0mRead .blueprint/tasks/registry.json 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks/backlog.md 
+[0m✱ [0mGlob "**/TASK-900*" [90m0 matches[0m
+[0m✱ [0mGlob ".blueprint/tasks/**/*" [90m0 matches[0m
+> orchestrator · crouton-alpha-free
+[0m$ [0mls -R .blueprint/tasks; echo "---"; cat .blueprint/tasks/registry.json | grep -A 10 '"id": "TASK-900"' ; echo "---"; find . -name "*900*" -o -name "*TASK-*" | head -n 30
+backlog.md
+items
+registry.json
+
+.blueprint/tasks/items:
+TASK-001.md
+TASK-002.md
+TASK-004.md
+TASK-006.md
+TASK-009.md
+TASK-010.md
+TASK-011.md
+TASK-012.md
+---
+      "id": "TASK-900",
+      "title": "Disposable evidence completion test (lifecycle)",
+      "status": "proposed",
+      "priority": "high",
+      "specs": [
+        "SPEC-002",
+        "SPEC-005"
+      ],
+      "owner_role": "MANAGER: Engineering",
+      "dependencies": [],
+      "next_action": "Disposable test task; excluded from real backlog selection."
+---
+./.blueprint/tasks/items/TASK-012.md
+./.blueprint/tasks/items/TASK-002.md
+./.blueprint/tasks/items/TASK-006.md
+./.blueprint/tasks/items/TASK-009.md
+./.blueprint/tasks/items/TASK-004.md
+./.blueprint/tasks/items/TASK-010.md
+./.blueprint/tasks/items/TASK-011.md
+./.blueprint/tasks/items/TASK-001.md
+./.git/objects/71/38900bc0c9fba6a6ba8c104b74ed3147a7122f
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks/items/TASK-010.md 
+[0m→ [0mRead .blueprint/specs/SPEC-005-task-lifecycle-and-handoffs.md 
+[0m→ [0mRead .blueprint/specs/SPEC-002-persistent-memory.md 
+[0m→ [0mRead .blueprint/tasks/items/TASK-006.md 
+[0m$ [0mgit status --porcelain; echo "---"; git log --oneline -5; echo "---"; git diff --stat
+---
+c6ff8ca TASK-010 criterion 3: add disposable TASK-900 test task (proposed)
+90b7806 TASK-010: produce verification handoff in isolated project
+e68b702 add manifest.json for TASK-010 verification (9 records complete)
+a4b1918 complete 4 missing mandatory records for TASK-010 verification
+fd688b3 isolated TASK-010 verification baseline
+---
+> orchestrator · crouton-alpha-free
+[0m$ [0mls .blueprint/tasks/items/; echo "---"; cat .blueprint/tasks/items/TASK-009.md | head -n 60; echo "---"; git show c6ff8ca --stat; echo "---"; git show c6ff8ca -- .blueprint/tasks/registry.json | head -n 100
+TASK-001.md
+TASK-002.md
+TASK-004.md
+TASK-006.md
+TASK-009.md
+TASK-010.md
+TASK-011.md
+TASK-012.md
+---
+# TASK-009 — Implement OpenCode adapter using verified current conventions
+
+## Metadata
+- Status: done
+- Priority: high
+- Owner role: MANAGER: Engineering
+- Specs: SPEC-006, SPEC-007
+- Dependencies: TASK-002, TASK-008
+- Created: 2026-11-04
+- Updated: 2026-11-04
+
+## Objective
+Map provider-neutral roles and workflows to current OpenCode-supported configuration.
+
+## Scope
+Inspect official docs; implement adapter manifest, agent definitions, and non-destructive configuration integration.
+
+## Out of scope
+Do not assume config paths/schema; do not overwrite existing OpenCode config.
+
+## Acceptance criteria
+- [x] Current official docs are referenced with inspection date.
+- [x] Role mapping is implemented or limitations documented.
+- [x] Canonical memory remains in .blueprint/.
+- [x] Existing config collision is detected and preserved.
+
+## Verification plan
+Run OpenCode config validation/startup smoke test where available; record exact version and commands.
+
+## Risks and open questions
+None recorded.
+
+## Blockers
+None recorded.
+
+## Execution log
+- 2026-11-04: Re-read TASK-009, SPEC-006, SPEC-007, ADR-006/007/008, the adapter architecture doc, the target-project layout, and the TASK-001 capability baseline.
+- 2026-11-04: Revalidated official OpenCode V2 docs (`/v2/docs/config`, `/agents`, `/commands`, `/skills`, plus the permissions guide referenced from those pages); findings recorded with inspection date in `adapters/opencode/README.md` §1.
+- 2026-11-04: Implemented adapter templates: `opencode.jsonc`, `AGENTS-TARGET.md`, six agent files (orchestrator, four managers, specialist), five workflow commands (`blueprint-startup`, `-next`, `-task`, `-handoff`, `-consolidate`).
+- 2026-11-04: Documented role mapping, permissions, collision/preservation policy, limitations, sequential fallback, conformance report, and dual-context monitor compatibility notes in `adapters/opencode/README.md`.
+- 2026-11-04: Added `scripts/verify-opencode-adapter.py`; fixed two issues it found (invalid trailing comma in the JSONC template; missing explicit escalation wording in the specialist agent).
+- 2026-11-04: Ran the OpenCode 2.2.5 discovery smoke test in a simulated target project (`opencode debug config`, `opencode debug agents`) and a live non-interactive run of `/blueprint-next` through the `orchestrator` agent against a minimal `.blueprint/`; observed correct discovery and protocol behavior.
+- 2026-11-04: Recorded dual-context monitor compatibility notes (Context A root-memory repo vs Context B `.blueprint/` projects) without implementing TASK-019.
+
+## Completion evidence
+- Dated official docs: `adapters/opencode/README.md` §1 (sources, inspection date 2026-11-04, OpenCode 2.2.5).
+- Role mapping implemented/limitations: §3 (including ADR-007 depth rules) and §5 limitations.
+- Canonical memory in `.blueprint/`: §8 plus the canonical-path discipline check in `scripts/verify-opencode-adapter.py` → `RESULT: PASS`.
+- Collision detection and preservation: §7 policy table; the install/merge mechanics are approved scope for TASK-013 and are tracked there.
+- Observed checks:
+  - `./scripts/verify-opencode-adapter.py` → `RESULT: PASS`
+  - `opencode --version` → `opencode v2.2.5`
+  - `opencode debug config` → resolved project `opencode.jsonc` (`default_agent: orchestrator`) + project `.opencode/` directory
+  - `opencode debug agents` → 6 adapter agents discovered with correct modes
+  - live `opencode run --agent orchestrator --model opencode/glm-5.3-flash-free /blueprint-next` → orchestrator read the canonical records, selected the eligible task, and paused correctly asking one question when the brief lacked criteria (full output in the smoke session; excerpts in README §10)
+
+## Next action
+None. TASK-009 is done; TASK-010 is eligible (depends TASK-004, TASK-006, TASK-009).
+---
+commit c6ff8ca1ba8141991c004de5925ed0cd87b07423
+Author: TASK-010 <t010@example.com>
+Date:   Wed Nov 4 23:34:19 2026 -0500
+
+    TASK-010 criterion 3: add disposable TASK-900 test task (proposed)
+
+ .blueprint/lifecycle-test/README.md    | 22 ++++++++++++++++++++++
+ .blueprint/lifecycle-test/evidence.log |  1 +
+ .blueprint/tasks/registry.json         | 15 ++++++++++++++-
+ 3 files changed, 37 insertions(+), 1 deletion(-)
+---
+commit c6ff8ca1ba8141991c004de5925ed0cd87b07423
+Author: TASK-010 <t010@example.com>
+Date:   Wed Nov 4 23:34:19 2026 -0500
+
+    TASK-010 criterion 3: add disposable TASK-900 test task (proposed)
+
+diff --git a/.blueprint/tasks/registry.json b/.blueprint/tasks/registry.json
+index 7c46223..6ce973d 100644
+--- a/.blueprint/tasks/registry.json
++++ b/.blueprint/tasks/registry.json
+@@ -317,6 +317,19 @@
+         "TASK-008"
+       ],
+       "next_action": "None. Contract and monitor complete; 23/23 snapshot checks pass, and the user confirmed monitor load, /monitor sidebar toggle, and reload after OpenCode restart on v2.2.5. Storage proxy fix committed as bdfbce1."
++    },
++    {
++      "id": "TASK-900",
++      "title": "Disposable evidence completion test (lifecycle)",
++      "status": "proposed",
++      "priority": "high",
++      "specs": [
++        "SPEC-002",
++        "SPEC-005"
++      ],
++      "owner_role": "MANAGER: Engineering",
++      "dependencies": [],
++      "next_action": "Disposable test task; excluded from real backlog selection."
+     }
+   ]
+-}
++}
+\ No newline at end of file
+> orchestrator · crouton-alpha-free
+[0m$ [0mcat .blueprint/lifecycle-test/README.md; echo "---"; cat .blueprint/lifecycle-test/evidence.log; echo "---"; cat .blueprint/tasks/items/TASK-011.md | head -n 30; echo "---"; ls -la .blueprint/lifecycle-test/
+# Lifecycle Test (TASK-010 criterion 3 — positive path)
+
+Disposable test task for the TASK-010 positive-path verification. Lives only in this
+isolated verification project. It is not a real backlog task: TASK-900 is excluded
+from any real backlog selection, and the original repository is untouched.
+
+## TASK-900 — Disposable evidence completion test (lifecycle)
+
+Purpose: demonstrate the positive path — a task whose acceptance criteria are
+satisfied with inspectable evidence and transitions legitimately to `done`.
+
+Acceptance criteria (all objectively checkable):
+- [ ] C1: The file `.blueprint/lifecycle-test/evidence.log` exists and its
+  contents equal the exact string `"LIFECYCLE-TEST-OK\n"`.
+- [ ] C2: The registry contains TASK-900.
+- [ ] C3: The completion evidence below is present and maps each criterion
+  to the file/section proving it.
+
+Expected evidence artifacts:
+- `.blueprint/lifecycle-test/evidence.log` — C1 artifact
+- registry entry `TASK-900` (status transitions `proposed → ready → in_progress → in_review → done`)
+- this file — C2/C3 evidence record
+---
+LIFECYCLE-TEST-OK
+---
+# TASK-011 — Add adapter conformance and safe regeneration behavior
+
+## Metadata
+- Status: proposed
+- Priority: high
+- Owner role: MANAGER: Quality
+- Specs: SPEC-006, SPEC-007, SPEC-009
+- Dependencies: TASK-009, TASK-010
+- Created: 2026-11-04
+- Updated: 2026-11-04
+
+## Objective
+Ensure adapter installation and updates are repeatable, inspectable, and non-destructive.
+
+## Scope
+Implement collision detection, dry-run/preview, merge/skip behavior, and adapter conformance report.
+
+## Out of scope
+Never overwrite user-owned files without explicit approval.
+
+## Acceptance criteria
+- [ ] Existing files are detected before write.
+- [ ] Dry-run reports create/merge/skip/conflict.
+- [ ] Re-running generation is idempotent for managed files.
+- [ ] Conformance scenarios are reported.
+
+## Verification plan
+Test empty project, existing provider config, conflicting files, and repeated generation.
+
+## Risks and open questions
+---
+total 16
+drwxr-xr-x   4 joseph  staff   128  4 Nov 23:34 .
+drwxr-xr-x  12 joseph  staff   384  4 Nov 23:34 ..
+-rw-r--r--   1 joseph  staff    18  4 Nov 23:34 evidence.log
+-rw-r--r--   1 joseph  staff  1095  4 Nov 23:34 README.md
+> orchestrator · crouton-alpha-free
+[0m$ [0mcat docs/architecture/task-lifecycle.md 2>/dev/null | head -n 200; echo "=== sample task template ==="; find . -name "*TEMPLATE*" -o -name "*.schema.json" | head -n 10; echo "---"; cat .blueprint/schemas/task-registry.schema.json | head -n 80
+=== sample task template ===
+./.blueprint/schemas/memory-metadata.schema.json
+./.blueprint/schemas/project.schema.json
+./.blueprint/schemas/task-registry.schema.json
+./.blueprint/schemas/manifest.schema.json
+./.blueprint/schemas/agents.schema.json
+---
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "urn:developer-ai-init:schema:1.0.0:task-registry",
+  "title": "Developer AI Init task registry",
+  "description": "Machine-readable task status and dependency registry stored at .blueprint/tasks/registry.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "updated_at", "tasks"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "updated_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(Z|[+-]\\d{2}:\\d{2}))?$"
+    },
+    "tasks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/task" }
+    }
+  },
+  "$defs": {
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "status",
+        "priority",
+        "specs",
+        "owner_role",
+        "dependencies",
+        "next_action"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^TASK-[0-9]{3}$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": ["proposed", "ready", "in_progress", "blocked", "in_review", "done", "cancelled"]
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"]
+        },
+        "specs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^SPEC-[0-9]{3}$" }
+        },
+        "owner_role": {
+          "type": "string",
+          "pattern": "^(USER|ORCHESTRATOR|MANAGER: [A-Za-z][A-Za-z0-9 /&-]*|SPECIALIST: [A-Za-z][A-Za-z0-9 /&-]*)$"
+        },
+        "dependencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^TASK-[0-9]{3}$" }
+        },
+        "next_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "blocked": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reason", "responsible_role", "next_action"],
+          "properties": {
+            "reason": { "type": "string", "minLength": 1 },
+            "responsible_role": {
+              "type": "string",
+> orchestrator · crouton-alpha-free
+[0m$ [0mls docs/architecture/ 2>/dev/null || echo "no docs/architecture"; ls docs/ 2>/dev/null || echo "no docs"; cat .blueprint/lifecycle-test/README.md; test -f .blueprint/lifecycle-test/evidence.log && echo "EVIDENCE SIZE: $(cat .blueprint/lifecycle-test/evidence.log | od -c | head -2)"
+no docs/architecture
+no docs
+# Lifecycle Test (TASK-010 criterion 3 — positive path)
+
+Disposable test task for the TASK-010 positive-path verification. Lives only in this
+isolated verification project. It is not a real backlog task: TASK-900 is excluded
+from any real backlog selection, and the original repository is untouched.
+
+## TASK-900 — Disposable evidence completion test (lifecycle)
+
+Purpose: demonstrate the positive path — a task whose acceptance criteria are
+satisfied with inspectable evidence and transitions legitimately to `done`.
+
+Acceptance criteria (all objectively checkable):
+- [ ] C1: The file `.blueprint/lifecycle-test/evidence.log` exists and its
+  contents equal the exact string `"LIFECYCLE-TEST-OK\n"`.
+- [ ] C2: The registry contains TASK-900.
+- [ ] C3: The completion evidence below is present and maps each criterion
+  to the file/section proving it.
+
+Expected evidence artifacts:
+- `.blueprint/lifecycle-test/evidence.log` — C1 artifact
+- registry entry `TASK-900` (status transitions `proposed → ready → in_progress → in_review → done`)
+- this file — C2/C3 evidence record
+EVIDENCE SIZE: 0000000    L   I   F   E   C   Y   C   L   E   -   T   E   S   T   -   O
+0000020    K
+> orchestrator · crouton-alpha-free
+[0m$ [0mpython3 -c "
+import subprocess
+# C1: evidence.log exists and exact contents
+with open('.blueprint/lifecycle-test/evidence.log','rb') as f:
+    data=f.read()
+print(f'C1 raw: {data!r}')
+expected=b'LIFECYCLE-TEST-OK\n'
+print(f'C1 expected: {expected!r}')
+print(f'C1 match: {data==expected}')
+# C2: registry contains TASK-900
+import json
+with open('.blueprint/tasks/registry.json') as f:
+    reg=json.load(f)
+t900=[t for t in reg['tasks'] if t['id']=='TASK-900']
+print(f'C2 found: {len(t900)==1}, status: {t900[0][\"status\"] if t900 else \"MISSING\"}')
+print(f'C2 deps: {t900[0][\"dependencies\"] if t900 else \"N/A\"}')
+# check IDs valid per schema pattern TASK-[0-9]{3}
+import re
+print(f'TASK-900 pattern TASK-[0-9]{{3}}: {bool(re.match(r\"^TASK-[0-9]{3}$\", \"TASK-900\"))}')
+# dependencies resolve
+task_ids=set(t['id'] for t in reg['tasks'])
+for t in reg['tasks']:
+    for d in t['dependencies']:
+        if d not in task_ids:
+            print(f'MISSING DEP: {t[\"id\"]} -> {d}')
+print('Dependency check complete')
+# Check no other task in_progress/conflict
+for t in reg['tasks']:
+    if t['status'] in ('in_progress','in_review'):
+        print(f'{t[\"id\"]}: {t[\"status\"]}')
+"
+# Precondition checks per SPEC-005 and lifecycle rules
+echo "---"
+grep -n "transition" .blueprint/lifecycle-test/README.md
+echo "---"
+cat .blueprint/lifecycle-test/evidence.log | od -c
+C1 raw: b'LIFECYCLE-TEST-OK\n'
+C1 expected: b'LIFECYCLE-TEST-OK\n'
+C1 match: True
+C2 found: True, status: proposed
+C2 deps: []
+TASK-900 pattern TASK-[0-9]{3}: True
+Dependency check complete
+---
+10:satisfied with inspectable evidence and transitions legitimately to `done`.
+21:- registry entry `TASK-900` (status transitions `proposed → ready → in_progress → in_review → done`)
+---
+0000000    L   I   F   E   C   Y   C   L   E   -   T   E   S   T   -   O
+0000020    K  \n                                                        
+0000022
+> orchestrator · crouton-alpha-free
+[0m✓ [0mPrecondition review TASK-900 [90mManager-Delivery Agent[0m
+> orchestrator · crouton-alpha-free
+[0m✓ [0mRetrieve precondition review [90mManager-Delivery Agent[0m
+> orchestrator · crouton-alpha-free
+Precondition review (manager-delivery) passed. Delegating the bounded execution — evidence mapping and update proposals — to specialist, then quality review.
+[0m✓ [0mExecute TASK-900 evidence mapping [90mSpecialist Agent[0m
+> orchestrator · crouton-alpha-free
+[0m✓ [0mQuality review of evidence mapping [90mManager-Quality Agent[0m
+> orchestrator · crouton-alpha-free
+Quality review (manager-quality) gave **CONDITIONAL GO** — C1/C2 independently reproduced, C3 honestly FAIL until written (per SPEC-005 TASK-006), D.2 `done` must be last after re-verification, `updated_at` must bump. 
+
+Applying the four canonical writes now in safe order: README → backlog → CURRENT_STATE → registry, then independent re-verification before claiming `done`.

@@ -17,11 +17,11 @@
 
 ## Active task
 **TASK-010 — Add OpenCode startup, task, and handoff workflows**
-- Status: blocked; dependencies TASK-004, TASK-006, and TASK-009 verified done.
-- Blocker: OpenCode 2.2.5 rejected both attempted free models because the free usage limit was reached. Do not use a paid model without Joseph's approval.
-- Next action: resume live cold-start verification after an authorized model is available or Joseph reports results from a user-run session.
+- Status: `done`; dependencies TASK-004, TASK-006, and TASK-009 verified done. All four acceptance criteria passed live verification in the isolated project; report: `docs/reviews/2026-11-04-task-010-verification.md` (evidence: `docs/reviews/task-010-evidence/`).
+- TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Completed recently
+- **TASK-010** (`done`): live cold-start, task-selection, evidence-backed lifecycle (TASK-900 four-transition history `06bdd19`/`1d53129`/`9795b73`/`2bad731`), and handoff production/consumption verified against Crouton Alpha; report `docs/reviews/2026-11-04-task-010-verification.md`.
 - **TASK-001** (`done`): foundation review and OpenCode capability validation.
 - **TASK-002** (`done`): canonical `.blueprint/` tree, file catalog, ownership, collision, and upgrade policies.
 - **TASK-003** (`done`): versioned JSON schemas, fixtures, and cross-reference rules; 15/15 fixture expectations pass.
@@ -52,7 +52,7 @@
 TASK-019 is complete: `docs/architecture/observability.md` v1.0.0 and one reusable OpenCode monitor implementation at `adapters/opencode/monitor/` serve both canonical contexts (`.blueprint/` and the development layout). Verification includes 23/23 snapshot checks, OpenCode 2.2.5 plugin-load evidence, and user-confirmed sidebar visibility toggle and reload after restart.
 
 ## Blockers
-TASK-010 is blocked pending a user-authorized OpenCode model run or user-provided cold-start verification evidence. See `tasks/items/TASK-010.md`.
+None for TASK-010 (historical free-model-limit blocker resolved by Crouton Alpha live verification). See `tasks/items/TASK-010.md`.
 
 ## Next
-Resume TASK-010 cold-start verification after the blocker is resolved. Do not start TASK-011 or another backlog item while following the current TASK-010-only instruction.
+TASK-011 is the next eligible task when the user selects it; do not start TASK-011 or another backlog item without user confirmation.

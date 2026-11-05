@@ -1,0 +1,95 @@
+[0m
+> orchestrator · crouton-alpha-free
+Starting blueprint startup — reading canonical records in order to verify integrity.
+[0m→ [0mRead .blueprint/README.md 
+> orchestrator · crouton-alpha-free
+First record read. Continuing in order.
+[0m→ [0mRead .blueprint/manifest.json 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/config/project.json 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/config/agents.json 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/memory/PROJECT_CONTEXT.md 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/memory/CURRENT_STATE.md 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks/registry.json 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/tasks/items/TASK-010.md 
+> orchestrator · crouton-alpha-free
+First seven records, then TASK-010 read. Now reading the three linked specs in listed order.
+[0m→ [0mRead .blueprint/specs/SPEC-002-persistent-memory.md 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/specs/SPEC-005-task-lifecycle-and-handoffs.md 
+> orchestrator · crouton-alpha-free
+[0m→ [0mRead .blueprint/specs/SPEC-007-opencode-adapter.md 
+> orchestrator · crouton-alpha-free
+All 11 records read in order. Now verifying hashes against `manifest.json` to check integrity.
+[0m$ [0mcd /private/var/folders/pg/sdm_xthn0rbgcgyzlrmhhj800000gn/T/opencode/task010-verify && python3 -c "
+import json, hashlib, pathlib
+manifest=json.loads(pathlib.Path('.blueprint/manifest.json').read_text())
+ok=True
+for entry in manifest['files']:
+  p=pathlib.Path(entry['path'])
+  if not p.exists():
+    print(f'MISSING {entry[\"path\"]}')
+    ok=False
+    continue
+  h=hashlib.sha256(p.read_bytes()).hexdigest()
+  exp=entry['sha256']
+  mark='OK' if h==exp else 'MISMATCH'
+  if mark=='MISMATCH': ok=False
+  print(f'{mark} {entry[\"path\"]} expected={exp} actual={h}')
+print('OVERALL', 'PASS' if ok else 'FAIL')
+"
+
+OK .blueprint/README.md expected=0b2ff34f0950c9d16cefc7fd477496269ac6c33ef8b3d1e91196532107e244b0 actual=0b2ff34f0950c9d16cefc7fd477496269ac6c33ef8b3d1e91196532107e244b0
+OK .blueprint/config/project.json expected=60fd79027b8a1fca8662b6726518b568693397320983dd45a221bb514f0abb4e actual=60fd79027b8a1fca8662b6726518b568693397320983dd45a221bb514f0abb4e
+OK .blueprint/config/agents.json expected=8cf7f554df5f3ee673fc3409aa49ab84e0b387973b4ac71bfe437c5de377f608 actual=8cf7f554df5f3ee673fc3409aa49ab84e0b387973b4ac71bfe437c5de377f608
+OK .blueprint/schemas/agents.schema.json expected=412358c22b52fcfc12f3078c18b97f3e617862a9ecbd41b949004af927a12735 actual=412358c22b52fcfc12f3078c18b97f3e617862a9ecbd41b949004af927a12735
+OK .blueprint/schemas/manifest.schema.json expected=332566aa6d4d09c7641cf982fc5501ef09722e16f1112c59ab12c5fdbbb6ff62 actual=332566aa6d4d09c7641cf982fc5501ef09722e16f1112c59ab12c5fdbbb6ff62
+OK .blueprint/schemas/memory-metadata.schema.json expected=3d859b63b3aa88d525630dc42d6bb97c9f4ecca3ac546c7cfbaf24f0d3c8d963 actual=3d859b63b3aa88d525630dc42d6bb97c9f4ecca3ac546c7cfbaf24f0d3c8d963
+OK .blueprint/schemas/project.schema.json expected=a5918d1593a9ce022b200188accb7eae32c25b3387c71a86c275bd9375088af1 actual=a5918d1593a9ce022b200188accb7eae32c25b3387c71a86c275bd9375088af1
+OK .blueprint/schemas/task-registry.schema.json expected=4168c7c4958171540e00949c00ca83dc9281227ab80c2705d112371dbc3af6b5 actual=4168c7c4958171540e00949c00ca83dc9281227ab80c2705d112371dbc3af6b5
+OK .blueprint/memory/CURRENT_STATE.md expected=a10c3c5390f0ad3ed2c51175953b200768cf2f0f8582e9682bee0485349c6658 actual=a10c3c5390f0ad3ed2c51175953b200768cf2f0f8582e9682bee0485349c6658
+OK .blueprint/memory/DECISIONS.md expected=fe40ee80e1b8b0efdcaec3baa299237bf4371391088735ac7dde6104d825f6a3 actual=fe40ee80e1b8b0efdcaec3baa299237bf4371391088735ac7dde6104d825f6a3
+OK .blueprint/memory/PROJECT_CONTEXT.md expected=c86e087fe5080552bdcfc302f0e9a55c0a55ef7c46ebb1210d153e35d0698632 actual=c86e087fe5080552bdcfc302f0e9a55c0a55ef7c46ebb1210d153e35d0698632
+OK .blueprint/memory/metadata.json expected=ab95f355bd316cb58fca4c3651587ea3f1bc4da2428740dea71fbe25ca55bbbb actual=ab95f355bd316cb58fca4c3651587ea3f1bc4da2428740dea71fbe25ca55bbbb
+OK .blueprint/specs/SPEC-001-portable-blueprint-core.md expected=a17c3ae469b4e45e15fade23fa9fa5ecb22ed5eed7de476de4600cf9d375f9ac actual=a17c3ae469b4e45e15fade23fa9fa5ecb22ed5eed7de476de4600cf9d375f9ac
+OK .blueprint/specs/SPEC-002-persistent-memory.md expected=a48d89fae9c798edb0b5fee2badb2bbc308d526d500eee20aae5ebdf147b6b51 actual=a48d89fae9c798edb0b5fee2badb2bbc308d526d500eee20aae5ebdf147b6b51
+OK .blueprint/specs/SPEC-005-task-lifecycle-and-handoffs.md expected=ca47c7aea4eafa58100abf628fe64aeaf511b54cd6926e3b86e80654f9673459 actual=ca47c7aea4eafa58100abf628fe64aeaf511b54cd6926e3b86e80654f9673459
+OK .blueprint/specs/SPEC-007-opencode-adapter.md expected=dafad89fa20c7ab24153044aef3be575b31808bc75741a1b975a6b5a7ac319ad actual=dafad89fa20c7ab24153044aef3be575b31808bc75741a1b975a6b5a7ac319ad
+OK .blueprint/specs/SPEC-008-project-initialization.md expected=55db0407e976078a342d7719c2d7858ddd7ecc669c52804bcec7b8d844000afc actual=55db0407e976078a342d7719c2d7858ddd7ecc669c52804bcec7b8d844000afc
+OK .blueprint/tasks/registry.json expected=c81504d29060aa2c20eeca62c49a940cd8b143197f6c61ef0f5b8e290c1d5912 actual=c81504d29060aa2c20eeca62c49a940cd8b143197f6c61ef0f5b8e290c1d5912
+OK .blueprint/tasks/backlog.md expected=a11bcd7339e816893092d22af2c4ed9375692aa70bdf2dd835e826794530353d actual=a11bcd7339e816893092d22af2c4ed9375692aa70bdf2dd835e826794530353d
+OK .blueprint/tasks/items/TASK-001.md expected=1bfe7a056fc98cc1886d7f19709a9374d4bf2aed0b4b907fab06df7cdda3c467 actual=1bfe7a056fc98cc1886d7f19709a9374d4bf2aed0b4b907fab06df7cdda3c467
+OK .blueprint/tasks/items/TASK-002.md expected=580dcfa9d80437f9519892519ddacc32a47b2d1717ba6e1cb1e52ba032d18166 actual=580dcfa9d80437f9519892519ddacc32a47b2d1717ba6e1cb1e52ba032d18166
+OK .blueprint/tasks/items/TASK-004.md expected=aade8f86903ffcfb29f799cc40472f580cbfbedc9d42b65be4ad4617b39f2082 actual=aade8f86903ffcfb29f799cc40472f580cbfbedc9d42b65be4ad4617b39f2082
+OK .blueprint/tasks/items/TASK-006.md expected=b520f1538614d338f713804f6cff86fba069340706a918f95c670390b31607cd actual=b520f1538614d338f713804f6cff86fba069340706a918f95c670390b31607cd
+OK .blueprint/tasks/items/TASK-009.md expected=0a5a20537727e3ed7ca88aa3a0ea6d32aa9e877d8cc94a4f8fe1bd97977119b8 actual=0a5a20537727e3ed7ca88aa3a0ea6d32aa9e877d8cc94a4f8fe1bd97977119b8
+OK .blueprint/tasks/items/TASK-010.md expected=dca0697fad50bc6dbc95ae0f6e290b4be37a294b527c61f6a0bfaf02a4230f43 actual=dca0697fad50bc6dbc95ae0f6e290b4be37a294b527c61f6a0bfaf02a4230f43
+OK .blueprint/tasks/items/TASK-011.md expected=389c00324cbcd8b1b6ec7c9bff7e74ec945a5e4c43a4167b91f751f0aeb95459 actual=389c00324cbcd8b1b6ec7c9bff7e74ec945a5e4c43a4167b91f751f0aeb95459
+OK .blueprint/tasks/items/TASK-012.md expected=3b7f1bdf68d88dca32355fc6ca3b6f20b29d1e600c2ab2ae1779fd99646f640c actual=3b7f1bdf68d88dca32355fc6ca3b6f20b29d1e600c2ab2ae1779fd99646f640c
+OVERALL PASS
+> orchestrator · crouton-alpha-free
+**Startup context packet — `/blueprint-startup` PASS**
+
+**Read order verified:** `.blueprint/README.md` → `manifest.json` → `config/project.json` → `config/agents.json` → `memory/PROJECT_CONTEXT.md` → `memory/CURRENT_STATE.md` → `tasks/registry.json` → `tasks/items/TASK-010.md` → `SPEC-002-persistent-memory.md`, `SPEC-005-task-lifecycle-and-handoffs.md`, `SPEC-007-opencode-adapter.md`.
+
+**Integrity:** manifest v1.0.0 / schema 1.0.0 / blueprint 0.1.0 — all 27 files SHA-256 verified OK.
+
+**Project:** Developer AI Init / `developer-ai-init`
+**Stage:** core contracts defined; moving through the approved task dependency graph. Status: active.
+
+**Active task:** **TASK-010 — Add OpenCode startup, task, and handoff workflows — `blocked`** (high, MANAGER: Engineering)
+- Dependencies TASK-004, TASK-006, TASK-009: all `done`
+- Specs: SPEC-002, SPEC-005, SPEC-007
+
+**Blocker (TASK-010):** OpenCode 2.2.5 cold-start could not reach a model — both free-model attempts rejected: `Free usage limit reached`. Do not use a paid model without Joseph's approval.
+- Responsible: USER
+- Next: authorize one isolated paid-model run, or run cold-start in your session and report results.
+
+**Recent completions (`done`):** TASK-001 (foundation review), TASK-002 (target layout), TASK-003 (schemas, 15/15), TASK-004 (startup protocol), TASK-005 (decision protocol), TASK-006 (task lifecycle), TASK-007 (consolidation), TASK-008 (role contracts), TASK-009 (OpenCode adapter, smoke-tested on 2.2.5), TASK-019 (observability/monitor, 23/23).
+
+**Next action (no task started, no files modified):** Resume TASK-010 live cold-start verification once blocker is resolved. Do not start TASK-011.

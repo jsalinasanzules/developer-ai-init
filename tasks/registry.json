@@ -146,7 +146,7 @@
     {
       "id": "TASK-010",
       "title": "Add OpenCode startup, task, and handoff workflows",
-      "status": "blocked",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-002",
@@ -159,12 +159,7 @@
         "TASK-006",
         "TASK-009"
       ],
-      "next_action": "Resume the cold-start OpenCode verification after an authorized model is available or Joseph reports results from a user-run session.",
-      "blocked": {
-        "reason": "The OpenCode 2.2.5 cold-start workflow could not reach a model: both available free-model attempts were rejected because the free usage limit was reached. Do not incur paid model usage without user approval.",
-        "responsible_role": "USER",
-        "next_action": "Authorize one isolated run with an authenticated paid model, or run the cold-start workflows in the user's OpenCode session and report observed results."
-      }
+      "next_action": "None. TASK-010 is done (all four acceptance criteria verified live; see docs/reviews/2026-11-04-task-010-verification.md)."
     },
     {
       "id": "TASK-011",
