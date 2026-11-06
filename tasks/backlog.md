@@ -34,5 +34,8 @@ The machine-readable source of task status is `registry.json`. Keep this view sy
 ## Observability and monitoring
 - [x] **TASK-019** (done): Define provider-neutral observability contract and OpenCode monitor. Depends on TASK-002, TASK-006, TASK-008. Implementation + 23/23 snapshot verification + v2.2.5 visual confirmation complete; `/monitor` hides/shows the sidebar and the monitor reloads after restarting OpenCode. Storage proxy fix committed as `bdfbce1`.
 
+## Observability and monitoring — live runtime tracking
+- [ ] **TASK-021** (ready, high): Add live agent and delegation tracking to the OpenCode monitor. Depends on TASK-019. Verify OpenCode v2.2.5 runtime events and correlation limits before implementation.
+
 ## Scheduling
 The Orchestrator selects the next eligible task based on priority, dependencies, and user direction. Do not execute the entire backlog automatically. Surface material decision gates before proceeding.
