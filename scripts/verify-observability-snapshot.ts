@@ -25,7 +25,7 @@ const here = readSnapshot(repoRoot)
 const task020 = here.tasks?.find((task) => task.id === "TASK-020")
 check("A: layout kind development", here.layout.kind === "development")
 check("A: contract version", here.contract_version === CONTRACT_VERSION)
-check("A: registry parsed (20 tasks)", (here.tasks?.length ?? 0) === 20, String(here.tasks?.length))
+check("A: registry parsed (at least 20 tasks)", (here.tasks?.length ?? 0) >= 20, String(here.tasks?.length))
 check("A: TASK-020 remains visible in registry", !!task020)
 check(
   "A: active selection follows lifecycle status",

@@ -58,6 +58,7 @@ export interface Snapshot {
   project?: { name?: string; slug?: string }
   tasks?: TaskMirror[] | null
   active_task?: Record<string, unknown> | null
+  last_completed_task?: { id: string; title?: string } | null
   blockers?: BlockerLike[] | "unparsed"
   pending_approvals?: BlockerLike[] | "unparsed"
   decisions?: { total: number; latest?: { adr_id: string; title?: string; status?: string; date?: string } } | "unparsed"
@@ -200,7 +201,7 @@ function listMarkdown(dir?: string, max = 5): Array<{ path: string; recorded_at?
   if (!dir || !existsSync(dir)) return []
   try {
     const files = readdirSync(dir)
-      .filter((f) => f.endsWith(".md") && !f.includes("TEMPLATE"))
+      .filter((f) => f.endsWith(".md") && !f.includes("TEMPLATE") && f.toLowerCase() !== "readme.md" && !f.toLowerCase().startsWith("index"))
       .sort()
       .reverse()
     return files.slice(0, max).map((f) => {
@@ -316,7 +317,18 @@ function selectActive(tasks: TaskMirror[] | null, layout: Layout, issues: Snapsh
         next_action: selected.next_action,
       }
     : id === "unparsed" ? null : null
-  return { active, next_action: nextAction ? nextAction.split("\n")[0] : undefined, blockers: undefined as unknown, pending: undefined as unknown }
+  // Fallback only — `active` above is unchanged. Surface the most recently
+  // completed task so progress is visible when nothing is active. The registry
+  // carries no completion timestamps, so operation order is used: the `done`
+  // task appearing last in the registry array is the most recently completed
+  // one. This never promotes a task or changes its status.
+  const latestCompleted = selected
+    ? null
+    : ((tasks ?? []).filter((t) => t.status === "done").slice(-1)[0] ?? null)
+  const last_completed_task = latestCompleted
+    ? { id: latestCompleted.id, title: latestCompleted.title }
+    : null
+  return { active, last_completed_task, next_action: nextAction ? nextAction.split("\n")[0] : undefined, blockers: undefined as unknown, pending: undefined as unknown }
 }
 
 function parseStateFlags(layout: Layout, issues: Snapshot["issues"]) {
@@ -325,12 +337,15 @@ function parseStateFlags(layout: Layout, issues: Snapshot["issues"]) {
     issues.push({ record: "current_state", severity: "error", message: "CURRENT_STATE.md missing from canonical root" })
   }
   const blockersSection = section(state.text, ["Blockers", "Risks and blockers"])
-  const approvalsSection = section(state.text, ["Pending approvals"])
-  const hasNone = (s?: string) => !!s && /none/i.test(s.split("\n")[0] ?? "")
+  const approvalsSection = section(state.text, ["Pending approvals", "Pending approvals / open decisions"])
+  const hasNone = (s?: string) => !!s && /none|no pending/i.test(s.split("\n")[0] ?? "")
   const blockers: BlockerLike[] | "unparsed" =
     blockersSection === undefined ? "unparsed" : hasNone(blockersSection) ? [] : bulletLines(blockersSection).map((l) => ({ summary: l }))
   const pending_approvals: BlockerLike[] | "unparsed" =
     approvalsSection === undefined ? "unparsed" : hasNone(approvalsSection) ? [] : bulletLines(approvalsSection).map((l) => ({ summary: l }))
+  if (approvalsSection === undefined && state.text) {
+    issues.push({ record: "current_state", severity: "warning", message: "no '## Pending approvals' section found" })
+  }
   if (!state.text && layout.paths.current_state) {
     // keep as unparsed rather than null
   }
@@ -398,7 +413,7 @@ export function readSnapshot(dir: string, opts: { staleSeconds?: number } = {}):
       : undefined,
     tasks: registry.tasks,
     active_task: activeInfo.active,
-    blockers: stateFlags.blockers,
+    last_completed_task: activeInfo.last_completed_task, blockers: stateFlags.blockers,
     pending_approvals: stateFlags.pending_approvals,
     decisions,
     handoffs: listMarkdown(layout.paths.handoffs_dir),

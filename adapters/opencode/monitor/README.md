@@ -10,7 +10,10 @@ Verified against OpenCode `v2.2.5` (2026-11-04). See the spike record `docs/arch
 - Active task (ID, title, status), acceptance-criteria evidence counts, owner role.
 - Blockers and pending approvals (or `unparsed` when the narrative can't be read).
 - Latest ADR, latest handoff, last canonical state age.
-- `issues` count when the snapshot degraded (missing/unparsable records).
+- `configured hierarchy` when the optional machine-readable role file is present; otherwise `configured hierarchy: unavailable` instead of an invented hierarchy.
+- `observed runtime` information from OpenCode events: parent/child session links, explicit tool invocations, attempts/outcomes, and a compact five-row activity feed. Runtime data is ephemeral and is never written to canonical records or a second database.
+- Explicit `review: unobserved · approval: unobserved` once runtime sessions are observed; neither review nor approval is inferred from a session ending.
+- `issues` count when the snapshot degraded (missing/unparsable records) plus runtime observation warnings/unknowns.
 
 Source of truth stays in `.blueprint/` (or the development layout's root equivalents). The monitor mirrors nothing durable.
 
@@ -35,11 +38,15 @@ The same directory can live at `adapters/opencode/monitor` inside this repositor
 | `package.json` | name, exports (`.` server part, `./tui` TUI part), peer deps for OpenTUI/solid. |
 | `src/index.ts` | Server part: stable plugin id; no behavior; reserved for future event/RPC hooks. |
 | `src/blueprint.ts` | Root resolution + snapshot reader (contract §3–§4, §6). READ-ONLY. |
-| `src/tui.tsx` | TUI part: `sidebar.content` slot rendering, `/monitor` toggle, poll refresh. |
+| `src/runtime-observations.ts` | In-memory event/session/tool mapping; pure reducer and no canonical I/O. |
+| `src/configured-hierarchy.ts` | Reads optional `.blueprint/config/agents.json`; returns explicit unavailable/degraded state otherwise. |
+| `src/tui.tsx` | TUI part: `sidebar.content` slot rendering, `/monitor` toggle, poll refresh, and runtime subscriptions. |
 
 ## Refresh and degradation
 
-- By default the TUI re-reads canonical mtimes at most 1×/s and re-reads only changed files. The staleness shown is advisory (`stale: true` past a configurable threshold).
+- Snapshot records parse once per poll (currently once per second) and take effect as an in-memory update; there is no attempt to overlay runtime events onto canonical task state.
+- Missing or misshapen events are recorded as `issues`/activity. Duplicate event IDs are ignored. Late terminal/start events do not downgrade a completed or interrupted attempt.
+- Disconnected/unavailable runtime listeners are shown as explicitly incomplete. No missing event is treated as completion, review, or approval.
 - Missing/unparsable records degrade the snapshot and increment `issues`; the sidebar keeps showing the last good values with a clear issue line instead of hiding the panel.
 - If no canonical root resolves, the sidebar shows “not a Blueprint project” and never invents paths.
 

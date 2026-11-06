@@ -338,7 +338,7 @@
     {
       "id": "TASK-021",
       "title": "Add live agent and delegation tracking to the OpenCode monitor",
-      "status": "ready",
+      "status": "done",
       "priority": "high",
       "specs": [
         "SPEC-006",
@@ -348,7 +348,7 @@
       "dependencies": [
         "TASK-019"
       ],
-      "next_action": "Start in OpenCode Build mode; verify v2.2.5 runtime events and correlation limits before implementing event-driven tracking."
+      "next_action": "TASK-021 completed via the official lifecycle gate: independent Manager Quality review docs/reviews/task-021-manager-review-2.md (Decision: APPROVED), 31 deterministic tests pass, snapshot verifier RESULT: PASS, OpenCode 2.2.5 load/toggle user-confirmed, live runtime/delegation rows documented as unverified under the accepted limitation. Do not start TASK-016/017/018 without user direction."
     }
   ]
 }

@@ -16,7 +16,7 @@
 - TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-None. TASK-021 is `ready` but has not started. The user requested execution through OpenCode Build mode; transition it to `in_progress` using the official lifecycle gate when the run begins.
+None. TASK-021 is complete; see `docs/reviews/task-021-manager-review-2.md`.
 
 ## Completed recently
 - **TASK-010** (`done`): live cold-start, task-selection, evidence-backed lifecycle (TASK-900 four-transition history `06bdd19`/`1d53129`/`9795b73`/`2bad731`), and handoff production/consumption verified against Crouton Alpha; report `docs/reviews/2026-11-04-task-010-verification.md`.
@@ -36,6 +36,7 @@ None. TASK-021 is `ready` but has not started. The user requested execution thro
 - **TASK-013** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-013-manager-review-follow-up.md`.
 - **TASK-014** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-014-manager-review.md`.
 - **TASK-015** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/2026-11-05-task-015-clean-manager-review-followup.md`.
+- **TASK-021** (`done`): evidence gate approved the acceptance evidence and synchronized task records; Manager review `docs/reviews/task-021-manager-review-2.md`.
 
 ## Approved decisions
 - **ADR-006:** V2-native OpenCode adapter baseline, with portable Markdown commands/skills where practical.
@@ -56,7 +57,7 @@ None. TASK-021 is `ready` but has not started. The user requested execution thro
 - OpenCode's default subagent depth is `1`; true Orchestrator → Manager → Specialist delegation requires depth `2` (experimental in V2) or the documented fallback.
 
 ## Newly approved work
-- **TASK-021** (`ready`): Add live agent and delegation tracking to the OpenCode monitor. Depends on TASK-019 (`done`). First step is verified discovery of OpenCode v2.2.5 runtime events and session/delegation correlation. No implementation has started.
+- **TASK-021** (`in_review`, started 2026-11-06): Add live agent and delegation tracking to the OpenCode monitor. Depends on TASK-019 (`done`). AC-01 discovery is recorded, bounded adapter-only implementation prepared, and user confirmed v2.2.5 load/`/monitor` behavior; no observability-contract change. Live runtime/delegation rows remain **not verified**.
 
 ## Observability work
 TASK-019 is complete: `docs/architecture/observability.md` v1.0.0 and one reusable OpenCode monitor implementation at `adapters/opencode/monitor/` serve both canonical contexts (`.blueprint/` and the development layout). Verification includes 23/23 snapshot checks, OpenCode 2.2.5 plugin-load evidence, and user-confirmed sidebar visibility toggle and reload after restart.
@@ -68,4 +69,5 @@ None. The initial TASK-015 producer run's nested-session deviation remains docum
 No pending approval for TASK-015. Do not start TASK-016/017/018 without user direction. No paid model or provider configuration change was made.
 
 ## Next
-Start TASK-021 in OpenCode Build mode. Complete runtime API discovery first; escalate before any material observability-contract change. TASK-016, TASK-017, and TASK-018 remain unstarted.
+TASK-021 completed via the official lifecycle gate: independent Manager Quality review docs/reviews/task-021-manager-review-2.md (Decision: APPROVED), 31 deterministic tests pass, snapshot verifier RESULT: PASS, OpenCode 2.2.5 load/toggle user-confirmed, live runtime/delegation rows documented as unverified under the accepted limitation. Do not start TASK-016/017/018 without user direction.
+
