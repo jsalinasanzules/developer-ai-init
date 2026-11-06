@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-05",
+  "updated_at": "2026-11-06",
   "tasks": [
     {
       "id": "TASK-001",
@@ -334,6 +334,21 @@
         "TASK-009"
       ],
       "next_action": "Present TASK-012 proposal for user approval; do not start until approved."
+    },
+    {
+      "id": "TASK-021",
+      "title": "Add live agent and delegation tracking to the OpenCode monitor",
+      "status": "ready",
+      "priority": "high",
+      "specs": [
+        "SPEC-006",
+        "SPEC-007"
+      ],
+      "owner_role": "MANAGER: Engineering",
+      "dependencies": [
+        "TASK-019"
+      ],
+      "next_action": "Start in OpenCode Build mode; verify v2.2.5 runtime events and correlation limits before implementing event-driven tracking."
     }
   ]
 }
