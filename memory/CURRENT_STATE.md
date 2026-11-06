@@ -16,7 +16,7 @@
 - TASK-009 OpenCode adapter: `adapters/opencode/` (templates, manifest, conformance report).
 
 ## Active task
-None. TASK-015 is complete; see `docs/reviews/2026-11-05-task-015-clean-manager-review-followup.md`.
+None. TASK-021 is `ready` but has not started. The user requested execution through OpenCode Build mode; transition it to `in_progress` using the official lifecycle gate when the run begins.
 
 ## Completed recently
 - **TASK-010** (`done`): live cold-start, task-selection, evidence-backed lifecycle (TASK-900 four-transition history `06bdd19`/`1d53129`/`9795b73`/`2bad731`), and handoff production/consumption verified against Crouton Alpha; report `docs/reviews/2026-11-04-task-010-verification.md`.
@@ -55,6 +55,9 @@ None. TASK-015 is complete; see `docs/reviews/2026-11-05-task-015-clean-manager-
 - OpenCode 1 and OpenCode 2 share the `opencode` command; this environment runs `v2.2.5`.
 - OpenCode's default subagent depth is `1`; true Orchestrator → Manager → Specialist delegation requires depth `2` (experimental in V2) or the documented fallback.
 
+## Newly approved work
+- **TASK-021** (`ready`): Add live agent and delegation tracking to the OpenCode monitor. Depends on TASK-019 (`done`). First step is verified discovery of OpenCode v2.2.5 runtime events and session/delegation correlation. No implementation has started.
+
 ## Observability work
 TASK-019 is complete: `docs/architecture/observability.md` v1.0.0 and one reusable OpenCode monitor implementation at `adapters/opencode/monitor/` serve both canonical contexts (`.blueprint/` and the development layout). Verification includes 23/23 snapshot checks, OpenCode 2.2.5 plugin-load evidence, and user-confirmed sidebar visibility toggle and reload after restart.
 
@@ -65,4 +68,4 @@ None. The initial TASK-015 producer run's nested-session deviation remains docum
 No pending approval for TASK-015. Do not start TASK-016/017/018 without user direction. No paid model or provider configuration change was made.
 
 ## Next
-Await user direction; do not start TASK-016, TASK-017, or TASK-018.
+Start TASK-021 in OpenCode Build mode. Complete runtime API discovery first; escalate before any material observability-contract change. TASK-016, TASK-017, and TASK-018 remain unstarted.
